@@ -35,6 +35,62 @@ TEST(TupleTest, ConstructVectorFromTuple) {
     EXPECT_TRUE(t.isVector());
 }
 
+TEST(TupleTest, CompareEqualPoints) {
+    auto p1 = rtlib::create_point(4, -4, 3);
+    auto p2 = rtlib::create_point(4, -4, 3);
+    
+    EXPECT_TRUE(p1 == p2);
+    EXPECT_FALSE(p1 != p2);
+}
+
+TEST(TupleTest, CompareUnequalPoints) {
+    auto p1 = rtlib::create_point(4, -4, 3);
+    
+    auto p2 = rtlib::create_point(1, -4, 3);
+    EXPECT_FALSE(p1 == p2);
+    EXPECT_TRUE(p1 != p2);
+    
+    p2 = rtlib::create_point(4, -1, 3);
+    EXPECT_FALSE(p1 == p2);
+    EXPECT_TRUE(p1 != p2);
+    
+    p2 = rtlib::create_point(4, -4, 1);
+    EXPECT_FALSE(p1 == p2);
+    EXPECT_TRUE(p1 != p2);
+}
+
+TEST(TupleTest, CompareEqualVectors) {
+    auto v1 = rtlib::create_vector(4, -4, 3);
+    auto v2 = rtlib::create_vector(4, -4, 3);
+    
+    EXPECT_TRUE(v1 == v2);
+    EXPECT_FALSE(v1 != v2);
+}
+
+TEST(TupleTest, CompareUnequalVectors) {
+    auto v1 = rtlib::create_vector(4, -4, 3);
+    
+    auto v2 = rtlib::create_vector(1, -4, 3);
+    EXPECT_FALSE(v1 == v2);
+    EXPECT_TRUE(v1 != v2);
+    
+    v2 = rtlib::create_vector(4, -1, 3);
+    EXPECT_FALSE(v1 == v2);
+    EXPECT_TRUE(v1 != v2);
+    
+    v2 = rtlib::create_vector(4, -4, 1);
+    EXPECT_FALSE(v1 == v2);
+    EXPECT_TRUE(v1 != v2);
+}
+
+TEST(TupleTest, ComparePointAndVector) {
+    auto p1 = rtlib::create_point(4, -4, 3);
+    auto v1 = rtlib::create_vector(4, -4, 3);
+    
+    EXPECT_FALSE(p1 == v1);
+    EXPECT_TRUE(p1 != v1);
+}
+
 TEST(TupleTest, ConstructPointByName) {
     auto p = rtlib::create_point(4, -4, 3);
     

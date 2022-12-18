@@ -7,6 +7,14 @@
 
 #include "tuple.hpp"
 
+#include <cmath>
+
+namespace {
+    bool doubleEquals(double a, double b) {
+        return (std::abs(a - b) < 0.00001);
+    }
+}
+
 using namespace rtlib;
 
 Tuple::Tuple() :
@@ -52,6 +60,13 @@ bool Tuple::isPoint() const {
 
 bool Tuple::isVector() const {
     return _w != 1.0;
+}
+
+bool Tuple::operator==(const Tuple& lhs) const {
+    return doubleEquals(lhs.x(), this->x()) &&
+            doubleEquals(lhs.y(), this->y()) &&
+            doubleEquals(lhs.z(), this->z()) &&
+            doubleEquals(lhs.w(), this->w());
 }
 
 Tuple rtlib::create_point(double x, double y, double z) {

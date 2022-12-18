@@ -30,6 +30,8 @@ public:
     
     bool isPoint() const;
     bool isVector() const;
+    
+    bool operator==(const Tuple& lhs) const;
 };
 
 Tuple create_point(double x, double y, double z);
