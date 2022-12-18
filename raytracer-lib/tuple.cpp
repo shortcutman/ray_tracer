@@ -78,6 +78,22 @@ Tuple& Tuple::operator-=(const Tuple& rhs) {
     return *this;
 }
 
+Tuple& Tuple::operator*=(double rhs) {
+    this->_x *= rhs;
+    this->_y *= rhs;
+    this->_z *= rhs;
+    this->_w *= rhs;
+    return *this;
+}
+
+Tuple& Tuple::operator/=(double rhs) {
+    this->_x /= rhs;
+    this->_y /= rhs;
+    this->_z /= rhs;
+    this->_w /= rhs;
+    return *this;
+}
+
 Tuple Tuple::operator-() {
     auto t = *this;
     t._x *= -1.0;
@@ -101,6 +117,16 @@ Tuple rtlib::operator+(Tuple lhs, const Tuple& rhs) {
 
 Tuple rtlib::operator-(Tuple lhs, const Tuple& rhs) {
     lhs -= rhs;
+    return lhs;
+}
+
+Tuple rtlib::operator*(Tuple lhs, double rhs) {
+    lhs *= rhs;
+    return lhs;
+}
+
+Tuple rtlib::operator/(Tuple lhs, double rhs) {
+    lhs /= rhs;
     return lhs;
 }
 

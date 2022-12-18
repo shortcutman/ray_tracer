@@ -164,6 +164,20 @@ TEST(TupleTest, SubtractVectorFromPoint) {
     EXPECT_FALSE(p2.isVector());
 }
 
+TEST(TupleTest, MultiplyTuple) {
+    rtlib::Tuple t1(1, -2, 3, -4);
+    auto t2 = t1 * 3.5;
+    
+    EXPECT_EQ(t2, rtlib::Tuple(3.5, -7, 10.5, -14));
+}
+
+TEST(TupleTest, DivideTuple) {
+    rtlib::Tuple t1(1, -2, 3, -4);
+    auto t2 = t1 / 2;
+    
+    EXPECT_EQ(t2, rtlib::Tuple(0.5, -1, 1.5, -2));
+}
+
 TEST(TupleTest, NegateVector) {
     auto v1 = rtlib::create_vector(1, -2, 3);
     auto v2 = -v1;

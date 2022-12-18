@@ -33,6 +33,8 @@ public:
     
     Tuple& operator+=(const Tuple& rhs);
     Tuple& operator-=(const Tuple& rhs);
+    Tuple& operator*=(double rhs);
+    Tuple& operator/=(double rhs);
     Tuple operator-();
     
     bool operator==(const Tuple& lhs) const;
@@ -40,6 +42,8 @@ public:
 
 Tuple operator+(Tuple lhs, const Tuple& rhs);
 Tuple operator-(Tuple lhs, const Tuple& rhs);
+Tuple operator*(Tuple lhs, double rhs);
+Tuple operator/(Tuple lhs, double rhs);
 
 Tuple create_point(double x, double y, double z);
 Tuple create_vector(double x, double y, double z);
