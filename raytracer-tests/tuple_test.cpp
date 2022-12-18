@@ -113,11 +113,11 @@ TEST(TupleTest, AddVectors) {
 }
 
 TEST(TupleTest, AddPointAndVector) {
-    auto p1 = rtlib::create_point(4, -4, 3);
-    auto v1 = rtlib::create_vector(4, -4, 3);
+    auto p1 = rtlib::create_point(3, -2, 5);
+    auto v1 = rtlib::create_vector(-2, 3, 1);
     auto p2 = p1 + v1;
     
-    EXPECT_EQ(p2, rtlib::create_point(8, -8, 6));
+    EXPECT_EQ(p2, rtlib::create_point(1, 1, 6));
     EXPECT_TRUE(p2.isPoint());
     EXPECT_FALSE(p2.isVector());
 }
