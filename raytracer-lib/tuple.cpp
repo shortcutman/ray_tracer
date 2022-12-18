@@ -125,6 +125,13 @@ bool Tuple::operator==(const Tuple& lhs) const {
             doubleEquals(lhs.w(), this->w());
 }
 
+double Tuple::dot(const Tuple& lhs, const Tuple& rhs) {
+    return lhs._x * rhs._x +
+            lhs._y * rhs._y +
+            lhs._z * rhs._z +
+            lhs._w * rhs._w;
+}
+
 bool Tuple::doubleEquals(double a, double b) {
     return (std::abs(a - b) < 0.00001);
 }
