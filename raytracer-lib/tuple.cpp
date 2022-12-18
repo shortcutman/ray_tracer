@@ -59,7 +59,15 @@ bool Tuple::isPoint() const {
 }
 
 bool Tuple::isVector() const {
-    return _w != 1.0;
+    return _w == 0.0;
+}
+
+Tuple& Tuple::operator+=(const Tuple& rhs) {
+    this->_x += rhs.x();
+    this->_y += rhs.y();
+    this->_z += rhs.z();
+    this->_w += rhs.w();
+    return *this;
 }
 
 bool Tuple::operator==(const Tuple& lhs) const {
@@ -67,6 +75,11 @@ bool Tuple::operator==(const Tuple& lhs) const {
             doubleEquals(lhs.y(), this->y()) &&
             doubleEquals(lhs.z(), this->z()) &&
             doubleEquals(lhs.w(), this->w());
+}
+
+Tuple rtlib::operator+(Tuple lhs, const Tuple& rhs) {
+    lhs += rhs;
+    return lhs;
 }
 
 Tuple rtlib::create_point(double x, double y, double z) {

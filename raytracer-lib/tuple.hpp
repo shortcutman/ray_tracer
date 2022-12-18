@@ -31,8 +31,12 @@ public:
     bool isPoint() const;
     bool isVector() const;
     
+    Tuple& operator+=(const Tuple& rhs);
+    
     bool operator==(const Tuple& lhs) const;
 };
+
+Tuple operator+(Tuple lhs, const Tuple& rhs);
 
 Tuple create_point(double x, double y, double z);
 Tuple create_vector(double x, double y, double z);

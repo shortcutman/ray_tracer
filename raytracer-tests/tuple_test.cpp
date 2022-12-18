@@ -91,6 +91,37 @@ TEST(TupleTest, ComparePointAndVector) {
     EXPECT_TRUE(p1 != v1);
 }
 
+TEST(TupleTest, AddPoints) {
+    auto p1 = rtlib::create_point(4, -4, 3);
+    auto p2 = rtlib::create_point(4, -4, 3);
+    auto p3 = p1 + p2;
+    
+    EXPECT_NE(p3, rtlib::create_point(8, -8, 6));
+    EXPECT_TRUE(p3.w() == 2.0);
+    EXPECT_FALSE(p3.isPoint());
+    EXPECT_FALSE(p3.isVector());
+}
+
+TEST(TupleTest, AddVectors) {
+    auto v1 = rtlib::create_vector(4, -4, 3);
+    auto v2 = rtlib::create_vector(4, -4, 3);
+    auto v3 = v1 + v2;
+    
+    EXPECT_EQ(v3, rtlib::create_vector(8, -8, 6));
+    EXPECT_FALSE(v3.isPoint());
+    EXPECT_TRUE(v3.isVector());
+}
+
+TEST(TupleTest, AddPointAndVector) {
+    auto p1 = rtlib::create_point(4, -4, 3);
+    auto v1 = rtlib::create_vector(4, -4, 3);
+    auto p2 = p1 + v1;
+    
+    EXPECT_EQ(p2, rtlib::create_point(8, -8, 6));
+    EXPECT_TRUE(p2.isPoint());
+    EXPECT_FALSE(p2.isVector());
+}
+
 TEST(TupleTest, ConstructPointByName) {
     auto p = rtlib::create_point(4, -4, 3);
     
