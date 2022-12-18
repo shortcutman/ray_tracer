@@ -104,6 +104,20 @@ Tuple Tuple::operator-() {
     return t;
 }
 
+void Tuple::normalise() {
+    auto magnitude = this->magnitude();
+    this->_x /= magnitude;
+    this->_y /= magnitude;
+    this->_z /= magnitude;
+    this->_w /= magnitude;
+}
+
+Tuple Tuple::createNormalized() const {
+    auto t = *this;
+    t.normalise();
+    return t;
+}
+
 bool Tuple::operator==(const Tuple& lhs) const {
     return doubleEquals(lhs.x(), this->x()) &&
             doubleEquals(lhs.y(), this->y()) &&

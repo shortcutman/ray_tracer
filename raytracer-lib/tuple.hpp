@@ -37,6 +37,8 @@ public:
     Tuple& operator*=(double rhs);
     Tuple& operator/=(double rhs);
     Tuple operator-();
+    void normalise();
+    Tuple createNormalized() const;
     
     bool operator==(const Tuple& lhs) const;
     
