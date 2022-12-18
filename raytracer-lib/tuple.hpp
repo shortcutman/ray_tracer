@@ -32,6 +32,9 @@ public:
     bool isVector() const;
 };
 
+Tuple create_point(float x, float y, float z);
+Tuple create_vector(float x, float y, float z);
+
 }
 
 

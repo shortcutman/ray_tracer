@@ -53,3 +53,11 @@ bool Tuple::isPoint() const {
 bool Tuple::isVector() const {
     return _w != 1.0f;
 }
+
+Tuple rtlib::create_point(float x, float y, float z) {
+    return Tuple(x, y, z, 1.0f);
+}
+
+Tuple rtlib::create_vector(float x, float y, float z) {
+    return Tuple(x, y, z, 0.0f);
+}

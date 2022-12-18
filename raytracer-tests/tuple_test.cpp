@@ -11,7 +11,7 @@
 
 namespace {
 
-TEST(TupleTest, ConstructPoint) {
+TEST(TupleTest, ConstructPointFromTuple) {
     rtlib::Tuple t(4.3f, -4.2f, 3.1f, 1.0f);
     
     EXPECT_EQ(t.x(), 4.3f);
@@ -23,7 +23,7 @@ TEST(TupleTest, ConstructPoint) {
     EXPECT_FALSE(t.isVector());
 }
 
-TEST(TupleTest, ConstructVector) {
+TEST(TupleTest, ConstructVectorFromTuple) {
     rtlib::Tuple t(4.3f, -4.2f, 3.1f, 0.0f);
     
     EXPECT_EQ(t.x(), 4.3f);
@@ -33,6 +33,30 @@ TEST(TupleTest, ConstructVector) {
     
     EXPECT_FALSE(t.isPoint());
     EXPECT_TRUE(t.isVector());
+}
+
+TEST(TupleTest, ConstructPointByName) {
+    auto p = rtlib::create_point(4, -4, 3);
+    
+    EXPECT_EQ(p.x(), 4.f);
+    EXPECT_EQ(p.y(), -4.f);
+    EXPECT_EQ(p.z(), 3.f);
+    EXPECT_EQ(p.w(), 1.0f);
+    
+    EXPECT_TRUE(p.isPoint());
+    EXPECT_FALSE(p.isVector());
+}
+
+TEST(TupleTest, ConstructVectorByName) {
+    auto v = rtlib::create_vector(4, -4, 3);
+    
+    EXPECT_EQ(v.x(), 4.f);
+    EXPECT_EQ(v.y(), -4.f);
+    EXPECT_EQ(v.z(), 3.f);
+    EXPECT_EQ(v.w(), 0.0f);
+    
+    EXPECT_FALSE(v.isPoint());
+    EXPECT_TRUE(v.isVector());
 }
 
 }
