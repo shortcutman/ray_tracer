@@ -8,10 +8,42 @@
 
 /* Begin PBXBuildFile section */
 		65B1E56A294E9AF8008BF2DE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B1E569294E9AF8008BF2DE /* main.cpp */; };
+		65B1E577294E9B48008BF2DE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B1E576294E9B48008BF2DE /* main.cpp */; };
+		65B1E582294E9BCC008BF2DE /* raytracer_lib.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65B1E581294E9BCC008BF2DE /* raytracer_lib.hpp */; };
+		65B1E586294E9BCC008BF2DE /* raytracer_lib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B1E585294E9BCC008BF2DE /* raytracer_lib.cpp */; };
+		65B1E58D294E9BFB008BF2DE /* libraytracer-lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B1E57F294E9BCC008BF2DE /* libraytracer-lib.a */; };
+		65B1E590294E9CCE008BF2DE /* libraytracer-lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B1E57F294E9BCC008BF2DE /* libraytracer-lib.a */; };
+		65B1E592294E9D7A008BF2DE /* default_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B1E591294E9D7A008BF2DE /* default_test.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		65B1E58A294E9BEE008BF2DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65B1E55E294E9AF8008BF2DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65B1E57E294E9BCC008BF2DE;
+			remoteInfo = "raytracer-lib";
+		};
+		65B1E58E294E9CCB008BF2DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65B1E55E294E9AF8008BF2DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65B1E57E294E9BCC008BF2DE;
+			remoteInfo = "raytracer-lib";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		65B1E564294E9AF8008BF2DE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		65B1E572294E9B48008BF2DE /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -25,10 +57,32 @@
 /* Begin PBXFileReference section */
 		65B1E566294E9AF8008BF2DE /* raytracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = raytracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B1E569294E9AF8008BF2DE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		65B1E574294E9B48008BF2DE /* raytracer-tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "raytracer-tests"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65B1E576294E9B48008BF2DE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		65B1E57F294E9BCC008BF2DE /* libraytracer-lib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libraytracer-lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65B1E581294E9BCC008BF2DE /* raytracer_lib.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = raytracer_lib.hpp; sourceTree = "<group>"; };
+		65B1E585294E9BCC008BF2DE /* raytracer_lib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = raytracer_lib.cpp; sourceTree = "<group>"; };
+		65B1E591294E9D7A008BF2DE /* default_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = default_test.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		65B1E563294E9AF8008BF2DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65B1E590294E9CCE008BF2DE /* libraytracer-lib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65B1E571294E9B48008BF2DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65B1E58D294E9BFB008BF2DE /* libraytracer-lib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65B1E57D294E9BCC008BF2DE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,7 +96,10 @@
 			isa = PBXGroup;
 			children = (
 				65B1E568294E9AF8008BF2DE /* raytracer */,
+				65B1E575294E9B48008BF2DE /* raytracer-tests */,
+				65B1E580294E9BCC008BF2DE /* raytracer-lib */,
 				65B1E567294E9AF8008BF2DE /* Products */,
+				65B1E58C294E9BFB008BF2DE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -50,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				65B1E566294E9AF8008BF2DE /* raytracer */,
+				65B1E574294E9B48008BF2DE /* raytracer-tests */,
+				65B1E57F294E9BCC008BF2DE /* libraytracer-lib.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -62,7 +121,43 @@
 			path = raytracer;
 			sourceTree = "<group>";
 		};
+		65B1E575294E9B48008BF2DE /* raytracer-tests */ = {
+			isa = PBXGroup;
+			children = (
+				65B1E576294E9B48008BF2DE /* main.cpp */,
+				65B1E591294E9D7A008BF2DE /* default_test.cpp */,
+			);
+			path = "raytracer-tests";
+			sourceTree = "<group>";
+		};
+		65B1E580294E9BCC008BF2DE /* raytracer-lib */ = {
+			isa = PBXGroup;
+			children = (
+				65B1E581294E9BCC008BF2DE /* raytracer_lib.hpp */,
+				65B1E585294E9BCC008BF2DE /* raytracer_lib.cpp */,
+			);
+			path = "raytracer-lib";
+			sourceTree = "<group>";
+		};
+		65B1E58C294E9BFB008BF2DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		65B1E57B294E9BCC008BF2DE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65B1E582294E9BCC008BF2DE /* raytracer_lib.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		65B1E565294E9AF8008BF2DE /* raytracer */ = {
@@ -76,11 +171,47 @@
 			buildRules = (
 			);
 			dependencies = (
+				65B1E58F294E9CCB008BF2DE /* PBXTargetDependency */,
 			);
 			name = raytracer;
 			productName = raytracer;
 			productReference = 65B1E566294E9AF8008BF2DE /* raytracer */;
 			productType = "com.apple.product-type.tool";
+		};
+		65B1E573294E9B48008BF2DE /* raytracer-tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65B1E578294E9B48008BF2DE /* Build configuration list for PBXNativeTarget "raytracer-tests" */;
+			buildPhases = (
+				65B1E570294E9B48008BF2DE /* Sources */,
+				65B1E571294E9B48008BF2DE /* Frameworks */,
+				65B1E572294E9B48008BF2DE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65B1E58B294E9BEE008BF2DE /* PBXTargetDependency */,
+			);
+			name = "raytracer-tests";
+			productName = "raytracer-tests";
+			productReference = 65B1E574294E9B48008BF2DE /* raytracer-tests */;
+			productType = "com.apple.product-type.tool";
+		};
+		65B1E57E294E9BCC008BF2DE /* raytracer-lib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65B1E587294E9BCC008BF2DE /* Build configuration list for PBXNativeTarget "raytracer-lib" */;
+			buildPhases = (
+				65B1E57B294E9BCC008BF2DE /* Headers */,
+				65B1E57C294E9BCC008BF2DE /* Sources */,
+				65B1E57D294E9BCC008BF2DE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "raytracer-lib";
+			productName = "raytracer-lib";
+			productReference = 65B1E57F294E9BCC008BF2DE /* libraytracer-lib.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -92,6 +223,12 @@
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					65B1E565294E9AF8008BF2DE = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					65B1E573294E9B48008BF2DE = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					65B1E57E294E9BCC008BF2DE = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
@@ -110,6 +247,8 @@
 			projectRoot = "";
 			targets = (
 				65B1E565294E9AF8008BF2DE /* raytracer */,
+				65B1E573294E9B48008BF2DE /* raytracer-tests */,
+				65B1E57E294E9BCC008BF2DE /* raytracer-lib */,
 			);
 		};
 /* End PBXProject section */
@@ -123,7 +262,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		65B1E570294E9B48008BF2DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65B1E577294E9B48008BF2DE /* main.cpp in Sources */,
+				65B1E592294E9D7A008BF2DE /* default_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65B1E57C294E9BCC008BF2DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65B1E586294E9BCC008BF2DE /* raytracer_lib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		65B1E58B294E9BEE008BF2DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65B1E57E294E9BCC008BF2DE /* raytracer-lib */;
+			targetProxy = 65B1E58A294E9BEE008BF2DE /* PBXContainerItemProxy */;
+		};
+		65B1E58F294E9CCB008BF2DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65B1E57E294E9BCC008BF2DE /* raytracer-lib */;
+			targetProxy = 65B1E58E294E9CCB008BF2DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		65B1E56B294E9AF8008BF2DE /* Debug */ = {
@@ -251,6 +420,58 @@
 			};
 			name = Release;
 		};
+		65B1E579294E9B48008BF2DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /opt/homebrew/include;
+				LIBRARY_SEARCH_PATHS = /opt/homebrew/lib;
+				OTHER_LDFLAGS = (
+					"-l",
+					gtest,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		65B1E57A294E9B48008BF2DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /opt/homebrew/include;
+				LIBRARY_SEARCH_PATHS = /opt/homebrew/lib;
+				OTHER_LDFLAGS = (
+					"-l",
+					gtest,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		65B1E588294E9BCC008BF2DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		65B1E589294E9BCC008BF2DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -268,6 +489,24 @@
 			buildConfigurations = (
 				65B1E56E294E9AF8008BF2DE /* Debug */,
 				65B1E56F294E9AF8008BF2DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65B1E578294E9B48008BF2DE /* Build configuration list for PBXNativeTarget "raytracer-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65B1E579294E9B48008BF2DE /* Debug */,
+				65B1E57A294E9B48008BF2DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65B1E587294E9BCC008BF2DE /* Build configuration list for PBXNativeTarget "raytracer-lib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65B1E588294E9BCC008BF2DE /* Debug */,
+				65B1E589294E9BCC008BF2DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
