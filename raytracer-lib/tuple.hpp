@@ -12,28 +12,28 @@ namespace rtlib {
 
 class Tuple {
 private:
-    float _x;
-    float _y;
-    float _z;
-    float _w;
+    double _x;
+    double _y;
+    double _z;
+    double _w;
     
 public:
     Tuple();
-    Tuple(float x, float y, float z);
-    Tuple(float x, float y, float z, float w);
+    Tuple(double x, double y, double z);
+    Tuple(double x, double y, double z, double w);
     ~Tuple() {};
     
-    float x() const;
-    float y() const;
-    float z() const;
-    float w() const;
+    double x() const;
+    double y() const;
+    double z() const;
+    double w() const;
     
     bool isPoint() const;
     bool isVector() const;
 };
 
-Tuple create_point(float x, float y, float z);
-Tuple create_vector(float x, float y, float z);
+Tuple create_point(double x, double y, double z);
+Tuple create_vector(double x, double y, double z);
 
 }
 

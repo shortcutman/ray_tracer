@@ -10,54 +10,54 @@
 using namespace rtlib;
 
 Tuple::Tuple() :
-    _x(0.0f),
-    _y(0.0f),
-    _z(0.0f),
-    _w(0.0f) {
+    _x(0.0),
+    _y(0.0),
+    _z(0.0),
+    _w(0.0) {
 }
 
-Tuple::Tuple(float x, float y, float z) :
+Tuple::Tuple(double x, double y, double z) :
     _x(x),
     _y(y),
     _z(z),
-    _w(0.0f) {
+    _w(0.0) {
 }
 
-Tuple::Tuple(float x, float y, float z, float w) :
+Tuple::Tuple(double x, double y, double z, double w) :
     _x(x),
     _y(y),
     _z(z),
     _w(w) {
 }
 
-float Tuple::x() const {
+double Tuple::x() const {
     return _x;
 }
 
-float Tuple::y() const {
+double Tuple::y() const {
     return _y;
 }
 
-float Tuple::z() const {
+double Tuple::z() const {
     return _z;
 }
 
-float Tuple::w() const {
+double Tuple::w() const {
     return _w;
 }
 
 bool Tuple::isPoint() const {
-    return _w == 1.0f;
+    return _w == 1.0;
 }
 
 bool Tuple::isVector() const {
-    return _w != 1.0f;
+    return _w != 1.0;
 }
 
-Tuple rtlib::create_point(float x, float y, float z) {
-    return Tuple(x, y, z, 1.0f);
+Tuple rtlib::create_point(double x, double y, double z) {
+    return Tuple(x, y, z, 1.0);
 }
 
-Tuple rtlib::create_vector(float x, float y, float z) {
-    return Tuple(x, y, z, 0.0f);
+Tuple rtlib::create_vector(double x, double y, double z) {
+    return Tuple(x, y, z, 0.0);
 }
