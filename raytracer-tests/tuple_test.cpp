@@ -164,6 +164,24 @@ TEST(TupleTest, SubtractVectorFromPoint) {
     EXPECT_FALSE(p2.isVector());
 }
 
+TEST(TupleTest, NegateVector) {
+    auto v1 = rtlib::create_vector(1, -2, 3);
+    auto v2 = -v1;
+    
+    EXPECT_EQ(v2, rtlib::create_vector(-1, 2, -3));
+    EXPECT_FALSE(v2.isPoint());
+    EXPECT_TRUE(v2.isVector());
+}
+
+TEST(TupleTest, NegatePoint) {
+    auto p1 = rtlib::create_point(1, -2, 3);
+    auto p2 = -p1;
+    
+    EXPECT_NE(p2, rtlib::create_point(-1, 2, -3));
+    EXPECT_FALSE(p2.isPoint());
+    EXPECT_FALSE(p2.isVector());
+}
+
 TEST(TupleTest, ConstructPointByName) {
     auto p = rtlib::create_point(4, -4, 3);
     

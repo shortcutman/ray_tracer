@@ -78,6 +78,15 @@ Tuple& Tuple::operator-=(const Tuple& rhs) {
     return *this;
 }
 
+Tuple Tuple::operator-() {
+    auto t = *this;
+    t._x *= -1.0;
+    t._y *= -1.0;
+    t._z *= -1.0;
+    t._w *= -1.0;
+    return t;
+}
+
 bool Tuple::operator==(const Tuple& lhs) const {
     return doubleEquals(lhs.x(), this->x()) &&
             doubleEquals(lhs.y(), this->y()) &&

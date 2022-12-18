@@ -33,6 +33,7 @@ public:
     
     Tuple& operator+=(const Tuple& rhs);
     Tuple& operator-=(const Tuple& rhs);
+    Tuple operator-();
     
     bool operator==(const Tuple& lhs) const;
 };
