@@ -108,7 +108,7 @@ TEST(TupleTest, ComparePointAndVector) {
     EXPECT_TRUE(p1 != v1);
 }
 
-TEST(TupleTest, DotProduce) {
+TEST(TupleTest, DotProduct) {
     auto v1 = rtlib::create_vector(1, 2, 3);
     auto v2 = rtlib::create_vector(2, 3, 4);
     EXPECT_EQ(rtlib::Tuple::dot(v1, v2), 20);
