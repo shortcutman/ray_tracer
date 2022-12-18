@@ -70,6 +70,14 @@ Tuple& Tuple::operator+=(const Tuple& rhs) {
     return *this;
 }
 
+Tuple& Tuple::operator-=(const Tuple& rhs) {
+    this->_x -= rhs.x();
+    this->_y -= rhs.y();
+    this->_z -= rhs.z();
+    this->_w -= rhs.w();
+    return *this;
+}
+
 bool Tuple::operator==(const Tuple& lhs) const {
     return doubleEquals(lhs.x(), this->x()) &&
             doubleEquals(lhs.y(), this->y()) &&
@@ -79,6 +87,11 @@ bool Tuple::operator==(const Tuple& lhs) const {
 
 Tuple rtlib::operator+(Tuple lhs, const Tuple& rhs) {
     lhs += rhs;
+    return lhs;
+}
+
+Tuple rtlib::operator-(Tuple lhs, const Tuple& rhs) {
+    lhs -= rhs;
     return lhs;
 }
 
