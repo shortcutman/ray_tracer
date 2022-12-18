@@ -114,6 +114,13 @@ TEST(TupleTest, DotProduct) {
     EXPECT_EQ(rtlib::Tuple::dot(v1, v2), 20);
 }
 
+TEST(TupleTest, CrossProduct) {
+    auto v1 = rtlib::create_vector(1, 2, 3);
+    auto v2 = rtlib::create_vector(2, 3, 4);
+    EXPECT_EQ(rtlib::Tuple::cross(v1, v2), rtlib::create_vector(-1, 2, -1));
+    EXPECT_EQ(rtlib::Tuple::cross(v2, v1), rtlib::create_vector(1, -2, 1));
+}
+
 TEST(TupleTest, AddPoints) {
     auto p1 = rtlib::create_point(4, -4, 3);
     auto p2 = rtlib::create_point(4, -4, 3);

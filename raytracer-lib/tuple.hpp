@@ -43,6 +43,7 @@ public:
     bool operator==(const Tuple& lhs) const;
     
     static double dot(const Tuple& lhs, const Tuple& rhs);
+    static Tuple cross(const Tuple& lhs, const Tuple& rhs);
     static bool doubleEquals(double a, double b);
 };
 

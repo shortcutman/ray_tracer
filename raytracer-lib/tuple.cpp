@@ -8,6 +8,7 @@
 #include "tuple.hpp"
 
 #include <cmath>
+#include <stdexcept>
 
 using namespace rtlib;
 
@@ -130,6 +131,16 @@ double Tuple::dot(const Tuple& lhs, const Tuple& rhs) {
             lhs._y * rhs._y +
             lhs._z * rhs._z +
             lhs._w * rhs._w;
+}
+
+Tuple Tuple::cross(const Tuple& lhs, const Tuple& rhs) {
+    if (lhs._w != 0.0 || rhs._w != 0.0) {
+        throw std::logic_error("No support for 4d vectors");
+    }
+    
+    return create_vector(lhs._y * rhs._z - lhs._z * rhs._y,
+                         lhs._z * rhs._x - lhs._x * rhs._z,
+                         lhs._x * rhs._y - lhs._y * rhs._x);
 }
 
 bool Tuple::doubleEquals(double a, double b) {
