@@ -9,12 +9,6 @@
 
 #include <cmath>
 
-namespace {
-    bool doubleEquals(double a, double b) {
-        return (std::abs(a - b) < 0.00001);
-    }
-}
-
 using namespace rtlib;
 
 Tuple::Tuple() :
@@ -52,6 +46,13 @@ double Tuple::z() const {
 
 double Tuple::w() const {
     return _w;
+}
+
+double Tuple::magnitude() const {
+    return std::sqrt(std::pow(_x, 2) +
+                     std::pow(_y, 2) +
+                     std::pow(_z, 2) +
+                     std::pow(_w, 2));
 }
 
 bool Tuple::isPoint() const {
@@ -108,6 +109,10 @@ bool Tuple::operator==(const Tuple& lhs) const {
             doubleEquals(lhs.y(), this->y()) &&
             doubleEquals(lhs.z(), this->z()) &&
             doubleEquals(lhs.w(), this->w());
+}
+
+bool Tuple::doubleEquals(double a, double b) {
+    return (std::abs(a - b) < 0.00001);
 }
 
 Tuple rtlib::operator+(Tuple lhs, const Tuple& rhs) {

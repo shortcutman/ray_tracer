@@ -35,6 +35,23 @@ TEST(TupleTest, ConstructVectorFromTuple) {
     EXPECT_TRUE(t.isVector());
 }
 
+TEST(TupleTest, VectorMagnitude) {
+    auto v1 = rtlib::create_vector(1.0, 0.0, 0.0);
+    EXPECT_EQ(v1.magnitude(), 1.0);
+    
+    v1 = rtlib::create_vector(0.0, 1.0, 0.0);
+    EXPECT_EQ(v1.magnitude(), 1.0);
+
+    v1 = rtlib::create_vector(0.0, 0.0, 1.0);
+    EXPECT_EQ(v1.magnitude(), 1.0);
+    
+    v1 = rtlib::create_vector(1.0, 2.0, 3.0);
+    EXPECT_TRUE(rtlib::Tuple::doubleEquals(v1.magnitude(), 3.74166));
+    
+    v1 = rtlib::create_vector(-1.0, -2.0, -3.0);
+    EXPECT_TRUE(rtlib::Tuple::doubleEquals(v1.magnitude(), 3.74166));
+}
+
 TEST(TupleTest, CompareEqualPoints) {
     auto p1 = rtlib::create_point(4, -4, 3);
     auto p2 = rtlib::create_point(4, -4, 3);

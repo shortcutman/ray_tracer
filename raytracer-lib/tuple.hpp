@@ -28,6 +28,7 @@ public:
     double z() const;
     double w() const;
     
+    double magnitude() const;
     bool isPoint() const;
     bool isVector() const;
     
@@ -38,6 +39,8 @@ public:
     Tuple operator-();
     
     bool operator==(const Tuple& lhs) const;
+    
+    static bool doubleEquals(double a, double b);
 };
 
 Tuple operator+(Tuple lhs, const Tuple& rhs);
