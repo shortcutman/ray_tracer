@@ -31,6 +31,8 @@ public:
     
     PixelIndex width() const;
     PixelIndex height() const;
+    
+    friend std::ostream& operator<<(std::ostream& os, const Canvas& canvas);
 };
 
 }

@@ -7,7 +7,20 @@
 
 #include "canvas.hpp"
 
+#include <cmath>
+#include <ostream>
+
 using namespace rtlib;
+
+namespace {
+
+unsigned int clampAndNormalize(double value) {
+    auto clamped = std::clamp(value, 0.0, 1.0);
+    auto normalized = std::round(clamped * 255);
+    return normalized;
+}
+
+}
 
 Canvas::Canvas(PixelIndex width, PixelIndex height) :
     _width(width),
@@ -39,4 +52,22 @@ Canvas::PixelIndex Canvas::width() const {
 
 Canvas::PixelIndex Canvas::height() const {
     return _height;
+}
+
+ std::ostream& rtlib::operator<<(std::ostream& os, const Canvas& canvas) {
+    os << "P3" << std::endl;
+    os << canvas._width << " " << canvas._height << std::endl;
+    os << "255" << std::endl;
+     
+     for (Canvas::PixelIndex y = 0; y < canvas._height; y++) {
+         for (Canvas::PixelIndex x = 0; x < canvas._width; x++) {
+             os << clampAndNormalize(canvas.pixel_at(x, y).red()) << " "
+                << clampAndNormalize(canvas.pixel_at(x, y).green()) << " "
+                << clampAndNormalize(canvas.pixel_at(x, y).blue()) << " ";
+         }
+         
+         os << std::endl;
+     }
+     
+     return os;
 }
