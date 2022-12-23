@@ -37,6 +37,8 @@ TEST(CanvasTest, WriteToCanvas) {
     
     c.write_pixel(2, 3, colour);
     EXPECT_EQ(c.pixel_at(2, 3), colour);
+    EXPECT_EQ(c.pixel_at(2, 4), rtlib::Colour());
+    EXPECT_EQ(c.pixel_at(3, 2), rtlib::Colour());
 }
 
 TEST(CanvasTest, ErrorOnReadPixelOutOfBounds) {
