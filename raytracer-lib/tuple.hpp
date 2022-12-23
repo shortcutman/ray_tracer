@@ -11,7 +11,7 @@
 namespace rtlib {
 
 class Tuple {
-private:
+protected:
     double _x;
     double _y;
     double _z;
@@ -19,6 +19,7 @@ private:
     
 public:
     Tuple();
+    Tuple(const Tuple& t) = default;
     Tuple(double x, double y, double z);
     Tuple(double x, double y, double z, double w);
     ~Tuple() {};
