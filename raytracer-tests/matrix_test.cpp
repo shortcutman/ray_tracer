@@ -70,4 +70,22 @@ TEST(MatrixTest, EqualityTrueMatrix4x4) {
     EXPECT_EQ(m1, m2);
 }
 
+TEST(MatrixTest, InequalityTrueMatrix4x4) {
+    rtlib::Matrix4x4 m1({{
+        {1.0, 2.0, 3.0, 4.0},
+        {5.5, 6.5, 7.5, 8.5},
+        {9.0, 10.0, 11.0, 12.0},
+        {13.5, 14.5, 15.5, 16.5}
+    }});
+    
+    rtlib::Matrix4x4 m2({{
+        {1.0, 2.0, 3.0, 4.0},
+        {5.5, 2.0, 7.5, 8.5},
+        {9.0, 10.0, 11.0, 12.0},
+        {13.5, 14.5, 15.5, 16.5}
+    }});
+    
+    EXPECT_NE(m1, m2);
+}
+
 }
