@@ -52,7 +52,7 @@ TEST(MatrixTest, ConstructMatrix2x2) {
     EXPECT_EQ(m.at(1, 1), -2.0);
 }
 
-TEST(MatrixTest, EqualityTrueMatrix4x4) {
+TEST(MatrixTest, EqualityMatrix4x4) {
     rtlib::Matrix4x4 m1({{
         {1.0, 2.0, 3.0, 4.0},
         {5.5, 6.5, 7.5, 8.5},
@@ -70,7 +70,7 @@ TEST(MatrixTest, EqualityTrueMatrix4x4) {
     EXPECT_EQ(m1, m2);
 }
 
-TEST(MatrixTest, InequalityTrueMatrix4x4) {
+TEST(MatrixTest, InequalityMatrix4x4) {
     rtlib::Matrix4x4 m1({{
         {1.0, 2.0, 3.0, 4.0},
         {5.5, 6.5, 7.5, 8.5},
