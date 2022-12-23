@@ -26,6 +26,8 @@ public:
     ~Matrix() {}
     
     double at(unsigned int row, unsigned int column);
+    
+    bool operator==(const Matrix<N>& rhs) const;
 };
 
 typedef Matrix<2> Matrix2x2;
