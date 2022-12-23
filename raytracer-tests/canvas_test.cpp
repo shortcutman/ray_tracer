@@ -100,7 +100,6 @@ TEST(CanvasTest, WriteOutPPMPixels) {
     EXPECT_EQ(line, "0 0 0 0 0 0 0 128 0 0 0 0 0 0 0 ") << "Row 2";
     std::getline(ss, line);
     EXPECT_EQ(line, "0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 ") << "Row 3";
-    
 }
 
 }
