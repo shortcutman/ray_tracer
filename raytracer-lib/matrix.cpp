@@ -32,6 +32,19 @@ double Matrix<N>::at(unsigned int row, unsigned int column) const {
 }
 
 template<unsigned int N>
+Matrix<N> Matrix<N>::transpose() const {
+    auto matrix = *this;
+    
+    for (unsigned int row = 0; row < N; row++) {
+        for (unsigned int column = 0; column < N; column++) {
+            matrix._matrix[row][column] = this->_matrix[column][row];
+        }
+    }
+
+    return matrix;
+}
+
+template<unsigned int N>
 Matrix<N>& Matrix<N>::operator*=(const Matrix<N>& rhs) {
     auto lhs = *this;
     

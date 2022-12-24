@@ -176,4 +176,22 @@ TEST(MatrixTest, MultiplyMatrix4x4AndIdentity) {
     EXPECT_EQ(m * rtlib::Matrix4x4::identityMatrix(), m);
 }
 
+TEST(MatrixTest, TransposeMatrix4x4) {
+    rtlib::Matrix4x4 m({{
+        {0.0, 9.0, 3.0, 0.0},
+        {9.0, 8.0, 0.0, 8.0},
+        {1.0, 8.0, 5.0, 3.0},
+        {0.0, 0.0, 5.0, 8.0}
+    }});
+    
+    rtlib::Matrix4x4 r({{
+        {0.0, 9.0, 1.0, 0.0},
+        {9.0, 8.0, 8.0, 0.0},
+        {3.0, 0.0, 5.0, 5.0},
+        {0.0, 8.0, 3.0, 8.0}
+    }});
+    
+    EXPECT_EQ(m.transpose(), r);
+}
+
 }

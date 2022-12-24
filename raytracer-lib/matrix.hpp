@@ -29,6 +29,7 @@ public:
     
     double at(unsigned int row, unsigned int column) const;
     
+    Matrix<N> transpose() const;
     Matrix<N>& operator*=(const Matrix<N>& rhs);
     
     bool operator==(const Matrix<N>& rhs) const;
