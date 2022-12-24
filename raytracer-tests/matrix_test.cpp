@@ -8,6 +8,7 @@
 #include <gtest/gtest.h>
 
 #include "matrix.hpp"
+#include "tuple.hpp"
 
 namespace {
 
@@ -116,5 +117,20 @@ TEST(MatrixTest, MultiplyMatrix4x4) {
     m3 *= m2;
     EXPECT_EQ(m3, result);
 }
+
+TEST(MatrixTest, MultiplyMatrix4x4AndTuple) {
+    rtlib::Matrix4x4 m1({{
+        {1.0, 2.0, 3.0, 4.0},
+        {2.0, 4.0, 4.0, 2.0},
+        {8.0, 6.0, 4.0, 1.0},
+        {0.0, 0.0, 0.0, 1.0}
+    }});
+    
+    rtlib::Tuple t1(1.0, 2.0, 3.0, 1.0);
+    rtlib::Tuple result(18.0, 24.0, 33.0, 1.0);
+
+    EXPECT_EQ(m1 * t1, result);
+}
+
 
 }

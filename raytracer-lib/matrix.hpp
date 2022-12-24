@@ -12,6 +12,8 @@
 
 namespace rtlib {
 
+class Tuple;
+
 template<unsigned int N>
 class Matrix {
 public:
@@ -33,11 +35,10 @@ public:
 };
 
 template<unsigned int N>
-Matrix<N> operator*(const Matrix<N>& lhs, const Matrix<N>& rhs) {
-    auto copy = lhs;
-    copy *= rhs;
-    return copy;
-}
+Matrix<N> operator*(const Matrix<N>& lhs, const Matrix<N>& rhs);
+template<unsigned int N>
+Tuple operator*(const Matrix<N>& lhs, const Tuple& rhs);
+
 
 typedef Matrix<2> Matrix2x2;
 typedef Matrix<3> Matrix3x3;

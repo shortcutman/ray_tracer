@@ -7,6 +7,8 @@
 
 #include "matrix.hpp"
 
+#include "tuple.hpp"
+
 using namespace rtlib;
 
 template<unsigned int N>
@@ -61,3 +63,29 @@ Matrix<N> operator*(const Matrix<N>& lhs, const Matrix<N>& rhs) {
 template class rtlib::Matrix<2>;
 template class rtlib::Matrix<3>;
 template class rtlib::Matrix<4>;
+
+template<unsigned int N>
+Matrix<N> rtlib::operator*(const Matrix<N>& lhs, const Matrix<N>& rhs) {
+    auto copy = lhs;
+    copy *= rhs;
+    return copy;
+}
+
+template Matrix<2> rtlib::operator*(const Matrix<2>& lhs, const Matrix<2>& rhs);
+template Matrix<3> rtlib::operator*(const Matrix<3>& lhs, const Matrix<3>& rhs);
+template Matrix<4> rtlib::operator*(const Matrix<4>& lhs, const Matrix<4>& rhs);
+
+template<unsigned int N>
+Tuple rtlib::operator*(const Matrix<N>& lhs, const Tuple& rhs) {
+    auto result = Tuple();
+    
+    for (unsigned int index = 0; index < N; index++) {
+        for (unsigned int size = 0; size < N; size++) {
+            result[index] += rhs[size] * lhs.at(index, size);
+        }
+    }
+    
+    return result;
+}
+
+template Tuple rtlib::operator*(const Matrix<4>& lhs, const Tuple& rhs);
