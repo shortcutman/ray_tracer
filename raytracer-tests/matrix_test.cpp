@@ -194,4 +194,15 @@ TEST(MatrixTest, TransposeMatrix4x4) {
     EXPECT_EQ(m.transpose(), r);
 }
 
+TEST(MatrixTest, TransposeIdentityMatrix) {
+    EXPECT_EQ(rtlib::Matrix2x2::identityMatrix().transpose(),
+              rtlib::Matrix2x2::identityMatrix());
+    
+    EXPECT_EQ(rtlib::Matrix3x3::identityMatrix().transpose(),
+              rtlib::Matrix3x3::identityMatrix());
+    
+    EXPECT_EQ(rtlib::Matrix4x4::identityMatrix().transpose(),
+              rtlib::Matrix4x4::identityMatrix());
+}
+
 }
