@@ -49,6 +49,22 @@ double Tuple::w() const {
     return _w;
 }
 
+void Tuple::setX(double x) {
+    _x = x;
+}
+
+void Tuple::setY(double y) {
+    _y = y;
+}
+
+void Tuple::setZ(double z) {
+    _z = z;
+}
+
+void Tuple::setW(double w) {
+    _w = w;
+}
+
 double Tuple::magnitude() const {
     return std::sqrt(std::pow(_x, 2) +
                      std::pow(_y, 2) +

@@ -29,6 +29,11 @@ public:
     double z() const;
     double w() const;
     
+    void setX(double x);
+    void setY(double y);
+    void setZ(double z);
+    void setW(double w);
+    
     double magnitude() const;
     bool isPoint() const;
     bool isVector() const;
