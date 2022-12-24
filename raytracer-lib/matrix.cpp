@@ -59,12 +59,12 @@ Matrix<N - 1> Matrix<N>::submatrix(unsigned int removeRow, unsigned int removeCo
     Matrix<N-1> submatrix;
     
     for (unsigned int row = 0; row < (N - 1); row++) {
-        unsigned int addRow = row >= removeRow ? 1 : 0;
+        unsigned int adjustRow = row >= removeRow ? row + 1 : row;
         
         for (unsigned int column = 0; column < (N-1); column++) {
-            unsigned int addColumn = column >= removeColumn ? 1 : 0;
+            unsigned int adjustColumn = column >= removeColumn ? column + 1 : column;
             
-            submatrix.set(row, column, this->_matrix[row + addRow][column + addColumn]);
+            submatrix.set(row, column, this->_matrix[adjustRow][adjustColumn]);
         }
     }
     
