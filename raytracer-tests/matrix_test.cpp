@@ -132,6 +132,27 @@ TEST(MatrixTest, MultiplyMatrix4x4AndTuple) {
     EXPECT_EQ(m1 * t1, result);
 }
 
+TEST(MatrixTest, IdentityMatrix2x2) {
+    rtlib::Matrix2x2 identity2x2Result({{
+        {1.0, 0.0},
+        {0.0, 1.0}
+    }});
+
+    auto identityMatrix = rtlib::Matrix<2>::identityMatrix();
+    EXPECT_EQ(identityMatrix, identity2x2Result);
+}
+
+TEST(MatrixTest, IdentityMatrix3x3) {
+    rtlib::Matrix3x3 identity3x3Result({{
+        {1.0, 0.0, 0.0},
+        {0.0, 1.0, 0.0},
+        {0.0, 0.0, 1.0}
+    }});
+
+    auto identityMatrix = rtlib::Matrix<3>::identityMatrix();
+    EXPECT_EQ(identityMatrix, identity3x3Result);
+}
+
 TEST(MatrixTest, IdentityMatrix4x4) {
     rtlib::Matrix4x4 identity4x4Result({{
         {1.0, 0.0, 0.0, 0.0},
@@ -142,6 +163,17 @@ TEST(MatrixTest, IdentityMatrix4x4) {
 
     auto identityMatrix = rtlib::Matrix<4>::identityMatrix();
     EXPECT_EQ(identityMatrix, identity4x4Result);
+}
+
+TEST(MatrixTest, MultiplyMatrix4x4AndIdentity) {
+    rtlib::Matrix4x4 m({{
+        {1.0, 2.0, 3.0, 4.0},
+        {2.0, 4.0, 4.0, 2.0},
+        {8.0, 6.0, 4.0, 1.0},
+        {0.0, 0.0, 0.0, 1.0}
+    }});
+    
+    EXPECT_EQ(m * rtlib::Matrix4x4::identityMatrix(), m);
 }
 
 }
