@@ -32,6 +32,16 @@ double Matrix<N>::at(unsigned int row, unsigned int column) const {
 }
 
 template<unsigned int N>
+void Matrix<N>::set(unsigned int row, unsigned int column, double value) {
+    _matrix[row][column] = value;
+}
+
+template<unsigned int N>
+double Matrix<N>::determinant() const {
+    return _matrix[0][0] * _matrix[1][1] - _matrix[0][1] * _matrix[1][0];
+}
+
+template<unsigned int N>
 Matrix<N> Matrix<N>::transpose() const {
     auto matrix = *this;
     
@@ -42,6 +52,23 @@ Matrix<N> Matrix<N>::transpose() const {
     }
 
     return matrix;
+}
+
+template<unsigned int N>
+Matrix<N - 1> Matrix<N>::submatrix(unsigned int removeRow, unsigned int removeColumn) const {
+    Matrix<N-1> submatrix;
+    
+    for (unsigned int row = 0; row < (N - 1); row++) {
+        unsigned int addRow = row >= removeRow ? 1 : 0;
+        
+        for (unsigned int column = 0; column < (N-1); column++) {
+            unsigned int addColumn = column >= removeColumn ? 1 : 0;
+            
+            submatrix.set(row, column, this->_matrix[row + addRow][column + addColumn]);
+        }
+    }
+    
+    return submatrix;
 }
 
 template<unsigned int N>

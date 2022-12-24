@@ -28,8 +28,12 @@ public:
     ~Matrix() {}
     
     double at(unsigned int row, unsigned int column) const;
+    void set(unsigned int row, unsigned int column, double value);
     
+    double determinant() const;
     Matrix<N> transpose() const;
+    Matrix<N - 1> submatrix(unsigned int row, unsigned int column) const;
+    
     Matrix<N>& operator*=(const Matrix<N>& rhs);
     
     bool operator==(const Matrix<N>& rhs) const;
