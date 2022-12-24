@@ -65,6 +65,45 @@ void Tuple::setW(double w) {
     _w = w;
 }
 
+double Tuple::operator[](size_t index) const {
+    switch (index) {
+        case 0:
+            return _x;
+            
+        case 1:
+            return _y;
+            
+        case 2:
+            return _z;
+            
+        case 3:
+            return _w;
+    }
+    
+    throw std::runtime_error("index out of range");
+    return 0.0;
+}
+
+double& Tuple::operator[](size_t index) {
+    switch (index) {
+        case 0:
+            return _x;
+            
+        case 1:
+            return _y;
+            
+        case 2:
+            return _z;
+            
+        case 3:
+            return _w;
+    }
+    
+    throw std::runtime_error("index out of range");
+    return _x;
+}
+
+
 double Tuple::magnitude() const {
     return std::sqrt(std::pow(_x, 2) +
                      std::pow(_y, 2) +

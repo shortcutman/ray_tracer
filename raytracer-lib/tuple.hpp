@@ -8,6 +8,8 @@
 #ifndef tuple_hpp
 #define tuple_hpp
 
+#include <cstddef>
+
 namespace rtlib {
 
 class Tuple {
@@ -33,6 +35,8 @@ public:
     void setY(double y);
     void setZ(double z);
     void setW(double w);
+    double operator[](std::size_t index) const;
+    double& operator[](std::size_t index);
     
     double magnitude() const;
     bool isPoint() const;
