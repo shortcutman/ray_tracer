@@ -32,6 +32,8 @@ public:
     Matrix<N>& operator*=(const Matrix<N>& rhs);
     
     bool operator==(const Matrix<N>& rhs) const;
+    
+    static Matrix<N> identityMatrix();
 };
 
 template<unsigned int N>

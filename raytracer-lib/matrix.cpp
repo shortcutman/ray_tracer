@@ -56,6 +56,17 @@ bool Matrix<N>::operator==(const Matrix<N>& rhs) const {
 }
 
 template<unsigned int N>
+Matrix<N> Matrix<N>::identityMatrix() {
+    Matrix<N> m;
+    
+    for (unsigned int diagonalIndex = 0; diagonalIndex < N; diagonalIndex++) {
+        m._matrix[diagonalIndex][diagonalIndex] = 1.0;
+    }
+    
+    return m;
+}
+
+template<unsigned int N>
 Matrix<N> operator*(const Matrix<N>& lhs, const Matrix<N>& rhs) {
     auto copy = lhs;
     copy *= rhs;
