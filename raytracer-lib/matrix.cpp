@@ -14,7 +14,9 @@ using namespace rtlib;
 template<unsigned int N>
 Matrix<N>::Matrix()
 {
-    
+    for (unsigned int row = 0; row < N; row++) {
+        _matrix[row].fill(0.0);
+    }
 }
 
 template<unsigned int N>
