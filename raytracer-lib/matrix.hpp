@@ -34,6 +34,7 @@ public:
     Matrix<N> transpose() const;
     Matrix<N - 1> submatrix(unsigned int row, unsigned int column) const;
     double minor(unsigned int row, unsigned int column) const;
+    double cofactor(unsigned int row, unsigned int column) const;
     
     Matrix<N>& operator*=(const Matrix<N>& rhs);
     
