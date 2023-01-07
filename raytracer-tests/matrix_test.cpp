@@ -300,4 +300,28 @@ TEST(MatrixTest, CofactorOfMatrix3x3) {
     EXPECT_EQ(m.cofactor(1, 0), -25);
 }
 
+TEST(MatrixTest, PositiveInvertabilityMatrix4x4) {
+    rtlib::Matrix4x4 m({{
+        {6.0, 4.0, 4.0, 4.0},
+        {5.0, 5.0, 7.0, 6.0},
+        {4.0, -9.0, 3.0, -7.0},
+        {9.0, 1.0, 7.0, -6.0}
+    }});
+    
+    EXPECT_EQ(m.determinant(), -2120);
+    EXPECT_EQ(m.invertible(), true);
+}
+
+TEST(MatrixTest, NegativeInvertabilityMatrix4x4) {
+    rtlib::Matrix4x4 m({{
+        {-4.0, 2.0, -2.0, -3.0},
+        {9.0, 6.0, 2.0, 6.0},
+        {0.0, -5.0, 1.0, -5.0},
+        {0.0, 0.0, 0.0, 0.0}
+    }});
+    
+    EXPECT_EQ(m.determinant(), 0);
+    EXPECT_EQ(m.invertible(), false);
+}
+
 }

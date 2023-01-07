@@ -102,6 +102,11 @@ double Matrix<N>::cofactor(unsigned int row, unsigned int column) const {
 }
 
 template<unsigned int N>
+bool Matrix<N>::invertible() const {
+    return determinant() != 0.0;
+}
+
+template<unsigned int N>
 Matrix<N>& Matrix<N>::operator*=(const Matrix<N>& rhs) {
     auto lhs = *this;
     
