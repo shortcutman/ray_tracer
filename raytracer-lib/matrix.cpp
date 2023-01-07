@@ -72,6 +72,13 @@ Matrix<N - 1> Matrix<N>::submatrix(unsigned int removeRow, unsigned int removeCo
 }
 
 template<unsigned int N>
+double Matrix<N>::minor(unsigned int row, unsigned int column) const {
+    auto submatrix = this->submatrix(row, column);
+    return submatrix.determinant();
+}
+
+
+template<unsigned int N>
 Matrix<N>& Matrix<N>::operator*=(const Matrix<N>& rhs) {
     auto lhs = *this;
     

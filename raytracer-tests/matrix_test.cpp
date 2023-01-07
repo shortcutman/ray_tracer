@@ -246,4 +246,17 @@ TEST(MatrixTest, SubmatrixOfMatrix4x4) {
     EXPECT_EQ(m.submatrix(2, 1), r);
 }
 
+TEST(MatrixTest, MinorOfMatrix3x3) {
+    rtlib::Matrix3x3 m({{
+        {3.0, 5.0, 0.0},
+        {2.0, -1.0, -7.0},
+        {6.0, -1.0, 5.0}
+    }});
+    
+    auto submatrix = m.submatrix(1, 0);
+    
+    EXPECT_EQ(submatrix.determinant(), 25);
+    EXPECT_EQ(m.minor(1, 0), 25);
+}
+
 }
