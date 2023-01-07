@@ -36,9 +36,20 @@ void Matrix<N>::set(unsigned int row, unsigned int column, double value) {
     _matrix[row][column] = value;
 }
 
+template<>
+double Matrix<2>::determinant() const {
+    return _matrix[0][0] * _matrix[1][1] - _matrix[0][1] * _matrix[1][0];
+}
+
 template<unsigned int N>
 double Matrix<N>::determinant() const {
-    return _matrix[0][0] * _matrix[1][1] - _matrix[0][1] * _matrix[1][0];
+    double det = 0.0;
+    
+    for (unsigned int i = 0; i < N; i++) {
+        det += at(0, i) * cofactor(0, i);
+    }
+    
+    return det;
 }
 
 template<unsigned int N>
@@ -71,6 +82,12 @@ Matrix<N - 1> Matrix<N>::submatrix(unsigned int removeRow, unsigned int removeCo
     return submatrix;
 }
 
+template<>
+double Matrix<2>::minor(unsigned int row, unsigned int column) const {
+    return at(1 - row, 1 - column);
+}
+
+
 template<unsigned int N>
 double Matrix<N>::minor(unsigned int row, unsigned int column) const {
     auto submatrix = this->submatrix(row, column);
@@ -80,7 +97,7 @@ double Matrix<N>::minor(unsigned int row, unsigned int column) const {
 template<unsigned int N>
 double Matrix<N>::cofactor(unsigned int row, unsigned int column) const {
     auto minor = this->minor(row, column);
-    minor *= row + column % 2 > 0 ? -1 : 1;
+    minor *= (row + column % 2) > 0 ? -1 : 1;
     return minor;
 }
 

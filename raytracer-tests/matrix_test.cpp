@@ -214,6 +214,34 @@ TEST(MatrixTest, DeterminantMatrix2x2) {
     EXPECT_EQ(m.determinant(), 17);
 }
 
+TEST(MatrixTest, DeterminantMatrix3x3) {
+    rtlib::Matrix3x3 m({{
+        {1.0, 2.0, 6.0},
+        {-5.0, 8.0, -4.0},
+        {2.0, 6.0, 4.0}
+    }});
+    
+    EXPECT_EQ(m.cofactor(0, 0), 56);
+    EXPECT_EQ(m.cofactor(0, 1), 12);
+    EXPECT_EQ(m.cofactor(0, 2), -46);
+    EXPECT_EQ(m.determinant(), -196);
+}
+
+TEST(MatrixTest, DeterminantMatrix4x4) {
+    rtlib::Matrix4x4 m({{
+        {-2.0, -8.0, 3.0, 5.0},
+        {-3.0, 1.0, 7.0, 3.0},
+        {1.0, 2.0, -9.0, 6.0},
+        {-6.0, 7.0, 7.0, -9.0}
+    }});
+    
+    EXPECT_EQ(m.cofactor(0, 0), 690);
+    EXPECT_EQ(m.cofactor(0, 1), 447);
+    EXPECT_EQ(m.cofactor(0, 2), 210);
+    EXPECT_EQ(m.cofactor(0, 3), 51);
+    EXPECT_EQ(m.determinant(), -4071);
+}
+
 TEST(MatrixTest, SubmatrixOfMatrix3x3) {
     rtlib::Matrix3x3 m({{
         {1.0, 5.0, 0.0},
