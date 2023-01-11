@@ -97,7 +97,7 @@ double Matrix<N>::minor(unsigned int row, unsigned int column) const {
 template<unsigned int N>
 double Matrix<N>::cofactor(unsigned int row, unsigned int column) const {
     auto minor = this->minor(row, column);
-    minor *= (row + column % 2) > 0 ? -1 : 1;
+    minor *= ((row + column) % 2) > 0 ? -1 : 1;
     return minor;
 }
 

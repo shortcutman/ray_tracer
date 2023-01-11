@@ -298,6 +298,7 @@ TEST(MatrixTest, CofactorOfMatrix3x3) {
     EXPECT_EQ(m.cofactor(0, 0), -12);
     EXPECT_EQ(m.minor(1, 0), 25);
     EXPECT_EQ(m.cofactor(1, 0), -25);
+    EXPECT_EQ(m.cofactor(1, 1), 15);
 }
 
 TEST(MatrixTest, PositiveInvertabilityMatrix4x4) {

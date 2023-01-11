@@ -37,6 +37,7 @@ public:
     double minor(unsigned int row, unsigned int column) const;
     double cofactor(unsigned int row, unsigned int column) const;
     bool invertible() const;
+    Matrix<N> inverse() const;
     
     Matrix<N>& operator*=(const Matrix<N>& rhs);
     
