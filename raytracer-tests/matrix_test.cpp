@@ -325,4 +325,28 @@ TEST(MatrixTest, NegativeInvertabilityMatrix4x4) {
     EXPECT_EQ(m.invertible(), false);
 }
 
+TEST(MatrixTest, InverseMatrix4x4) {
+    rtlib::Matrix4x4 m({{
+        {-5.0, 2.0, 6.0, -8.0},
+        {1.0, -5.0, 1.0, 8.0},
+        {7.0, 7.0, -6.0, -7.0},
+        {1.0, -3.0, 7.0, 4.0}
+    }});
+    
+    auto inverse = m.inverse();
+    
+    EXPECT_EQ(m.determinant(), 532);
+    EXPECT_EQ(m.cofactor(2, 3), -160);
+    EXPECT_EQ(m.cofactor(3, 2), 105);
+    
+    rtlib::Matrix4x4 inverseResult({{
+        { 0.2180450 ,  0.451128 ,  0.2406020 , -0.0451128 } ,
+        {-0.8082710 , -1.456770 , -0.4436090 ,  0.5206770},
+        {-0.0789474 , -0.223684 , -0.0526316 ,  0.1973680},
+        {-0.5225560 , -0.813910 , -0.3007520 ,  0.3063910}
+    }});
+        
+    EXPECT_EQ(inverseResult, inverse);
+}
+
 }

@@ -107,6 +107,21 @@ bool Matrix<N>::invertible() const {
 }
 
 template<unsigned int N>
+Matrix<N> Matrix<N>::inverse() const {
+    Matrix<N> inverse;
+    const auto determinant = this->determinant();
+    
+    for (unsigned int row = 0; row < N; row++) {
+        for (unsigned int column = 0; column < N; column++) {
+            double value = this->cofactor(row, column);
+            inverse.set(column, row, value / determinant);
+        }
+    }
+    
+    return inverse;
+}
+
+template<unsigned int N>
 Matrix<N>& Matrix<N>::operator*=(const Matrix<N>& rhs) {
     auto lhs = *this;
     
@@ -127,7 +142,12 @@ Matrix<N>& Matrix<N>::operator*=(const Matrix<N>& rhs) {
 
 template<unsigned int N>
 bool Matrix<N>::operator==(const Matrix<N>& rhs) const {
-    return std::equal(_matrix.begin(), _matrix.end(), rhs._matrix.begin());
+    return std::equal(_matrix.begin(), _matrix.end(), rhs._matrix.begin(),
+        [] (std::array<double, N> a, std::array<double, N> b) -> bool {
+        return std::equal(a.begin(), a.end(), b.begin(), [] (double a, double b) {
+            return std::abs(a - b) < 0.00001;
+        });
+    });
 }
 
 template<unsigned int N>
