@@ -131,6 +131,24 @@ bool Matrix<N>::operator==(const Matrix<N>& rhs) const {
 }
 
 template<unsigned int N>
+std::ostream& rtlib::operator<<(std::ostream& os, const Matrix<N>& matrix) {
+    os << "[" << std::endl;
+    for (unsigned int row = 0; row < N; row++) {
+        for (unsigned int column = 0; column < N; column++) {
+            os << matrix.at(row, column) << " ";
+        }
+        os << std::endl;
+    }
+    os << "]" << std::endl;
+    
+    return os;
+}
+
+template std::ostream& rtlib::operator<<(std::ostream& os, const Matrix<2>& matrix);
+template std::ostream& rtlib::operator<<(std::ostream& os, const Matrix<3>& matrix);
+template std::ostream& rtlib::operator<<(std::ostream& os, const Matrix<4>& matrix);
+
+template<unsigned int N>
 Matrix<N> Matrix<N>::identityMatrix() {
     Matrix<N> m;
     

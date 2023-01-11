@@ -9,6 +9,7 @@
 #define matrix_hpp
 
 #include <array>
+#include <ostream>
 
 namespace rtlib {
 
@@ -43,6 +44,9 @@ public:
     
     static Matrix<N> identityMatrix();
 };
+
+template<unsigned int N>
+std::ostream& operator<< (std::ostream& os, const Matrix<N>& matrix);
 
 template<unsigned int N>
 Matrix<N> operator*(const Matrix<N>& lhs, const Matrix<N>& rhs);
