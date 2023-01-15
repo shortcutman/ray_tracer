@@ -389,4 +389,23 @@ TEST(MatrixTest, InverseMatrix4x4No3) {
     EXPECT_EQ(inverseResult, inverse);
 }
 
+TEST(MatrixTest, MultiplyingProductByInverseToGetOriginalResult) {
+    rtlib::Matrix4x4 m1({{
+        {3.0, -9.0, 7.0, 3.0},
+        {3.0, -8.0, 2.0, -9.0},
+        {-4.0, 4.0, 4.0, 1.0},
+        {-6.0, 5.0, -1.0, 1.0}
+    }});
+    
+    rtlib::Matrix4x4 m2({{
+        {8.0, 2.0, 2.0, 2.0},
+        {3.0, -1.0, 7.0, 0.0},
+        {7.0, 0.0, 5.0, 4.0},
+        {6.0, -2.0, 0.0, 5.0}
+    }});
+    
+    auto multiplyResult = m1 * m2;
+    EXPECT_EQ(m1, multiplyResult * m2.inverse());
+}
+
 }
