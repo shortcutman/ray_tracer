@@ -349,4 +349,44 @@ TEST(MatrixTest, InverseMatrix4x4) {
     EXPECT_EQ(inverseResult, inverse);
 }
 
+TEST(MatrixTest, InverseMatrix4x4No2) {
+    rtlib::Matrix4x4 m({{
+        {8.0, -5.0, 9.0, 2.0},
+        {7.0, 5.0, 6.0, 1.0},
+        {-6.0, 0.0, 9.0, 6.0},
+        {-3.0, 0.0, -9.0, -4.0}
+    }});
+    
+    auto inverse = m.inverse();
+    
+    rtlib::Matrix4x4 inverseResult({{
+        {-0.153846, -0.153846, -0.282051, -0.538462},
+        {-0.0769231, 0.123077, 0.025641, 0.0307692},
+        {0.358974, 0.358974, 0.435897, 0.923077},
+        {-0.692308, -0.692308, -0.769231, -1.92308}
+    }});
+        
+    EXPECT_EQ(inverseResult, inverse);
+}
+
+TEST(MatrixTest, InverseMatrix4x4No3) {
+    rtlib::Matrix4x4 m({{
+        {9.0, 3.0, 0.0, 9.0},
+        {-5.0, -2.0, -6.0, -3.0},
+        {-4.0, 9.0, 6.0, 4.0},
+        {-7.0, 6.0, 6.0, 2.0}
+    }});
+    
+    auto inverse = m.inverse();
+    
+    rtlib::Matrix4x4 inverseResult({{
+        {-0.0407407, -0.0777778, 0.144444, -0.222222},
+        {-0.0777778, 0.0333333, 0.366667, -0.333333},
+        {-0.0290123, -0.146296, -0.109259, 0.12963},
+        {0.177778, 0.0666667, -0.266667, 0.333333}
+    }});
+        
+    EXPECT_EQ(inverseResult, inverse);
+}
+
 }
