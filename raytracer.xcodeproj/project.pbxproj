@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65587F6A2973C45100485127 /* transformations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65587F682973C45100485127 /* transformations.cpp */; };
+		65587F6B2973C45100485127 /* transformations.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65587F692973C45100485127 /* transformations.hpp */; };
+		65587F6D2973C4D900485127 /* transformation_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65587F6C2973C4D900485127 /* transformation_test.cpp */; };
 		65B1E56A294E9AF8008BF2DE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B1E569294E9AF8008BF2DE /* main.cpp */; };
 		65B1E577294E9B48008BF2DE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B1E576294E9B48008BF2DE /* main.cpp */; };
 		65B1E582294E9BCC008BF2DE /* raytracer_lib.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65B1E581294E9BCC008BF2DE /* raytracer_lib.hpp */; };
@@ -66,6 +69,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		65587F682973C45100485127 /* transformations.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transformations.cpp; sourceTree = "<group>"; };
+		65587F692973C45100485127 /* transformations.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = transformations.hpp; sourceTree = "<group>"; };
+		65587F6C2973C4D900485127 /* transformation_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transformation_test.cpp; sourceTree = "<group>"; };
 		65B1E566294E9AF8008BF2DE /* raytracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = raytracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B1E569294E9AF8008BF2DE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		65B1E574294E9B48008BF2DE /* raytracer-tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "raytracer-tests"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +159,7 @@
 				65E6B2EE29553DBC00F98D69 /* colour_test.cpp */,
 				65E6B2F6295548A300F98D69 /* canvas_test.cpp */,
 				65E6B2FC295595FB00F98D69 /* matrix_test.cpp */,
+				65587F6C2973C4D900485127 /* transformation_test.cpp */,
 			);
 			path = "raytracer-tests";
 			sourceTree = "<group>";
@@ -170,6 +177,8 @@
 				65E6B2F3295547CD00F98D69 /* canvas.hpp */,
 				65E6B2F82955925800F98D69 /* matrix.cpp */,
 				65E6B2F92955925800F98D69 /* matrix.hpp */,
+				65587F682973C45100485127 /* transformations.cpp */,
+				65587F692973C45100485127 /* transformations.hpp */,
 			);
 			path = "raytracer-lib";
 			sourceTree = "<group>";
@@ -191,6 +200,7 @@
 				65B1E582294E9BCC008BF2DE /* raytracer_lib.hpp in Headers */,
 				65E6B2FB2955925800F98D69 /* matrix.hpp in Headers */,
 				65E6B2EA294EA43900F98D69 /* tuple.hpp in Headers */,
+				65587F6B2973C45100485127 /* transformations.hpp in Headers */,
 				65E6B2F5295547CD00F98D69 /* canvas.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +316,7 @@
 			files = (
 				65B1E577294E9B48008BF2DE /* main.cpp in Sources */,
 				65B1E592294E9D7A008BF2DE /* default_test.cpp in Sources */,
+				65587F6D2973C4D900485127 /* transformation_test.cpp in Sources */,
 				65E6B2FD295595FB00F98D69 /* matrix_test.cpp in Sources */,
 				65E6B2F7295548A300F98D69 /* canvas_test.cpp in Sources */,
 				65E6B2EC294EA63000F98D69 /* tuple_test.cpp in Sources */,
@@ -319,6 +330,7 @@
 			files = (
 				65E6B2FA2955925800F98D69 /* matrix.cpp in Sources */,
 				65E6B2E9294EA43900F98D69 /* tuple.cpp in Sources */,
+				65587F6A2973C45100485127 /* transformations.cpp in Sources */,
 				65E6B2F129553E4E00F98D69 /* colour.cpp in Sources */,
 				65B1E586294E9BCC008BF2DE /* raytracer_lib.cpp in Sources */,
 				65E6B2F4295547CD00F98D69 /* canvas.cpp in Sources */,
