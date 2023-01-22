@@ -19,3 +19,12 @@ Matrix<4> rtlib::translation(double x, double y, double z) {
     
     return matrix;
 }
+
+Matrix<4> rtlib::scaling(double x, double y, double z) {
+    auto matrix = Matrix<4>::identityMatrix();
+    matrix.set(0, 0, x);
+    matrix.set(1, 1, y);
+    matrix.set(2, 2, z);
+    
+    return matrix;
+}

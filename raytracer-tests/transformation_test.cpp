@@ -35,5 +35,33 @@ TEST(TransformationTest, MultiplyTranslationMatrixByVector) {
     EXPECT_EQ(transform * vector, vector);
 }
 
+TEST(TransformationTest, MultiplyScalingMatrixByPoint) {
+    auto transform = rtlib::scaling(2.0, 3.0, 4.0);
+    auto point = rtlib::create_point(-4.0, 6.0, 8.0);
+    
+    EXPECT_EQ(transform * point, rtlib::create_point(-8.0, 18.0, 32.0));
+}
+
+TEST(TransformationTest, MultiplyScalingMatrixByVector) {
+    auto transform = rtlib::scaling(2.0, 3.0, 4.0);
+    auto vector = rtlib::create_vector(-4.0, 6.0, 8.0);
+    
+    EXPECT_EQ(transform * vector, rtlib::create_vector(-8.0, 18.0, 32.0));
+}
+
+TEST(TransformationTest, MultiplyInverseScalingMatrixByVector) {
+    auto transform = rtlib::scaling(2.0, 3.0, 4.0);
+    auto inverseTransform = transform.inverse();
+    auto vector = rtlib::create_vector(-4.0, 6.0, 8.0);
+
+    EXPECT_EQ(inverseTransform * vector, rtlib::create_vector(-2.0, 2.0, 2.0));
+}
+
+TEST(TransformationTest, MultiplyScalingMatrixAsReflectionByPoint) {
+    auto transform = rtlib::scaling(-1.0, 1.0, 1.0);
+    auto point = rtlib::create_point(2.0, 3.0, 4.0);
+    
+    EXPECT_EQ(transform * point, rtlib::create_point(-2.0, 3.0, 4.0));
+}
 
 }

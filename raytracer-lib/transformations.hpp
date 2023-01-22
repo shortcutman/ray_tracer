@@ -14,6 +14,7 @@ template<unsigned int N>
 class Matrix;
 
 Matrix<4> translation(double x, double y, double z);
+Matrix<4> scaling(double x, double y, double z);
 
 }
 
