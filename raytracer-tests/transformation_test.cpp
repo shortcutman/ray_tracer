@@ -147,4 +147,32 @@ TEST(TransformationTest, MultiplyShearZtoYMatrixByPoint) {
     EXPECT_EQ(transform * point, rtlib::create_point(2.0, 3.0, 7.0));
 }
 
+TEST(TransformationTest, IndividualTransformationsAppliedInSequence) {
+    auto point = rtlib::create_point(1.0, 0.0, 1.0);
+
+    auto rotate = rtlib::rotation_x(std::numbers::pi / 2.0);
+    auto scale = rtlib::scaling(5.0, 5.0, 5.0);
+    auto translate = rtlib::translation(10.0, 5.0, 7.0);
+    
+    auto step1 = rotate * point;
+    EXPECT_EQ(step1, rtlib::create_point(1.0, -1.0, 0.0));
+    
+    auto step2 = scale * step1;
+    EXPECT_EQ(step2, rtlib::create_point(5.0, -5.0, 0.0));
+    
+    auto step3 = translate * step2;
+    EXPECT_EQ(step3, rtlib::create_point(15.0, 0.0, 7.0));
+}
+
+TEST(TransformationTest, ChainedTransformationsAppliedInReverse) {
+    auto point = rtlib::create_point(1.0, 0.0, 1.0);
+
+    auto rotate = rtlib::rotation_x(std::numbers::pi / 2.0);
+    auto scale = rtlib::scaling(5.0, 5.0, 5.0);
+    auto translate = rtlib::translation(10.0, 5.0, 7.0);
+    
+    auto combinedTransform = translate * scale * rotate;
+    EXPECT_EQ(combinedTransform * point, rtlib::create_point(15.0, 0.0, 7.0));
+}
+
 }
