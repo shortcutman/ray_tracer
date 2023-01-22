@@ -64,3 +64,15 @@ Matrix<4> rtlib::rotation_z(double angle) {
     return matrix;
 }
 
+Matrix<4> rtlib::shearing(double xy, double xz, double yx, double yz, double zx, double zy) {
+    auto matrix = Matrix<4>::identityMatrix();
+    
+    matrix.set(0, 1, xy);
+    matrix.set(0, 2, xz);
+    matrix.set(1, 0, yx);
+    matrix.set(1, 2, yz);
+    matrix.set(2, 0, zx);
+    matrix.set(2, 1, zy);
+    
+    return matrix;
+}

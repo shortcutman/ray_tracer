@@ -105,4 +105,46 @@ TEST(TransformationTest, MultiplyRotationZMatrixByPoint) {
     EXPECT_EQ(full_quarter * point, rtlib::create_point(-1.0, 0.0, 0.0));
 }
 
+TEST(TransformationTest, MultiplyShearXtoYMatrixByPoint) {
+    auto transform = rtlib::shearing(1.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    auto point = rtlib::create_point(2.0, 3.0, 4.0);
+    
+    EXPECT_EQ(transform * point, rtlib::create_point(5.0, 3.0, 4.0));
+}
+
+TEST(TransformationTest, MultiplyShearXtoZMatrixByPoint) {
+    auto transform = rtlib::shearing(0.0, 1.0, 0.0, 0.0, 0.0, 0.0);
+    auto point = rtlib::create_point(2.0, 3.0, 4.0);
+    
+    EXPECT_EQ(transform * point, rtlib::create_point(6.0, 3.0, 4.0));
+}
+
+TEST(TransformationTest, MultiplyShearYtoXMatrixByPoint) {
+    auto transform = rtlib::shearing(0.0, 0.0, 1.0, 0.0, 0.0, 0.0);
+    auto point = rtlib::create_point(2.0, 3.0, 4.0);
+    
+    EXPECT_EQ(transform * point, rtlib::create_point(2.0, 5.0, 4.0));
+}
+
+TEST(TransformationTest, MultiplyShearYtoZMatrixByPoint) {
+    auto transform = rtlib::shearing(0.0, 0.0, 0.0, 1.0, 0.0, 0.0);
+    auto point = rtlib::create_point(2.0, 3.0, 4.0);
+    
+    EXPECT_EQ(transform * point, rtlib::create_point(2.0, 7.0, 4.0));
+}
+
+TEST(TransformationTest, MultiplyShearZtoXMatrixByPoint) {
+    auto transform = rtlib::shearing(0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    auto point = rtlib::create_point(2.0, 3.0, 4.0);
+    
+    EXPECT_EQ(transform * point, rtlib::create_point(2.0, 3.0, 6.0));
+}
+
+TEST(TransformationTest, MultiplyShearZtoYMatrixByPoint) {
+    auto transform = rtlib::shearing(0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
+    auto point = rtlib::create_point(2.0, 3.0, 4.0);
+    
+    EXPECT_EQ(transform * point, rtlib::create_point(2.0, 3.0, 7.0));
+}
+
 }
