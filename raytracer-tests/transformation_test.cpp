@@ -11,6 +11,9 @@
 #include "transformations.hpp"
 #include "tuple.hpp"
 
+#include <cmath>
+#include <numbers>
+
 namespace {
 
 TEST(TransformationTest, MultiplyTranslationMatrixByPoint) {
@@ -62,6 +65,44 @@ TEST(TransformationTest, MultiplyScalingMatrixAsReflectionByPoint) {
     auto point = rtlib::create_point(2.0, 3.0, 4.0);
     
     EXPECT_EQ(transform * point, rtlib::create_point(-2.0, 3.0, 4.0));
+}
+
+TEST(TransformationTest, MultiplyRotationXMatrixByPoint) {
+    auto point = rtlib::create_point(0.0, 1.0, 0.0);
+    
+    auto half_quarter = rtlib::rotation_x(std::numbers::pi / 4.0);
+    EXPECT_EQ(half_quarter * point, rtlib::create_point(0.0, std::sqrt(2) / 2.0, std::sqrt(2) / 2.0));
+    
+    auto full_quarter = rtlib::rotation_x(std::numbers::pi / 2.0);
+    EXPECT_EQ(full_quarter * point, rtlib::create_point(0.0, 0.0, 1.0));
+}
+
+TEST(TransformationTest, MultiplyInverseRotationXMatrixByPoint) {
+    auto point = rtlib::create_point(0.0, 1.0, 0.0);
+    
+    auto half_quarter = rtlib::rotation_x(std::numbers::pi / 4.0);
+    auto inverse = half_quarter.inverse();
+    EXPECT_EQ(half_quarter * point, rtlib::create_point(0.0, std::sqrt(2) / 2.0, 1.0 * std::sqrt(2) / 2.0));
+}
+
+TEST(TransformationTest, MultiplyRotationYMatrixByPoint) {
+    auto point = rtlib::create_point(0.0, 0.0, 1.0);
+    
+    auto half_quarter = rtlib::rotation_y(std::numbers::pi / 4.0);
+    EXPECT_EQ(half_quarter * point, rtlib::create_point(std::sqrt(2) / 2.0, 0.0, std::sqrt(2) / 2.0));
+    
+    auto full_quarter = rtlib::rotation_y(std::numbers::pi / 2.0);
+    EXPECT_EQ(full_quarter * point, rtlib::create_point(1.0, 0.0, 0.0));
+}
+
+TEST(TransformationTest, MultiplyRotationZMatrixByPoint) {
+    auto point = rtlib::create_point(0.0, 1.0, 0.0);
+    
+    auto half_quarter = rtlib::rotation_z(std::numbers::pi / 4.0);
+    EXPECT_EQ(half_quarter * point, rtlib::create_point(-1.0 * std::sqrt(2) / 2.0, std::sqrt(2) / 2.0, 0.0));
+    
+    auto full_quarter = rtlib::rotation_z(std::numbers::pi / 2.0);
+    EXPECT_EQ(full_quarter * point, rtlib::create_point(-1.0, 0.0, 0.0));
 }
 
 }
