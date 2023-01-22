@@ -206,9 +206,9 @@ template<unsigned int N>
 Tuple rtlib::operator*(const Matrix<N>& lhs, const Tuple& rhs) {
     auto result = Tuple();
     
-    for (unsigned int index = 0; index < N; index++) {
-        for (unsigned int size = 0; size < N; size++) {
-            result[index] += rhs[size] * lhs.at(index, size);
+    for (unsigned int row = 0; row < N; row++) {
+        for (unsigned int column = 0; column < N; column++) {
+            result[row] += rhs[column] * lhs.at(row, column);
         }
     }
     
