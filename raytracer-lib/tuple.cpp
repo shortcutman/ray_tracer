@@ -222,6 +222,13 @@ Tuple rtlib::operator/(Tuple lhs, double rhs) {
     return lhs;
 }
 
+std::ostream& rtlib::operator<<(std::ostream& os, const Tuple& tuple) {
+    
+    os << "Tuple(" << tuple.x() << ", " << tuple.y() << ", " << tuple.z() << ", " << tuple.w() << ")";
+    
+    return os;
+}
+
 Tuple rtlib::create_point(double x, double y, double z) {
     return Tuple(x, y, z, 1.0);
 }

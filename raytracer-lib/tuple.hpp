@@ -9,6 +9,7 @@
 #define tuple_hpp
 
 #include <cstddef>
+#include <ostream>
 
 namespace rtlib {
 
@@ -61,6 +62,8 @@ Tuple operator+(Tuple lhs, const Tuple& rhs);
 Tuple operator-(Tuple lhs, const Tuple& rhs);
 Tuple operator*(Tuple lhs, double rhs);
 Tuple operator/(Tuple lhs, double rhs);
+
+std::ostream& operator<< (std::ostream& os, const Tuple& matrix);
 
 Tuple create_point(double x, double y, double z);
 Tuple create_vector(double x, double y, double z);
