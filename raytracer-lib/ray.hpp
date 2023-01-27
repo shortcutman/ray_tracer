@@ -23,6 +23,8 @@ public:
     bool valid() const;
     Tuple origin() const;
     Tuple direction() const;
+    
+    Tuple positionAt(double t) const;
 };
 
 }

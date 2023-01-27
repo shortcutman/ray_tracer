@@ -11,21 +11,21 @@ using namespace rtlib;
 
 Ray::Ray(Tuple origin, Tuple direction) :
     _origin(origin),
-    _direction(direction)
-{
+    _direction(direction) {
 }
 
-bool Ray::valid() const
-{
+bool Ray::valid() const {
     return _origin.isPoint() && _direction.isVector();
 }
 
-Tuple Ray::origin() const
-{
+Tuple Ray::origin() const {
     return _origin;
 }
 
-Tuple Ray::direction() const
-{
+Tuple Ray::direction() const {
     return _direction;
+}
+
+Tuple Ray::positionAt(double t) const {
+    return _origin + _direction * t;
 }

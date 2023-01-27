@@ -36,4 +36,13 @@ TEST(RayTest, ConstructInvalidRay) {
     EXPECT_EQ(r2.direction(), create_point(1.0, 1.0, 1.0));
 }
 
+TEST(RayTest, ComputePointAtDistance) {
+    Ray r(create_point(2.0, 3.0, 4.0), create_vector(1.0, 0.0, 0.0));
+    
+    EXPECT_EQ(r.positionAt(0.0), create_point(2.0, 3.0, 4.0));
+    EXPECT_EQ(r.positionAt(1.0), create_point(3.0, 3.0, 4.0));
+    EXPECT_EQ(r.positionAt(-1.0), create_point(1.0, 3.0, 4.0));
+    EXPECT_EQ(r.positionAt(2.5), create_point(4.5, 3.0, 4.0));
+}
+
 }
