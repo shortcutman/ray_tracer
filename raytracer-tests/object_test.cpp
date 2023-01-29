@@ -19,8 +19,10 @@ TEST(ObjectTest, IntersectSphereThroughMiddle) {
     
     auto result = s.intersects(r);
     EXPECT_EQ(result.size(), 2);
-    EXPECT_EQ(result.at(0), 4.0);
-    EXPECT_EQ(result.at(1), 6.0);
+    EXPECT_EQ(result.at(0).object, &s);
+    EXPECT_EQ(result.at(0).t, 4.0);
+    EXPECT_EQ(result.at(1).object, &s);
+    EXPECT_EQ(result.at(1).t, 6.0);
 }
 
 TEST(ObjectTest, IntersectSphereTangent) {
@@ -30,8 +32,10 @@ TEST(ObjectTest, IntersectSphereTangent) {
     
     auto result = s.intersects(r);
     EXPECT_EQ(result.size(), 2);
-    EXPECT_EQ(result.at(0), 5.0);
-    EXPECT_EQ(result.at(1), 5.0);
+    EXPECT_EQ(result.at(0).object, &s);
+    EXPECT_EQ(result.at(0).t, 5.0);
+    EXPECT_EQ(result.at(1).object, &s);
+    EXPECT_EQ(result.at(1).t, 5.0);
 }
 
 TEST(ObjectTest, IntersectSphereMiss) {
@@ -50,8 +54,10 @@ TEST(ObjectTest, IntersectSphereFromInside) {
     
     auto result = s.intersects(r);
     EXPECT_EQ(result.size(), 2);
-    EXPECT_EQ(result.at(0), -1.0);
-    EXPECT_EQ(result.at(1), 1.0);
+    EXPECT_EQ(result.at(0).object, &s);
+    EXPECT_EQ(result.at(0).t, -1.0);
+    EXPECT_EQ(result.at(1).object, &s);
+    EXPECT_EQ(result.at(1).t, 1.0);
 }
 
 TEST(ObjectTest, IntersectSphereBehind) {
@@ -61,8 +67,10 @@ TEST(ObjectTest, IntersectSphereBehind) {
     
     auto result = s.intersects(r);
     EXPECT_EQ(result.size(), 2);
-    EXPECT_EQ(result.at(0), -6.0);
-    EXPECT_EQ(result.at(1), -4.0);
+    EXPECT_EQ(result.at(0).object, &s);
+    EXPECT_EQ(result.at(0).t, -6.0);
+    EXPECT_EQ(result.at(1).object, &s);
+    EXPECT_EQ(result.at(1).t, -4.0);
 }
 
 }

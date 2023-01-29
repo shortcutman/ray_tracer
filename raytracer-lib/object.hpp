@@ -16,7 +16,11 @@ class Ray;
 
 class Object {
 public:
-    typedef std::vector<double> IntersectHits;
+    struct Intersect {
+        const Object* object;
+        double t;
+    };
+    typedef std::vector<Intersect> IntersectHits;
     
 public:
     Object() {}
