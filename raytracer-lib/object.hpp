@@ -19,6 +19,9 @@ public:
     struct Intersect {
         const Object* object;
         double t;
+        
+        Intersect(const Object* obj, double t_) :
+        object(obj), t(t_) {}
     };
     typedef std::vector<Intersect> IntersectHits;
     

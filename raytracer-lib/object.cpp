@@ -26,13 +26,8 @@ rtlib::Sphere::IntersectHits rtlib::Sphere::intersects(const Ray& ray) const {
         return IntersectHits();
     }
         
-    Intersect hit1;
-    hit1.object = this;
-    hit1.t = (-b - std::sqrt(discriminant)) / (2 * a);
-    
-    Intersect hit2;
-    hit2.object = this;
-    hit2.t = (-b + std::sqrt(discriminant)) / (2 * a);
+    Intersect hit1(this, (-b - std::sqrt(discriminant)) / (2 * a));
+    Intersect hit2(this, (-b + std::sqrt(discriminant)) / (2 * a));
     
     IntersectHits hits;
     hits.push_back(hit1);
