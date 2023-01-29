@@ -13,6 +13,9 @@
 		65587F702983925400485127 /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65587F6E2983925400485127 /* ray.cpp */; };
 		65587F712983925400485127 /* ray.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65587F6F2983925400485127 /* ray.hpp */; };
 		65587F73298392EB00485127 /* ray_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65587F72298392EB00485127 /* ray_tests.cpp */; };
+		65587F76298397D000485127 /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65587F74298397D000485127 /* object.cpp */; };
+		65587F77298397D000485127 /* object.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65587F75298397D000485127 /* object.hpp */; };
+		65587F79298398E000485127 /* object_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65587F78298398E000485127 /* object_test.cpp */; };
 		65B1E56A294E9AF8008BF2DE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B1E569294E9AF8008BF2DE /* main.cpp */; };
 		65B1E577294E9B48008BF2DE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B1E576294E9B48008BF2DE /* main.cpp */; };
 		65B1E582294E9BCC008BF2DE /* raytracer_lib.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65B1E581294E9BCC008BF2DE /* raytracer_lib.hpp */; };
@@ -78,6 +81,9 @@
 		65587F6E2983925400485127 /* ray.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ray.cpp; sourceTree = "<group>"; };
 		65587F6F2983925400485127 /* ray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ray.hpp; sourceTree = "<group>"; };
 		65587F72298392EB00485127 /* ray_tests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ray_tests.cpp; sourceTree = "<group>"; };
+		65587F74298397D000485127 /* object.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = object.cpp; sourceTree = "<group>"; };
+		65587F75298397D000485127 /* object.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = object.hpp; sourceTree = "<group>"; };
+		65587F78298398E000485127 /* object_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = object_test.cpp; sourceTree = "<group>"; };
 		65B1E566294E9AF8008BF2DE /* raytracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = raytracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B1E569294E9AF8008BF2DE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		65B1E574294E9B48008BF2DE /* raytracer-tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "raytracer-tests"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +173,7 @@
 				65E6B2FC295595FB00F98D69 /* matrix_test.cpp */,
 				65587F6C2973C4D900485127 /* transformation_test.cpp */,
 				65587F72298392EB00485127 /* ray_tests.cpp */,
+				65587F78298398E000485127 /* object_test.cpp */,
 			);
 			path = "raytracer-tests";
 			sourceTree = "<group>";
@@ -188,6 +195,8 @@
 				65587F692973C45100485127 /* transformations.hpp */,
 				65587F6E2983925400485127 /* ray.cpp */,
 				65587F6F2983925400485127 /* ray.hpp */,
+				65587F74298397D000485127 /* object.cpp */,
+				65587F75298397D000485127 /* object.hpp */,
 			);
 			path = "raytracer-lib";
 			sourceTree = "<group>";
@@ -210,6 +219,7 @@
 				65E6B2FB2955925800F98D69 /* matrix.hpp in Headers */,
 				65E6B2EA294EA43900F98D69 /* tuple.hpp in Headers */,
 				65587F712983925400485127 /* ray.hpp in Headers */,
+				65587F77298397D000485127 /* object.hpp in Headers */,
 				65587F6B2973C45100485127 /* transformations.hpp in Headers */,
 				65E6B2F5295547CD00F98D69 /* canvas.hpp in Headers */,
 			);
@@ -331,6 +341,7 @@
 				65587F73298392EB00485127 /* ray_tests.cpp in Sources */,
 				65E6B2F7295548A300F98D69 /* canvas_test.cpp in Sources */,
 				65E6B2EC294EA63000F98D69 /* tuple_test.cpp in Sources */,
+				65587F79298398E000485127 /* object_test.cpp in Sources */,
 				65E6B2EF29553DBC00F98D69 /* colour_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +352,7 @@
 			files = (
 				65E6B2FA2955925800F98D69 /* matrix.cpp in Sources */,
 				65E6B2E9294EA43900F98D69 /* tuple.cpp in Sources */,
+				65587F76298397D000485127 /* object.cpp in Sources */,
 				65587F702983925400485127 /* ray.cpp in Sources */,
 				65587F6A2973C45100485127 /* transformations.cpp in Sources */,
 				65E6B2F129553E4E00F98D69 /* colour.cpp in Sources */,
