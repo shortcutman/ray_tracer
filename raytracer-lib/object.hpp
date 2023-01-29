@@ -9,6 +9,7 @@
 #define object_hpp
 
 #include <vector>
+#include <optional>
 
 namespace rtlib {
 
@@ -20,8 +21,8 @@ public:
         const Object* object;
         double t;
         
-        Intersect(const Object* obj, double t_) :
-        object(obj), t(t_) {}
+        Intersect(const Object* obj, double t_);
+        bool operator==(const Intersect& rhs) const;
     };
     typedef std::vector<Intersect> IntersectHits;
     
@@ -31,6 +32,8 @@ public:
     
     virtual IntersectHits intersects(const Ray& ray) const = 0;
 };
+
+std::optional<Object::Intersect> hit(Object::IntersectHits hits);
 
 class Sphere : public Object {
 public:

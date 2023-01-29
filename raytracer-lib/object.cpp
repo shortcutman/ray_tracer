@@ -11,6 +11,30 @@
 #include "tuple.hpp"
 
 #include <cmath>
+#include <numeric>
+
+rtlib::Object::Intersect::Intersect(const Object* obj, double t_) :
+object(obj), t(t_) {}
+
+bool rtlib::Object::Intersect::operator==(const Intersect& rhs) const {
+    return this->object == rhs.object && this->t == rhs.t;
+}
+
+std::optional<rtlib::Object::Intersect> rtlib::hit(Object::IntersectHits hits) {
+    std::optional<Object::Intersect> result;
+    
+    for (const Object::Intersect& i : hits) {
+        if (i.t < 0.0) {
+            continue;
+        } else if (!result) {
+            result = i;
+        } else if (result->t > i.t) {
+            result = i;
+        }
+    }
+    
+    return result;
+}
 
 rtlib::Sphere::IntersectHits rtlib::Sphere::intersects(const Ray& ray) const {
     const auto centre = rtlib::create_point(0.0, 0.0, 0.0);

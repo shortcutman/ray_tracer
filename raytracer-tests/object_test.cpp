@@ -73,4 +73,53 @@ TEST(ObjectTest, IntersectSphereBehind) {
     EXPECT_EQ(result.at(1).t, -4.0);
 }
 
+TEST(ObjectTest, HitIntersectionWithAllPositive) {
+    rtlib::Sphere s;
+    
+    rtlib::Object::IntersectHits hits;
+    hits.push_back(rtlib::Object::Intersect(&s, 1.0));
+    hits.push_back(rtlib::Object::Intersect(&s, 2.0));
+    
+    auto hit = rtlib::hit(hits);
+    EXPECT_TRUE(hit);
+    EXPECT_EQ(*hit, rtlib::Object::Intersect(&s, 1.0));
+}
+
+TEST(ObjectTest, HitIntersectionWithMix) {
+    rtlib::Sphere s;
+    
+    rtlib::Object::IntersectHits hits;
+    hits.push_back(rtlib::Object::Intersect(&s, -1.0));
+    hits.push_back(rtlib::Object::Intersect(&s, 1.0));
+    
+    auto hit = rtlib::hit(hits);
+    EXPECT_TRUE(hit);
+    EXPECT_EQ(*hit, rtlib::Object::Intersect(&s, 1.0));
+}
+
+TEST(ObjectTest, HitIntersectionWithAllNegative) {
+    rtlib::Sphere s;
+    
+    rtlib::Object::IntersectHits hits;
+    hits.push_back(rtlib::Object::Intersect(&s, -1.0));
+    hits.push_back(rtlib::Object::Intersect(&s, -2.0));
+    
+    auto hit = rtlib::hit(hits);
+    EXPECT_FALSE(hit);
+}
+
+TEST(ObjectTest, HitIntersectionIsLowestNonNegative) {
+    rtlib::Sphere s;
+    
+    rtlib::Object::IntersectHits hits;
+    hits.push_back(rtlib::Object::Intersect(&s, 5.0));
+    hits.push_back(rtlib::Object::Intersect(&s, 7.0));
+    hits.push_back(rtlib::Object::Intersect(&s, -3.0));
+    hits.push_back(rtlib::Object::Intersect(&s, 2.0));
+    
+    auto hit = rtlib::hit(hits);
+    EXPECT_TRUE(hit);
+    EXPECT_EQ(*hit, rtlib::Object::Intersect(&s, 2.0));
+}
+
 }
