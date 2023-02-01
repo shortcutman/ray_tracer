@@ -11,6 +11,8 @@
 #include <vector>
 #include <optional>
 
+#include "matrix.hpp"
+
 namespace rtlib {
 
 class Ray;
@@ -26,9 +28,15 @@ public:
     };
     typedef std::vector<Intersect> IntersectHits;
     
+private:
+    Matrix<4> _transform;
+    
 public:
-    Object() {}
+    Object();
     ~Object() {}
+    
+    Matrix<4> transform() const;
+    void setTransform(Matrix<4> matrix);
     
     virtual IntersectHits intersects(const Ray& ray) const = 0;
 };

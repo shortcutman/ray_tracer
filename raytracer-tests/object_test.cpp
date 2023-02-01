@@ -9,8 +9,23 @@
 
 #include "object.hpp"
 #include "ray.hpp"
+#include "transformations.hpp"
 
 namespace {
+
+TEST(ObjectTest, SphereTransforms) {
+    rtlib::Sphere s;
+
+    EXPECT_EQ(s.transform(), rtlib::Matrix<4>::identityMatrix());
+    
+    auto randomMatrix = rtlib::Matrix<4>::identityMatrix();
+    randomMatrix.set(1, 1, 1.0);
+    randomMatrix.set(3, 2, 2.0);
+    randomMatrix.set(2, 3, 3.0);
+    s.setTransform(randomMatrix);
+    
+    EXPECT_EQ(s.transform(), randomMatrix);
+}
 
 TEST(ObjectTest, IntersectSphereThroughMiddle) {
     rtlib::Sphere s;
@@ -120,6 +135,28 @@ TEST(ObjectTest, HitIntersectionIsLowestNonNegative) {
     auto hit = rtlib::hit(hits);
     EXPECT_TRUE(hit);
     EXPECT_EQ(*hit, rtlib::Object::Intersect(&s, 2.0));
+}
+
+TEST(ObjectTest, IntersectScaledSphere) {
+    rtlib::Ray r(rtlib::create_point(0.0, 0.0, -5.0),
+                 rtlib::create_vector(0.0, 0.0, 1.0));
+    rtlib::Sphere s;
+    s.setTransform(rtlib::scaling(2.0, 2.0, 2.0));
+    
+    auto result = s.intersects(r);
+    EXPECT_EQ(result.size(), 2);
+    EXPECT_EQ(result.at(0).t, 3.0);
+    EXPECT_EQ(result.at(1).t, 7.0);
+}
+
+TEST(ObjectTest, IntersectTranslatedSphere) {
+    rtlib::Ray r(rtlib::create_point(0.0, 0.0, -5.0),
+                 rtlib::create_vector(0.0, 0.0, 1.0));
+    rtlib::Sphere s;
+    s.setTransform(rtlib::translation(5.0, 0.0, 0.0));
+    
+    auto result = s.intersects(r);
+    EXPECT_EQ(result.size(), 0);
 }
 
 }
