@@ -12,6 +12,9 @@
 
 namespace rtlib {
 
+template<unsigned int N>
+class Matrix;
+
 class Ray {
 private:
     Tuple _origin;
@@ -24,6 +27,7 @@ public:
     Tuple origin() const;
     Tuple direction() const;
     
+    Ray transform(const Matrix<4>& matrix) const;
     Tuple positionAt(double t) const;
 };
 
