@@ -33,6 +33,14 @@ void rtlib::Object::setTransform(rtlib::Matrix<4> matrix) {
     _transform = matrix;
 }
 
+rtlib::Material rtlib::Object::material() const {
+    return _material;
+}
+
+void rtlib::Object::setMaterial(Material material) {
+    _material = material;
+}
+
 std::optional<rtlib::Object::Intersect> rtlib::hit(Object::IntersectHits hits) {
     std::optional<Object::Intersect> result;
     

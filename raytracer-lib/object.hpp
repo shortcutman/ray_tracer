@@ -12,6 +12,7 @@
 #include <optional>
 
 #include "matrix.hpp"
+#include "lighting.hpp"
 
 namespace rtlib {
 
@@ -30,6 +31,7 @@ public:
     
 private:
     Matrix<4> _transform;
+    Material _material;
     
 public:
     Object();
@@ -37,6 +39,9 @@ public:
     
     Matrix<4> transform() const;
     void setTransform(Matrix<4> matrix);
+    
+    Material material() const;
+    void setMaterial(Material material);
     
     virtual IntersectHits intersects(const Ray& ray) const = 0;
     virtual Tuple normalAt(const Tuple& point) const = 0;

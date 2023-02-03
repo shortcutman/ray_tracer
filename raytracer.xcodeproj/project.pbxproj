@@ -23,6 +23,9 @@
 		65B1E58D294E9BFB008BF2DE /* libraytracer-lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B1E57F294E9BCC008BF2DE /* libraytracer-lib.a */; };
 		65B1E590294E9CCE008BF2DE /* libraytracer-lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B1E57F294E9BCC008BF2DE /* libraytracer-lib.a */; };
 		65B1E592294E9D7A008BF2DE /* default_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B1E591294E9D7A008BF2DE /* default_test.cpp */; };
+		65CA49B7298D1929008302BA /* lighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65CA49B5298D1929008302BA /* lighting.cpp */; };
+		65CA49B8298D1929008302BA /* lighting.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65CA49B6298D1929008302BA /* lighting.hpp */; };
+		65CA49BA298D1A50008302BA /* lighting_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65CA49B9298D1A50008302BA /* lighting_test.cpp */; };
 		65E6B2E9294EA43900F98D69 /* tuple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B2E7294EA43900F98D69 /* tuple.cpp */; };
 		65E6B2EA294EA43900F98D69 /* tuple.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65E6B2E8294EA43900F98D69 /* tuple.hpp */; };
 		65E6B2EC294EA63000F98D69 /* tuple_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B2EB294EA63000F98D69 /* tuple_test.cpp */; };
@@ -92,6 +95,9 @@
 		65B1E581294E9BCC008BF2DE /* raytracer_lib.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = raytracer_lib.hpp; sourceTree = "<group>"; };
 		65B1E585294E9BCC008BF2DE /* raytracer_lib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = raytracer_lib.cpp; sourceTree = "<group>"; };
 		65B1E591294E9D7A008BF2DE /* default_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = default_test.cpp; sourceTree = "<group>"; };
+		65CA49B5298D1929008302BA /* lighting.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lighting.cpp; sourceTree = "<group>"; };
+		65CA49B6298D1929008302BA /* lighting.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lighting.hpp; sourceTree = "<group>"; };
+		65CA49B9298D1A50008302BA /* lighting_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lighting_test.cpp; sourceTree = "<group>"; };
 		65E6B2E7294EA43900F98D69 /* tuple.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tuple.cpp; sourceTree = "<group>"; };
 		65E6B2E8294EA43900F98D69 /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
 		65E6B2EB294EA63000F98D69 /* tuple_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tuple_test.cpp; sourceTree = "<group>"; };
@@ -174,6 +180,7 @@
 				65587F6C2973C4D900485127 /* transformation_test.cpp */,
 				65587F72298392EB00485127 /* ray_tests.cpp */,
 				65587F78298398E000485127 /* object_test.cpp */,
+				65CA49B9298D1A50008302BA /* lighting_test.cpp */,
 			);
 			path = "raytracer-tests";
 			sourceTree = "<group>";
@@ -197,6 +204,8 @@
 				65587F6F2983925400485127 /* ray.hpp */,
 				65587F74298397D000485127 /* object.cpp */,
 				65587F75298397D000485127 /* object.hpp */,
+				65CA49B5298D1929008302BA /* lighting.cpp */,
+				65CA49B6298D1929008302BA /* lighting.hpp */,
 			);
 			path = "raytracer-lib";
 			sourceTree = "<group>";
@@ -215,6 +224,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65CA49B8298D1929008302BA /* lighting.hpp in Headers */,
 				65B1E582294E9BCC008BF2DE /* raytracer_lib.hpp in Headers */,
 				65E6B2FB2955925800F98D69 /* matrix.hpp in Headers */,
 				65E6B2EA294EA43900F98D69 /* tuple.hpp in Headers */,
@@ -343,6 +353,7 @@
 				65E6B2EC294EA63000F98D69 /* tuple_test.cpp in Sources */,
 				65587F79298398E000485127 /* object_test.cpp in Sources */,
 				65E6B2EF29553DBC00F98D69 /* colour_test.cpp in Sources */,
+				65CA49BA298D1A50008302BA /* lighting_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +363,7 @@
 			files = (
 				65E6B2FA2955925800F98D69 /* matrix.cpp in Sources */,
 				65E6B2E9294EA43900F98D69 /* tuple.cpp in Sources */,
+				65CA49B7298D1929008302BA /* lighting.cpp in Sources */,
 				65587F76298397D000485127 /* object.cpp in Sources */,
 				65587F702983925400485127 /* ray.cpp in Sources */,
 				65587F6A2973C45100485127 /* transformations.cpp in Sources */,
