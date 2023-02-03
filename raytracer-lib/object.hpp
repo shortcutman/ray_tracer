@@ -39,6 +39,7 @@ public:
     void setTransform(Matrix<4> matrix);
     
     virtual IntersectHits intersects(const Ray& ray) const = 0;
+    virtual Tuple normalAt(const Tuple& point) const = 0;
 };
 
 std::optional<Object::Intersect> hit(Object::IntersectHits hits);
@@ -49,6 +50,7 @@ public:
     ~Sphere() {}
     
     virtual IntersectHits intersects(const Ray& ray) const;
+    virtual Tuple normalAt(const Tuple& point) const;
 };
 
 }

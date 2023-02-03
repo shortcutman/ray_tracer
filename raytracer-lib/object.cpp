@@ -72,3 +72,8 @@ rtlib::Sphere::IntersectHits rtlib::Sphere::intersects(const Ray& ray) const {
     hits.push_back(hit2);
     return hits;
 }
+
+rtlib::Tuple rtlib::Sphere::normalAt(const Tuple &point) const {
+    auto normal = (point - rtlib::create_point(0.0, 0.0, 0.0)).createNormalized();
+    return normal;
+}

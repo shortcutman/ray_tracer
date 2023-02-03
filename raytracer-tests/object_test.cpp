@@ -11,6 +11,8 @@
 #include "ray.hpp"
 #include "transformations.hpp"
 
+#include <cmath>
+
 namespace {
 
 TEST(ObjectTest, SphereTransforms) {
@@ -157,6 +159,40 @@ TEST(ObjectTest, IntersectTranslatedSphere) {
     
     auto result = s.intersects(r);
     EXPECT_EQ(result.size(), 0);
+}
+
+TEST(ObjectTest, SphereNormalOnXAxis) {
+    rtlib::Sphere s;
+    auto normal = s.normalAt(rtlib::create_point(1.0, 0.0, 0.0));
+    EXPECT_EQ(normal, rtlib::create_vector(1.0, 0.0, 0.0));
+}
+
+TEST(ObjectTest, SphereNormalOnYAxis) {
+    rtlib::Sphere s;
+    auto normal = s.normalAt(rtlib::create_point(0.0, 1.0, 0.0));
+    EXPECT_EQ(normal, rtlib::create_vector(0.0, 1.0, 0.0));
+}
+
+TEST(ObjectTest, SphereNormalOnZAxis) {
+    rtlib::Sphere s;
+    auto normal = s.normalAt(rtlib::create_point(0.0, 0.0, 1.0));
+    EXPECT_EQ(normal, rtlib::create_vector(0.0, 0.0, 1.0));
+}
+
+TEST(ObjectTest, SphereNormalOnNonaxialPoint) {
+    double value = std::sqrt(3.0) / 3.0;
+    
+    rtlib::Sphere s;
+    auto normal = s.normalAt(rtlib::create_point(value, value, value));
+    EXPECT_EQ(normal, rtlib::create_vector(value, value, value));
+}
+
+TEST(ObjectTest, SphereNormalIsNormalised) {
+    double value = std::sqrt(3.0) / 3.0;
+    
+    rtlib::Sphere s;
+    auto normal = s.normalAt(rtlib::create_point(value, value, value));
+    EXPECT_EQ(normal, normal.createNormalized());
 }
 
 }
