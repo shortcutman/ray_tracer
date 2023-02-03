@@ -12,6 +12,7 @@
 #include "transformations.hpp"
 
 #include <cmath>
+#include <numbers>
 
 namespace {
 
@@ -193,6 +194,24 @@ TEST(ObjectTest, SphereNormalIsNormalised) {
     rtlib::Sphere s;
     auto normal = s.normalAt(rtlib::create_point(value, value, value));
     EXPECT_EQ(normal, normal.normalised());
+}
+
+TEST(ObjectTest, TranslatedSphereNormal) {
+    rtlib::Sphere s;
+    s.setTransform(rtlib::translation(0.0, 1.0, 0.0));
+    auto normal = s.normalAt(rtlib::create_point(0.0, 1.70711, -0.70711));
+    EXPECT_EQ(normal, rtlib::create_vector(0.0, 0.70711, -0.70711));
+}
+
+TEST(ObjectTest, TransformedSphereNormal) {
+    double value = std::sqrt(2.0) / 2.0;
+    
+    rtlib::Sphere s;
+    auto transform = rtlib::scaling(1.0, 0.5, 1.0) *
+                     rtlib::rotation_z(std::numbers::pi / 5);
+    s.setTransform(transform);
+    auto normal = s.normalAt(rtlib::create_point(0.0, value, -value));
+    EXPECT_EQ(normal, rtlib::create_vector(0.0, 0.970143, -0.242536));
 }
 
 }
