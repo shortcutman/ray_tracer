@@ -192,7 +192,7 @@ TEST(ObjectTest, SphereNormalIsNormalised) {
     
     rtlib::Sphere s;
     auto normal = s.normalAt(rtlib::create_point(value, value, value));
-    EXPECT_EQ(normal, normal.createNormalized());
+    EXPECT_EQ(normal, normal.normalised());
 }
 
 }

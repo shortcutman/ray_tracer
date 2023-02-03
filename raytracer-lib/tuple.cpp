@@ -160,17 +160,13 @@ Tuple Tuple::operator-() {
     return t;
 }
 
-void Tuple::normalise() {
-    auto magnitude = this->magnitude();
-    this->_x /= magnitude;
-    this->_y /= magnitude;
-    this->_z /= magnitude;
-    this->_w /= magnitude;
-}
-
-Tuple Tuple::createNormalized() const {
+Tuple Tuple::normalised() const {
     auto t = *this;
-    t.normalise();
+    auto magnitude = this->magnitude();
+    t._x /= magnitude;
+    t._y /= magnitude;
+    t._z /= magnitude;
+    t._w /= magnitude;
     return t;
 }
 

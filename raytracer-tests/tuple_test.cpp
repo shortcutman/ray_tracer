@@ -228,13 +228,13 @@ TEST(TupleTest, NegatePoint) {
 
 TEST(TupleTest, NormalizeVector) {
     auto v1 = rtlib::create_vector(4, 0, 0);
-    auto vN = v1.createNormalized();
-    EXPECT_EQ(v1.createNormalized(), rtlib::create_vector(1, 0, 0));
+    auto vN = v1.normalised();
+    EXPECT_EQ(v1.normalised(), rtlib::create_vector(1, 0, 0));
     EXPECT_TRUE(rtlib::Tuple::doubleEquals(vN.magnitude(), 1.0));
     
     v1 = rtlib::create_vector(1, 2, 3);
-    vN = v1.createNormalized();
-    EXPECT_EQ(v1.createNormalized(), rtlib::create_vector(0.26726, 0.53452, 0.80178));
+    vN = v1.normalised();
+    EXPECT_EQ(v1.normalised(), rtlib::create_vector(0.26726, 0.53452, 0.80178));
     EXPECT_TRUE(rtlib::Tuple::doubleEquals(vN.magnitude(), 1.0));
 }
 

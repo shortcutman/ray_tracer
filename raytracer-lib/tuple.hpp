@@ -19,7 +19,7 @@ protected:
     double _y;
     double _z;
     double _w;
-    
+        
 public:
     Tuple();
     Tuple(const Tuple& t) = default;
@@ -48,8 +48,7 @@ public:
     Tuple& operator*=(double rhs);
     Tuple& operator/=(double rhs);
     Tuple operator-();
-    void normalise();
-    Tuple createNormalized() const;
+    Tuple normalised() const;
     
     bool operator==(const Tuple& lhs) const;
     
