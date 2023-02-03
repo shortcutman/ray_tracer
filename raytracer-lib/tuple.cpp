@@ -198,6 +198,10 @@ bool Tuple::doubleEquals(double a, double b) {
     return (std::abs(a - b) < 0.00001);
 }
 
+Tuple Tuple::reflect(const Tuple& source, const Tuple& normal) {
+    return source - normal * 2 * dot(source, normal);
+}
+
 Tuple rtlib::operator+(Tuple lhs, const Tuple& rhs) {
     lhs += rhs;
     return lhs;

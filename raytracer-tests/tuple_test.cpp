@@ -9,6 +9,9 @@
 
 #include "tuple.hpp"
 
+#include <cmath>
+#include <numbers>
+
 namespace {
 
 TEST(TupleTest, ConstructPointFromTuple) {
@@ -119,6 +122,22 @@ TEST(TupleTest, CrossProduct) {
     auto v2 = rtlib::create_vector(2, 3, 4);
     EXPECT_EQ(rtlib::Tuple::cross(v1, v2), rtlib::create_vector(-1, 2, -1));
     EXPECT_EQ(rtlib::Tuple::cross(v2, v1), rtlib::create_vector(1, -2, 1));
+}
+
+TEST(TupleTest, ReflectVectorAt45) {
+    auto vector = rtlib::create_vector(1.0, -1.0, 0.0);
+    auto normal = rtlib::create_vector(0.0, 1.0, 0.0);
+    auto result = rtlib::Tuple::reflect(vector, normal);
+    EXPECT_EQ(result, rtlib::create_vector(1.0, 1.0, 0.0));
+}
+
+TEST(TupleTest, ReflectVectorAtSlant) {
+    double value = std::sqrt(2.0) / 2.0;
+    
+    auto vector = rtlib::create_vector(0.0, -1.0, 0.0);
+    auto normal = rtlib::create_vector(value, value, 0.0);
+    auto result = rtlib::Tuple::reflect(vector, normal);
+    EXPECT_EQ(result, rtlib::create_vector(1.0, 0.0, 0.0));
 }
 
 TEST(TupleTest, AddPoints) {

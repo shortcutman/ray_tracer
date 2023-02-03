@@ -55,6 +55,7 @@ public:
     static double dot(const Tuple& lhs, const Tuple& rhs);
     static Tuple cross(const Tuple& lhs, const Tuple& rhs);
     static bool doubleEquals(double a, double b);
+    static Tuple reflect(const Tuple& source, const Tuple& normal);
 };
 
 Tuple operator+(Tuple lhs, const Tuple& rhs);
