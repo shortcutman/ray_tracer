@@ -24,6 +24,9 @@ rtlib::Colour rtlib::Light::intensity() const {
 }
 
 rtlib::Colour rtlib::Light::lightPoint(Material material, Tuple point, Tuple camera, Tuple normal) const {
+    if (!point.isPoint() || !camera.isVector() || !normal.isVector()) {
+        throw std::runtime_error("Incorrect parameters supplied");
+    }
     
     rtlib::Colour ambient, diffuse, specular;
     
