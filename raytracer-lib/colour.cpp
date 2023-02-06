@@ -10,17 +10,17 @@
 using namespace rtlib;
 
 Colour::Colour() :
-    Tuple()
+    TupleRaw()
 {
 }
 
 Colour::Colour(double red, double green, double blue) :
-    Tuple(red, green, blue)
+    TupleRaw(red, green, blue)
 {
 }
 
-Colour::Colour(const Tuple& t) :
-    Tuple(t)
+Colour::Colour(const TupleRaw& t) :
+    TupleRaw(t)
 {
 }
 
