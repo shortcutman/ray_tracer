@@ -1,74 +1,19 @@
 //
 //  tuple.hpp
-//  raytracer-lib
+//  raytracer
 //
-//  Created by Daniel Burke on 18/12/2022.
+//  Created by Daniel Burke on 6/2/2023.
 //
 
-#ifndef tuple_hpp
-#define tuple_hpp
+#ifndef tuple_h
+#define tuple_h
 
-#include <cstddef>
-#include <ostream>
+#ifdef TUPLE_SIMD
 
-namespace rtlib {
+#else
 
-class Tuple {
-protected:
-    double _x;
-    double _y;
-    double _z;
-    double _w;
-        
-public:
-    Tuple();
-    Tuple(const Tuple& t) = default;
-    Tuple(double x, double y, double z);
-    Tuple(double x, double y, double z, double w);
-    ~Tuple() {};
-    
-    double x() const;
-    double y() const;
-    double z() const;
-    double w() const;
-    
-    void setX(double x);
-    void setY(double y);
-    void setZ(double z);
-    void setW(double w);
-    double operator[](std::size_t index) const;
-    double& operator[](std::size_t index);
-    
-    double magnitude() const;
-    bool isPoint() const;
-    bool isVector() const;
-    
-    Tuple& operator+=(const Tuple& rhs);
-    Tuple& operator-=(const Tuple& rhs);
-    Tuple& operator*=(double rhs);
-    Tuple& operator/=(double rhs);
-    Tuple operator-();
-    Tuple normalised() const;
-    
-    bool operator==(const Tuple& lhs) const;
-    
-    static double dot(const Tuple& lhs, const Tuple& rhs);
-    static Tuple cross(const Tuple& lhs, const Tuple& rhs);
-    static bool doubleEquals(double a, double b);
-    static Tuple reflect(const Tuple& source, const Tuple& normal);
-};
+#include "tuple_raw.hpp"
 
-Tuple operator+(Tuple lhs, const Tuple& rhs);
-Tuple operator-(Tuple lhs, const Tuple& rhs);
-Tuple operator*(Tuple lhs, double rhs);
-Tuple operator/(Tuple lhs, double rhs);
+#endif
 
-std::ostream& operator<< (std::ostream& os, const Tuple& matrix);
-
-Tuple create_point(double x, double y, double z);
-Tuple create_vector(double x, double y, double z);
-
-}
-
-
-#endif /* tuple_hpp */
+#endif /* tuple_h */

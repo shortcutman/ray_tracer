@@ -26,8 +26,8 @@
 		65CA49B7298D1929008302BA /* lighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65CA49B5298D1929008302BA /* lighting.cpp */; };
 		65CA49B8298D1929008302BA /* lighting.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65CA49B6298D1929008302BA /* lighting.hpp */; };
 		65CA49BA298D1A50008302BA /* lighting_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65CA49B9298D1A50008302BA /* lighting_test.cpp */; };
-		65E6B2E9294EA43900F98D69 /* tuple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B2E7294EA43900F98D69 /* tuple.cpp */; };
-		65E6B2EA294EA43900F98D69 /* tuple.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65E6B2E8294EA43900F98D69 /* tuple.hpp */; };
+		65E6B2E9294EA43900F98D69 /* tuple_raw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B2E7294EA43900F98D69 /* tuple_raw.cpp */; };
+		65E6B2EA294EA43900F98D69 /* tuple_raw.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65E6B2E8294EA43900F98D69 /* tuple_raw.hpp */; };
 		65E6B2EC294EA63000F98D69 /* tuple_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B2EB294EA63000F98D69 /* tuple_test.cpp */; };
 		65E6B2EF29553DBC00F98D69 /* colour_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B2EE29553DBC00F98D69 /* colour_test.cpp */; };
 		65E6B2F129553E4E00F98D69 /* colour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B2F029553E4E00F98D69 /* colour.cpp */; };
@@ -98,8 +98,9 @@
 		65CA49B5298D1929008302BA /* lighting.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lighting.cpp; sourceTree = "<group>"; };
 		65CA49B6298D1929008302BA /* lighting.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lighting.hpp; sourceTree = "<group>"; };
 		65CA49B9298D1A50008302BA /* lighting_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lighting_test.cpp; sourceTree = "<group>"; };
-		65E6B2E7294EA43900F98D69 /* tuple.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tuple.cpp; sourceTree = "<group>"; };
-		65E6B2E8294EA43900F98D69 /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
+		65CA49C12991000E008302BA /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
+		65E6B2E7294EA43900F98D69 /* tuple_raw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tuple_raw.cpp; sourceTree = "<group>"; };
+		65E6B2E8294EA43900F98D69 /* tuple_raw.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple_raw.hpp; sourceTree = "<group>"; };
 		65E6B2EB294EA63000F98D69 /* tuple_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tuple_test.cpp; sourceTree = "<group>"; };
 		65E6B2ED29553D5300F98D69 /* colour.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = colour.hpp; sourceTree = "<group>"; };
 		65E6B2EE29553DBC00F98D69 /* colour_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = colour_test.cpp; sourceTree = "<group>"; };
@@ -190,8 +191,9 @@
 			children = (
 				65B1E581294E9BCC008BF2DE /* raytracer_lib.hpp */,
 				65B1E585294E9BCC008BF2DE /* raytracer_lib.cpp */,
-				65E6B2E7294EA43900F98D69 /* tuple.cpp */,
-				65E6B2E8294EA43900F98D69 /* tuple.hpp */,
+				65CA49C12991000E008302BA /* tuple.hpp */,
+				65E6B2E7294EA43900F98D69 /* tuple_raw.cpp */,
+				65E6B2E8294EA43900F98D69 /* tuple_raw.hpp */,
 				65E6B2ED29553D5300F98D69 /* colour.hpp */,
 				65E6B2F029553E4E00F98D69 /* colour.cpp */,
 				65E6B2F2295547CD00F98D69 /* canvas.cpp */,
@@ -227,7 +229,7 @@
 				65CA49B8298D1929008302BA /* lighting.hpp in Headers */,
 				65B1E582294E9BCC008BF2DE /* raytracer_lib.hpp in Headers */,
 				65E6B2FB2955925800F98D69 /* matrix.hpp in Headers */,
-				65E6B2EA294EA43900F98D69 /* tuple.hpp in Headers */,
+				65E6B2EA294EA43900F98D69 /* tuple_raw.hpp in Headers */,
 				65587F712983925400485127 /* ray.hpp in Headers */,
 				65587F77298397D000485127 /* object.hpp in Headers */,
 				65587F6B2973C45100485127 /* transformations.hpp in Headers */,
@@ -362,7 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65E6B2FA2955925800F98D69 /* matrix.cpp in Sources */,
-				65E6B2E9294EA43900F98D69 /* tuple.cpp in Sources */,
+				65E6B2E9294EA43900F98D69 /* tuple_raw.cpp in Sources */,
 				65CA49B7298D1929008302BA /* lighting.cpp in Sources */,
 				65587F76298397D000485127 /* object.cpp in Sources */,
 				65587F702983925400485127 /* ray.cpp in Sources */,
