@@ -14,6 +14,12 @@
 
 #include "tuple_raw.hpp"
 
+namespace rtlib {
+
+typedef TupleRaw Tuple;
+
+}
+
 #endif
 
 #endif /* tuple_h */

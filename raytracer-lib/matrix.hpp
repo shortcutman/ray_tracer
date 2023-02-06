@@ -8,12 +8,12 @@
 #ifndef matrix_hpp
 #define matrix_hpp
 
+#include "tuple.hpp"
+
 #include <array>
 #include <ostream>
 
 namespace rtlib {
-
-class Tuple;
 
 template<unsigned int N>
 class Matrix {

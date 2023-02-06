@@ -13,7 +13,7 @@
 
 namespace rtlib {
 
-class Tuple {
+class TupleRaw {
 protected:
     double _x;
     double _y;
@@ -21,11 +21,11 @@ protected:
     double _w;
         
 public:
-    Tuple();
-    Tuple(const Tuple& t) = default;
-    Tuple(double x, double y, double z);
-    Tuple(double x, double y, double z, double w);
-    ~Tuple() {};
+    TupleRaw();
+    TupleRaw(const TupleRaw& t) = default;
+    TupleRaw(double x, double y, double z);
+    TupleRaw(double x, double y, double z, double w);
+    ~TupleRaw() {};
     
     double x() const;
     double y() const;
@@ -43,30 +43,30 @@ public:
     bool isPoint() const;
     bool isVector() const;
     
-    Tuple& operator+=(const Tuple& rhs);
-    Tuple& operator-=(const Tuple& rhs);
-    Tuple& operator*=(double rhs);
-    Tuple& operator/=(double rhs);
-    Tuple operator-();
-    Tuple normalised() const;
+    TupleRaw& operator+=(const TupleRaw& rhs);
+    TupleRaw& operator-=(const TupleRaw& rhs);
+    TupleRaw& operator*=(double rhs);
+    TupleRaw& operator/=(double rhs);
+    TupleRaw operator-();
+    TupleRaw normalised() const;
     
-    bool operator==(const Tuple& lhs) const;
+    bool operator==(const TupleRaw& lhs) const;
     
-    static double dot(const Tuple& lhs, const Tuple& rhs);
-    static Tuple cross(const Tuple& lhs, const Tuple& rhs);
+    static double dot(const TupleRaw& lhs, const TupleRaw& rhs);
+    static TupleRaw cross(const TupleRaw& lhs, const TupleRaw& rhs);
     static bool doubleEquals(double a, double b);
-    static Tuple reflect(const Tuple& source, const Tuple& normal);
+    static TupleRaw reflect(const TupleRaw& source, const TupleRaw& normal);
 };
 
-Tuple operator+(Tuple lhs, const Tuple& rhs);
-Tuple operator-(Tuple lhs, const Tuple& rhs);
-Tuple operator*(Tuple lhs, double rhs);
-Tuple operator/(Tuple lhs, double rhs);
+TupleRaw operator+(TupleRaw lhs, const TupleRaw& rhs);
+TupleRaw operator-(TupleRaw lhs, const TupleRaw& rhs);
+TupleRaw operator*(TupleRaw lhs, double rhs);
+TupleRaw operator/(TupleRaw lhs, double rhs);
 
-std::ostream& operator<< (std::ostream& os, const Tuple& matrix);
+std::ostream& operator<< (std::ostream& os, const TupleRaw& matrix);
 
-Tuple create_point(double x, double y, double z);
-Tuple create_vector(double x, double y, double z);
+TupleRaw create_point(double x, double y, double z);
+TupleRaw create_vector(double x, double y, double z);
 
 }
 

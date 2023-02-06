@@ -12,60 +12,60 @@
 
 using namespace rtlib;
 
-Tuple::Tuple() :
+TupleRaw::TupleRaw() :
     _x(0.0),
     _y(0.0),
     _z(0.0),
     _w(0.0) {
 }
 
-Tuple::Tuple(double x, double y, double z) :
+TupleRaw::TupleRaw(double x, double y, double z) :
     _x(x),
     _y(y),
     _z(z),
     _w(0.0) {
 }
 
-Tuple::Tuple(double x, double y, double z, double w) :
+TupleRaw::TupleRaw(double x, double y, double z, double w) :
     _x(x),
     _y(y),
     _z(z),
     _w(w) {
 }
 
-double Tuple::x() const {
+double TupleRaw::x() const {
     return _x;
 }
 
-double Tuple::y() const {
+double TupleRaw::y() const {
     return _y;
 }
 
-double Tuple::z() const {
+double TupleRaw::z() const {
     return _z;
 }
 
-double Tuple::w() const {
+double TupleRaw::w() const {
     return _w;
 }
 
-void Tuple::setX(double x) {
+void TupleRaw::setX(double x) {
     _x = x;
 }
 
-void Tuple::setY(double y) {
+void TupleRaw::setY(double y) {
     _y = y;
 }
 
-void Tuple::setZ(double z) {
+void TupleRaw::setZ(double z) {
     _z = z;
 }
 
-void Tuple::setW(double w) {
+void TupleRaw::setW(double w) {
     _w = w;
 }
 
-double Tuple::operator[](size_t index) const {
+double TupleRaw::operator[](size_t index) const {
     switch (index) {
         case 0:
             return _x;
@@ -84,7 +84,7 @@ double Tuple::operator[](size_t index) const {
     return 0.0;
 }
 
-double& Tuple::operator[](size_t index) {
+double& TupleRaw::operator[](size_t index) {
     switch (index) {
         case 0:
             return _x;
@@ -104,22 +104,22 @@ double& Tuple::operator[](size_t index) {
 }
 
 
-double Tuple::magnitude() const {
+double TupleRaw::magnitude() const {
     return std::sqrt(std::pow(_x, 2) +
                      std::pow(_y, 2) +
                      std::pow(_z, 2) +
                      std::pow(_w, 2));
 }
 
-bool Tuple::isPoint() const {
+bool TupleRaw::isPoint() const {
     return _w == 1.0;
 }
 
-bool Tuple::isVector() const {
+bool TupleRaw::isVector() const {
     return _w == 0.0;
 }
 
-Tuple& Tuple::operator+=(const Tuple& rhs) {
+TupleRaw& TupleRaw::operator+=(const TupleRaw& rhs) {
     this->_x += rhs.x();
     this->_y += rhs.y();
     this->_z += rhs.z();
@@ -127,7 +127,7 @@ Tuple& Tuple::operator+=(const Tuple& rhs) {
     return *this;
 }
 
-Tuple& Tuple::operator-=(const Tuple& rhs) {
+TupleRaw& TupleRaw::operator-=(const TupleRaw& rhs) {
     this->_x -= rhs.x();
     this->_y -= rhs.y();
     this->_z -= rhs.z();
@@ -135,7 +135,7 @@ Tuple& Tuple::operator-=(const Tuple& rhs) {
     return *this;
 }
 
-Tuple& Tuple::operator*=(double rhs) {
+TupleRaw& TupleRaw::operator*=(double rhs) {
     this->_x *= rhs;
     this->_y *= rhs;
     this->_z *= rhs;
@@ -143,7 +143,7 @@ Tuple& Tuple::operator*=(double rhs) {
     return *this;
 }
 
-Tuple& Tuple::operator/=(double rhs) {
+TupleRaw& TupleRaw::operator/=(double rhs) {
     this->_x /= rhs;
     this->_y /= rhs;
     this->_z /= rhs;
@@ -151,7 +151,7 @@ Tuple& Tuple::operator/=(double rhs) {
     return *this;
 }
 
-Tuple Tuple::operator-() {
+TupleRaw TupleRaw::operator-() {
     auto t = *this;
     t._x *= -1.0;
     t._y *= -1.0;
@@ -160,7 +160,7 @@ Tuple Tuple::operator-() {
     return t;
 }
 
-Tuple Tuple::normalised() const {
+TupleRaw TupleRaw::normalised() const {
     auto t = *this;
     auto magnitude = this->magnitude();
     t._x /= magnitude;
@@ -170,21 +170,21 @@ Tuple Tuple::normalised() const {
     return t;
 }
 
-bool Tuple::operator==(const Tuple& lhs) const {
+bool TupleRaw::operator==(const TupleRaw& lhs) const {
     return doubleEquals(lhs.x(), this->x()) &&
             doubleEquals(lhs.y(), this->y()) &&
             doubleEquals(lhs.z(), this->z()) &&
             doubleEquals(lhs.w(), this->w());
 }
 
-double Tuple::dot(const Tuple& lhs, const Tuple& rhs) {
+double TupleRaw::dot(const TupleRaw& lhs, const TupleRaw& rhs) {
     return lhs._x * rhs._x +
             lhs._y * rhs._y +
             lhs._z * rhs._z +
             lhs._w * rhs._w;
 }
 
-Tuple Tuple::cross(const Tuple& lhs, const Tuple& rhs) {
+TupleRaw TupleRaw::cross(const TupleRaw& lhs, const TupleRaw& rhs) {
     if (lhs._w != 0.0 || rhs._w != 0.0) {
         throw std::logic_error("No support for 4d vectors");
     }
@@ -194,45 +194,45 @@ Tuple Tuple::cross(const Tuple& lhs, const Tuple& rhs) {
                          lhs._x * rhs._y - lhs._y * rhs._x);
 }
 
-bool Tuple::doubleEquals(double a, double b) {
+bool TupleRaw::doubleEquals(double a, double b) {
     return (std::abs(a - b) < 0.00001);
 }
 
-Tuple Tuple::reflect(const Tuple& source, const Tuple& normal) {
+TupleRaw TupleRaw::reflect(const TupleRaw& source, const TupleRaw& normal) {
     return source - normal * 2 * dot(source, normal);
 }
 
-Tuple rtlib::operator+(Tuple lhs, const Tuple& rhs) {
+TupleRaw rtlib::operator+(TupleRaw lhs, const TupleRaw& rhs) {
     lhs += rhs;
     return lhs;
 }
 
-Tuple rtlib::operator-(Tuple lhs, const Tuple& rhs) {
+TupleRaw rtlib::operator-(TupleRaw lhs, const TupleRaw& rhs) {
     lhs -= rhs;
     return lhs;
 }
 
-Tuple rtlib::operator*(Tuple lhs, double rhs) {
+TupleRaw rtlib::operator*(TupleRaw lhs, double rhs) {
     lhs *= rhs;
     return lhs;
 }
 
-Tuple rtlib::operator/(Tuple lhs, double rhs) {
+TupleRaw rtlib::operator/(TupleRaw lhs, double rhs) {
     lhs /= rhs;
     return lhs;
 }
 
-std::ostream& rtlib::operator<<(std::ostream& os, const Tuple& tuple) {
+std::ostream& rtlib::operator<<(std::ostream& os, const TupleRaw& tuple) {
     
     os << "Tuple(" << tuple.x() << ", " << tuple.y() << ", " << tuple.z() << ", " << tuple.w() << ")";
     
     return os;
 }
 
-Tuple rtlib::create_point(double x, double y, double z) {
-    return Tuple(x, y, z, 1.0);
+TupleRaw rtlib::create_point(double x, double y, double z) {
+    return TupleRaw(x, y, z, 1.0);
 }
 
-Tuple rtlib::create_vector(double x, double y, double z) {
-    return Tuple(x, y, z, 0.0);
+TupleRaw rtlib::create_vector(double x, double y, double z) {
+    return TupleRaw(x, y, z, 0.0);
 }
