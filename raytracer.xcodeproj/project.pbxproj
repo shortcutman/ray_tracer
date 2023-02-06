@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65051545299102C900EAB3E0 /* tuple_simd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65051543299102C900EAB3E0 /* tuple_simd.cpp */; };
+		65051546299102C900EAB3E0 /* tuple_simd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65051544299102C900EAB3E0 /* tuple_simd.hpp */; };
 		65587F6A2973C45100485127 /* transformations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65587F682973C45100485127 /* transformations.cpp */; };
 		65587F6B2973C45100485127 /* transformations.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65587F692973C45100485127 /* transformations.hpp */; };
 		65587F6D2973C4D900485127 /* transformation_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65587F6C2973C4D900485127 /* transformation_test.cpp */; };
@@ -78,6 +80,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		65051543299102C900EAB3E0 /* tuple_simd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tuple_simd.cpp; sourceTree = "<group>"; };
+		65051544299102C900EAB3E0 /* tuple_simd.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tuple_simd.hpp; sourceTree = "<group>"; };
 		65587F682973C45100485127 /* transformations.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transformations.cpp; sourceTree = "<group>"; };
 		65587F692973C45100485127 /* transformations.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = transformations.hpp; sourceTree = "<group>"; };
 		65587F6C2973C4D900485127 /* transformation_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transformation_test.cpp; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 				65CA49C12991000E008302BA /* tuple.hpp */,
 				65E6B2E7294EA43900F98D69 /* tuple_raw.cpp */,
 				65E6B2E8294EA43900F98D69 /* tuple_raw.hpp */,
+				65051543299102C900EAB3E0 /* tuple_simd.cpp */,
+				65051544299102C900EAB3E0 /* tuple_simd.hpp */,
 				65E6B2ED29553D5300F98D69 /* colour.hpp */,
 				65E6B2F029553E4E00F98D69 /* colour.cpp */,
 				65E6B2F2295547CD00F98D69 /* canvas.cpp */,
@@ -234,6 +240,7 @@
 				65587F77298397D000485127 /* object.hpp in Headers */,
 				65587F6B2973C45100485127 /* transformations.hpp in Headers */,
 				65E6B2F5295547CD00F98D69 /* canvas.hpp in Headers */,
+				65051546299102C900EAB3E0 /* tuple_simd.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +379,7 @@
 				65E6B2F129553E4E00F98D69 /* colour.cpp in Sources */,
 				65B1E586294E9BCC008BF2DE /* raytracer_lib.cpp in Sources */,
 				65E6B2F4295547CD00F98D69 /* canvas.cpp in Sources */,
+				65051545299102C900EAB3E0 /* tuple_simd.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
