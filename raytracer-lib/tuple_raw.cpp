@@ -5,7 +5,7 @@
 //  Created by Daniel Burke on 18/12/2022.
 //
 
-#include "tuple.hpp"
+#include "tuple_raw.hpp"
 
 #include <cmath>
 #include <stdexcept>
@@ -84,23 +84,26 @@ double TupleRaw::operator[](size_t index) const {
     return 0.0;
 }
 
-double& TupleRaw::operator[](size_t index) {
+void TupleRaw::set(size_t index, double value) {
     switch (index) {
         case 0:
-            return _x;
+            _x = value;
+            return;
             
         case 1:
-            return _y;
+            _y = value;
+            return;
             
         case 2:
-            return _z;
+            _z = value;
+            return;
             
         case 3:
-            return _w;
+            _w = value;
+            return;
     }
     
     throw std::runtime_error("index out of range");
-    return _x;
 }
 
 
@@ -189,9 +192,10 @@ TupleRaw TupleRaw::cross(const TupleRaw& lhs, const TupleRaw& rhs) {
         throw std::logic_error("No support for 4d vectors");
     }
     
-    return create_vector(lhs._y * rhs._z - lhs._z * rhs._y,
-                         lhs._z * rhs._x - lhs._x * rhs._z,
-                         lhs._x * rhs._y - lhs._y * rhs._x);
+    return TupleRaw(lhs._y * rhs._z - lhs._z * rhs._y,
+                 lhs._z * rhs._x - lhs._x * rhs._z,
+                 lhs._x * rhs._y - lhs._y * rhs._x,
+                 0.0);
 }
 
 bool TupleRaw::doubleEquals(double a, double b) {
@@ -227,12 +231,4 @@ std::ostream& rtlib::operator<<(std::ostream& os, const TupleRaw& tuple) {
     os << "Tuple(" << tuple.x() << ", " << tuple.y() << ", " << tuple.z() << ", " << tuple.w() << ")";
     
     return os;
-}
-
-TupleRaw rtlib::create_point(double x, double y, double z) {
-    return TupleRaw(x, y, z, 1.0);
-}
-
-TupleRaw rtlib::create_vector(double x, double y, double z) {
-    return TupleRaw(x, y, z, 0.0);
 }

@@ -5,8 +5,8 @@
 //  Created by Daniel Burke on 18/12/2022.
 //
 
-#ifndef tuple_hpp
-#define tuple_hpp
+#ifndef tuple_raw_hpp
+#define tuple_raw_hpp
 
 #include <cstddef>
 #include <ostream>
@@ -37,7 +37,7 @@ public:
     void setZ(double z);
     void setW(double w);
     double operator[](std::size_t index) const;
-    double& operator[](std::size_t index);
+    void set(std::size_t index, double value);
     
     double magnitude() const;
     bool isPoint() const;
@@ -65,10 +65,7 @@ TupleRaw operator/(TupleRaw lhs, double rhs);
 
 std::ostream& operator<< (std::ostream& os, const TupleRaw& matrix);
 
-TupleRaw create_point(double x, double y, double z);
-TupleRaw create_vector(double x, double y, double z);
-
 }
 
 
-#endif /* tuple_hpp */
+#endif /* tuple_raw_hpp */

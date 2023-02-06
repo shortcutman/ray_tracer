@@ -208,7 +208,9 @@ Tuple rtlib::operator*(const Matrix<N>& lhs, const Tuple& rhs) {
     
     for (unsigned int row = 0; row < N; row++) {
         for (unsigned int column = 0; column < N; column++) {
-            result[row] += rhs[column] * lhs.at(row, column);
+            auto value = result[row];
+            value += rhs[column] * lhs.at(row, column);
+            result.set(row, value);
         }
     }
     
