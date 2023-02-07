@@ -10,12 +10,14 @@
 #include "ray.hpp"
 #include "tuple.hpp"
 
+#include <chrono>
 #include <iostream>
 #include <fstream>
 
 using namespace rtlib;
 
 int main(int argc, const char * argv[]) {
+    auto start = std::chrono::high_resolution_clock::now();
     
     auto viewOrigin = create_point(0.0, 0.0, -2.0);
     Light light(create_point(-10.0, 10.0, -10.0), Colour(1.0, 1.0, 1.0));
@@ -44,6 +46,10 @@ int main(int argc, const char * argv[]) {
             }
         }
     }
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    
+    std::cout << "Ray tracer duration: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << std::endl;
     
     std::ofstream file;
     file.open("/tmp/out.ppm");
