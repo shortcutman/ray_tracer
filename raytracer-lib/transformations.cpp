@@ -13,8 +13,8 @@
 
 using namespace rtlib;
 
-Matrix<4> rtlib::translation(double x, double y, double z) {
-    auto matrix = Matrix<4>::identityMatrix();
+Matrix4x4 rtlib::translation(double x, double y, double z) {
+    auto matrix = Matrix4x4::identityMatrix();
     matrix.set(0, 3, x);
     matrix.set(1, 3, y);
     matrix.set(2, 3, z);
@@ -22,8 +22,8 @@ Matrix<4> rtlib::translation(double x, double y, double z) {
     return matrix;
 }
 
-Matrix<4> rtlib::scaling(double x, double y, double z) {
-    auto matrix = Matrix<4>::identityMatrix();
+Matrix4x4 rtlib::scaling(double x, double y, double z) {
+    auto matrix = Matrix4x4::identityMatrix();
     matrix.set(0, 0, x);
     matrix.set(1, 1, y);
     matrix.set(2, 2, z);
@@ -31,8 +31,8 @@ Matrix<4> rtlib::scaling(double x, double y, double z) {
     return matrix;
 }
 
-Matrix<4> rtlib::rotation_x(double angle) {
-    auto matrix = Matrix<4>::identityMatrix();
+Matrix4x4 rtlib::rotation_x(double angle) {
+    auto matrix = Matrix4x4::identityMatrix();
     
     matrix.set(1, 1, std::cos(angle));
     matrix.set(1, 2, -1.0 * std::sin(angle));
@@ -42,8 +42,8 @@ Matrix<4> rtlib::rotation_x(double angle) {
     return matrix;
 }
 
-Matrix<4> rtlib::rotation_y(double angle) {
-    auto matrix = Matrix<4>::identityMatrix();
+Matrix4x4 rtlib::rotation_y(double angle) {
+    auto matrix = Matrix4x4::identityMatrix();
     
     matrix.set(0, 0, std::cos(angle));
     matrix.set(0, 2, std::sin(angle));
@@ -53,8 +53,8 @@ Matrix<4> rtlib::rotation_y(double angle) {
     return matrix;
 }
 
-Matrix<4> rtlib::rotation_z(double angle) {
-    auto matrix = Matrix<4>::identityMatrix();
+Matrix4x4 rtlib::rotation_z(double angle) {
+    auto matrix = Matrix4x4::identityMatrix();
     
     matrix.set(0, 0, std::cos(angle));
     matrix.set(0, 1, -1.0 * std::sin(angle));
@@ -64,8 +64,8 @@ Matrix<4> rtlib::rotation_z(double angle) {
     return matrix;
 }
 
-Matrix<4> rtlib::shearing(double xy, double xz, double yx, double yz, double zx, double zy) {
-    auto matrix = Matrix<4>::identityMatrix();
+Matrix4x4 rtlib::shearing(double xy, double xz, double yx, double yz, double zx, double zy) {
+    auto matrix = Matrix4x4::identityMatrix();
     
     matrix.set(0, 1, xy);
     matrix.set(0, 2, xz);

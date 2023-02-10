@@ -12,13 +12,21 @@
 
 #include "matrix_simd.hpp"
 
+namespace rtlib {
+    typedef MatrixSimd2x2 Matrix2x2;
+    typedef MatrixSimd3x3 Matrix3x3;
+    typedef MatrixSimd4x4 Matrix4x4;
+}
+
+
 #else
 
 #include "matrix_raw.hpp"
 
 namespace rtlib {
-    template<unsigned int N>
-    using Matrix = MatrixRaw<N>;
+    typedef MatrixRaw2x2 Matrix2x2;
+    typedef MatrixRaw3x3 Matrix3x3;
+    typedef MatrixRaw4x4 Matrix4x4;
 }
 
 #endif

@@ -19,9 +19,9 @@ namespace {
 TEST(ObjectTest, SphereTransforms) {
     rtlib::Sphere s;
 
-    EXPECT_EQ(s.transform(), rtlib::Matrix<4>::identityMatrix());
+    EXPECT_EQ(s.transform(), rtlib::Matrix4x4::identityMatrix());
     
-    auto randomMatrix = rtlib::Matrix<4>::identityMatrix();
+    auto randomMatrix = rtlib::Matrix4x4::identityMatrix();
     randomMatrix.set(1, 1, 1.0);
     randomMatrix.set(3, 2, 2.0);
     randomMatrix.set(2, 3, 3.0);

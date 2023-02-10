@@ -25,7 +25,7 @@ public:
     Tuple origin() const;
     Tuple direction() const;
     
-    Ray transform(const Matrix<4>& matrix) const;
+    Ray transform(const Matrix4x4& matrix) const;
     Tuple positionAt(double t) const;
 };
 

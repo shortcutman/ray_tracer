@@ -138,7 +138,7 @@ TEST(MatrixTest, IdentityMatrix2x2) {
         {0.0, 1.0}
     }});
     
-    auto identityMatrix = rtlib::Matrix<2>::identityMatrix();
+    auto identityMatrix = rtlib::Matrix2x2::identityMatrix();
     EXPECT_EQ(identityMatrix, identity2x2Result);
 }
 
@@ -149,7 +149,7 @@ TEST(MatrixTest, IdentityMatrix3x3) {
         {0.0, 0.0, 1.0}
     }});
     
-    auto identityMatrix = rtlib::Matrix<3>::identityMatrix();
+    auto identityMatrix = rtlib::Matrix3x3::identityMatrix();
     EXPECT_EQ(identityMatrix, identity3x3Result);
 }
 
@@ -161,7 +161,7 @@ TEST(MatrixTest, IdentityMatrix4x4) {
         {0.0, 0.0, 0.0, 1.0}
     }});
     
-    auto identityMatrix = rtlib::Matrix<4>::identityMatrix();
+    auto identityMatrix = rtlib::Matrix4x4::identityMatrix();
     EXPECT_EQ(identityMatrix, identity4x4Result);
 }
 

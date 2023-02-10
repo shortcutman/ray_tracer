@@ -22,14 +22,14 @@ bool rtlib::Object::Intersect::operator==(const Intersect& rhs) const {
 }
 
 rtlib::Object::Object() :
-    _transform(Matrix<4>::identityMatrix())
+    _transform(Matrix4x4::identityMatrix())
 {}
 
-rtlib::Matrix<4> rtlib::Object::transform() const {
+rtlib::Matrix4x4 rtlib::Object::transform() const {
     return _transform;
 }
 
-void rtlib::Object::setTransform(rtlib::Matrix<4> matrix) {
+void rtlib::Object::setTransform(rtlib::Matrix4x4 matrix) {
     _transform = matrix;
 }
 

@@ -28,7 +28,7 @@ Tuple Ray::direction() const {
     return _direction;
 }
 
-Ray Ray::transform(const Matrix<4>& matrix) const {
+Ray Ray::transform(const Matrix4x4& matrix) const {
     auto transformedRay = *this;
     transformedRay._origin = matrix * transformedRay._origin;
     transformedRay._direction = matrix * transformedRay._direction;

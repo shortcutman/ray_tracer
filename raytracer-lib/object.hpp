@@ -30,15 +30,15 @@ public:
     typedef std::vector<Intersect> IntersectHits;
     
 private:
-    Matrix<4> _transform;
+    Matrix4x4 _transform;
     Material _material;
     
 public:
     Object();
     ~Object() {}
     
-    Matrix<4> transform() const;
-    void setTransform(Matrix<4> matrix);
+    Matrix4x4 transform() const;
+    void setTransform(Matrix4x4 matrix);
     
     Material material() const;
     void setMaterial(Material material);
