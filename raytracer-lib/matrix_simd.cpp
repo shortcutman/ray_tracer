@@ -8,6 +8,7 @@
 #include "matrix_simd.hpp"
 
 #include "tuple.hpp"
+#include "tuple_simd.hpp"
 
 using namespace rtlib;
 
@@ -268,23 +269,15 @@ template MatrixSimd<simd_double3x3> rtlib::operator*(const MatrixSimd<simd_doubl
 template MatrixSimd<simd_double4x4> rtlib::operator*(const MatrixSimd<simd_double4x4>& lhs, const MatrixSimd<simd_double4x4>& rhs);
 
 template<typename MatrixType>
-Tuple rtlib::operator*(const MatrixSimd<MatrixType>& lhs, const Tuple& rhs) {
-    auto result = Tuple();
+TupleSimd rtlib::operator*(const MatrixSimd<MatrixType>& lhs, const TupleSimd& rhs) {
+    auto result = TupleSimd();
     throw std::logic_error("unimplemented");
     return result;
 }
 
 template<>
-Tuple rtlib::operator*(const MatrixSimd<simd_double4x4>& lhs, const Tuple& rhs) {
-    auto result = Tuple();
-    
-    for (unsigned int row = 0; row < 4; row++) {
-        for (unsigned int column = 0; column < 4; column++) {
-            auto value = result[row];
-            value += rhs[column] * lhs.at(row, column);
-            result.set(row, value);
-        }
-    }
-    
+TupleSimd rtlib::operator*(const MatrixSimd<simd_double4x4>& lhs, const TupleSimd& rhs) {
+    auto result = TupleSimd();
+    result._vector = simd_mul(lhs._matrix, rhs._vector);
     return result;
 }

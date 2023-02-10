@@ -16,6 +16,8 @@
 
 namespace rtlib {
 
+class TupleSimd;
+
 template<typename MatrixType>
 class MatrixSimd {
 public:
@@ -51,6 +53,9 @@ public:
     template<typename ReturnType>
     MatrixSimd<ReturnType> submatrix(unsigned int row, unsigned int column) const;
     
+    template<typename MultiplyMatrix>
+    friend TupleSimd operator*(const MatrixSimd<MultiplyMatrix>& lhs, const TupleSimd& rhs);
+    
     static MatrixSimd<MatrixType> identityMatrix();
     
 };
@@ -60,8 +65,9 @@ std::ostream& operator<< (std::ostream& os, const MatrixSimd<MatrixType>& matrix
 
 template<typename MatrixType>
 MatrixSimd<MatrixType> operator*(const MatrixSimd<MatrixType>& lhs, const MatrixSimd<MatrixType>& rhs);
+
 template<typename MatrixType>
-Tuple operator*(const MatrixSimd<MatrixType>& lhs, const Tuple& rhs);
+TupleSimd operator*(const MatrixSimd<MatrixType>& lhs, const TupleSimd& rhs);
 
 typedef MatrixSimd<simd_double2x2> MatrixSimd2x2;
 typedef MatrixSimd<simd_double3x3> MatrixSimd3x3;

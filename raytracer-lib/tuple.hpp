@@ -8,7 +8,7 @@
 #ifndef tuple_h
 #define tuple_h
 
-//#define TUPLE_SIMD
+#define TUPLE_SIMD
 
 #ifdef TUPLE_SIMD
 
