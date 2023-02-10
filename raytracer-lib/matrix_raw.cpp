@@ -165,9 +165,9 @@ std::ostream& rtlib::operator<<(std::ostream& os, const MatrixRaw<N>& matrix) {
     return os;
 }
 
-template std::ostream& rtlib::operator<<(std::ostream& os, const Matrix<2>& matrix);
-template std::ostream& rtlib::operator<<(std::ostream& os, const Matrix<3>& matrix);
-template std::ostream& rtlib::operator<<(std::ostream& os, const Matrix<4>& matrix);
+template std::ostream& rtlib::operator<<(std::ostream& os, const MatrixRaw<2>& matrix);
+template std::ostream& rtlib::operator<<(std::ostream& os, const MatrixRaw<3>& matrix);
+template std::ostream& rtlib::operator<<(std::ostream& os, const MatrixRaw<4>& matrix);
 
 template<unsigned int N>
 MatrixRaw<N> MatrixRaw<N>::identityMatrix() {
@@ -198,9 +198,9 @@ MatrixRaw<N> rtlib::operator*(const MatrixRaw<N>& lhs, const MatrixRaw<N>& rhs) 
     return copy;
 }
 
-template Matrix<2> rtlib::operator*(const Matrix<2>& lhs, const Matrix<2>& rhs);
-template Matrix<3> rtlib::operator*(const Matrix<3>& lhs, const Matrix<3>& rhs);
-template Matrix<4> rtlib::operator*(const Matrix<4>& lhs, const Matrix<4>& rhs);
+template MatrixRaw<2> rtlib::operator*(const MatrixRaw<2>& lhs, const MatrixRaw<2>& rhs);
+template MatrixRaw<3> rtlib::operator*(const MatrixRaw<3>& lhs, const MatrixRaw<3>& rhs);
+template MatrixRaw<4> rtlib::operator*(const MatrixRaw<4>& lhs, const MatrixRaw<4>& rhs);
 
 template<unsigned int N>
 Tuple rtlib::operator*(const MatrixRaw<N>& lhs, const Tuple& rhs) {
@@ -217,4 +217,4 @@ Tuple rtlib::operator*(const MatrixRaw<N>& lhs, const Tuple& rhs) {
     return result;
 }
 
-template Tuple rtlib::operator*(const Matrix<4>& lhs, const Tuple& rhs);
+template Tuple rtlib::operator*(const MatrixRaw<4>& lhs, const Tuple& rhs);
