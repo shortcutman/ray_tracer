@@ -242,7 +242,9 @@ TEST(MatrixTest, DeterminantMatrix4x4) {
     EXPECT_EQ(m.determinant(), -4071);
 }
 
-TEST(MatrixTest, SubmatrixOfMatrix3x3) {
+#ifndef MATRIX_SIMD
+
+TEST(MatrixTest, SubmatrixOfMatrixRaw3x3) {
     rtlib::Matrix3x3 m({{
         {1.0, 5.0, 0.0},
         {-3.0, 2.0, 7.0},
@@ -257,7 +259,7 @@ TEST(MatrixTest, SubmatrixOfMatrix3x3) {
     EXPECT_EQ(m.submatrix(0, 2), r);
 }
 
-TEST(MatrixTest, SubmatrixOfMatrix4x4) {
+TEST(MatrixTest, SubmatrixOfMatrixRaw4x4) {
     rtlib::Matrix4x4 m({{
         {-6.0, 1.0, 1.0, 6.0},
         {-8.0, 5.0, 8.0, 6.0},
@@ -274,7 +276,7 @@ TEST(MatrixTest, SubmatrixOfMatrix4x4) {
     EXPECT_EQ(m.submatrix(2, 1), r);
 }
 
-TEST(MatrixTest, MinorOfMatrix3x3) {
+TEST(MatrixTest, MinorOfMatrixRaw3x3) {
     rtlib::Matrix3x3 m({{
         {3.0, 5.0, 0.0},
         {2.0, -1.0, -7.0},
@@ -286,6 +288,55 @@ TEST(MatrixTest, MinorOfMatrix3x3) {
     EXPECT_EQ(submatrix.determinant(), 25);
     EXPECT_EQ(m.minor(1, 0), 25);
 }
+
+#elifdef MATRIX_SIMD
+
+TEST(MatrixTest, SubmatrixOfMatrixSimd3x3) {
+    rtlib::Matrix3x3 m({{
+        {1.0, 5.0, 0.0},
+        {-3.0, 2.0, 7.0},
+        {0.0, 6.0, -3.0}
+    }});
+    
+    rtlib::Matrix2x2 r({{
+        {-3.0, 2.0},
+        {0.0, 6.0}
+    }});
+    
+    EXPECT_EQ(m.submatrix<simd_double2x2>(0, 2), r);
+}
+
+TEST(MatrixTest, SubmatrixOfMatrixSimd4x4) {
+    rtlib::Matrix4x4 m({{
+        {-6.0, 1.0, 1.0, 6.0},
+        {-8.0, 5.0, 8.0, 6.0},
+        {-1.0, 0.0, 8.0, 2.0},
+        {-7.0, 1.0, -1.0, 1.0}
+    }});
+    
+    rtlib::Matrix3x3 r({{
+        {-6.0, 1.0, 6.0},
+        {-8.0, 8.0, 6.0},
+        {-7.0, -1.0, 1.0}
+    }});
+    
+    EXPECT_EQ(m.submatrix<simd_double3x3>(2, 1), r);
+}
+
+TEST(MatrixTest, MinorOfMatrixSimd3x3) {
+    rtlib::Matrix3x3 m({{
+        {3.0, 5.0, 0.0},
+        {2.0, -1.0, -7.0},
+        {6.0, -1.0, 5.0}
+    }});
+    
+    auto submatrix = m.submatrix<simd_double2x2>(1, 0);
+    
+    EXPECT_EQ(submatrix.determinant(), 25);
+    EXPECT_EQ(m.minor(1, 0), 25);
+}
+
+#endif
 
 TEST(MatrixTest, CofactorOfMatrix3x3) {
     rtlib::Matrix3x3 m({{

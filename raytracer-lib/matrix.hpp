@@ -8,6 +8,8 @@
 #ifndef matrix_h
 #define matrix_h
 
+#define MATRIX_SIMD
+
 #ifdef MATRIX_SIMD
 
 #include "matrix_simd.hpp"
