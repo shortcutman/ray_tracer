@@ -5,7 +5,7 @@
 //  Created by Daniel Burke on 23/12/2022.
 //
 
-#include "matrix.hpp"
+#include "matrix_raw.hpp"
 
 #include "tuple.hpp"
 
