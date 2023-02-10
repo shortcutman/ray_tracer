@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "65B1E565294E9AF8008BF2DE"
-               BuildableName = "raytracer"
-               BlueprintName = "raytracer"
+               BlueprintIdentifier = "65B1E573294E9B48008BF2DE"
+               BuildableName = "raytracer-tests"
+               BlueprintName = "raytracer-tests"
                ReferencedContainer = "container:raytracer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "65B1E565294E9AF8008BF2DE"
-            BuildableName = "raytracer"
-            BlueprintName = "raytracer"
+            BlueprintIdentifier = "65B1E573294E9B48008BF2DE"
+            BuildableName = "raytracer-tests"
+            BlueprintName = "raytracer-tests"
             ReferencedContainer = "container:raytracer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,9 +62,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "65B1E565294E9AF8008BF2DE"
-            BuildableName = "raytracer"
-            BlueprintName = "raytracer"
+            BlueprintIdentifier = "65B1E573294E9B48008BF2DE"
+            BuildableName = "raytracer-tests"
+            BlueprintName = "raytracer-tests"
             ReferencedContainer = "container:raytracer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
