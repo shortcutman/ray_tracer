@@ -8,12 +8,10 @@
 #ifndef ray_hpp
 #define ray_hpp
 
+#include "matrix.hpp"
 #include "tuple.hpp"
 
 namespace rtlib {
-
-template<unsigned int N>
-class Matrix;
 
 class Ray {
 private:

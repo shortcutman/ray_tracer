@@ -12,7 +12,7 @@
 using namespace rtlib;
 
 template<unsigned int N>
-Matrix<N>::Matrix()
+MatrixRaw<N>::MatrixRaw()
 {
     for (unsigned int row = 0; row < N; row++) {
         _matrix[row].fill(0.0);
@@ -20,29 +20,29 @@ Matrix<N>::Matrix()
 }
 
 template<unsigned int N>
-Matrix<N>::Matrix(BaseMatrix matrix) :
+MatrixRaw<N>::MatrixRaw(BaseMatrix matrix) :
     _matrix(matrix)
 {
     
 }
 
 template<unsigned int N>
-double Matrix<N>::at(unsigned int row, unsigned int column) const {
+double MatrixRaw<N>::at(unsigned int row, unsigned int column) const {
     return _matrix[row][column];
 }
 
 template<unsigned int N>
-void Matrix<N>::set(unsigned int row, unsigned int column, double value) {
+void MatrixRaw<N>::set(unsigned int row, unsigned int column, double value) {
     _matrix[row][column] = value;
 }
 
 template<>
-double Matrix<2>::determinant() const {
+double MatrixRaw<2>::determinant() const {
     return _matrix[0][0] * _matrix[1][1] - _matrix[0][1] * _matrix[1][0];
 }
 
 template<unsigned int N>
-double Matrix<N>::determinant() const {
+double MatrixRaw<N>::determinant() const {
     double det = 0.0;
     
     for (unsigned int i = 0; i < N; i++) {
@@ -53,7 +53,7 @@ double Matrix<N>::determinant() const {
 }
 
 template<unsigned int N>
-Matrix<N> Matrix<N>::transpose() const {
+MatrixRaw<N> MatrixRaw<N>::transpose() const {
     auto matrix = *this;
     
     for (unsigned int row = 0; row < N; row++) {
@@ -66,8 +66,8 @@ Matrix<N> Matrix<N>::transpose() const {
 }
 
 template<unsigned int N>
-Matrix<N - 1> Matrix<N>::submatrix(unsigned int removeRow, unsigned int removeColumn) const {
-    Matrix<N-1> submatrix;
+MatrixRaw<N - 1> MatrixRaw<N>::submatrix(unsigned int removeRow, unsigned int removeColumn) const {
+    MatrixRaw<N-1> submatrix;
     
     for (unsigned int row = 0; row < (N - 1); row++) {
         unsigned int adjustRow = row >= removeRow ? row + 1 : row;
@@ -83,32 +83,32 @@ Matrix<N - 1> Matrix<N>::submatrix(unsigned int removeRow, unsigned int removeCo
 }
 
 template<>
-double Matrix<2>::minor(unsigned int row, unsigned int column) const {
+double MatrixRaw<2>::minor(unsigned int row, unsigned int column) const {
     return at(1 - row, 1 - column);
 }
 
 
 template<unsigned int N>
-double Matrix<N>::minor(unsigned int row, unsigned int column) const {
+double MatrixRaw<N>::minor(unsigned int row, unsigned int column) const {
     auto submatrix = this->submatrix(row, column);
     return submatrix.determinant();
 }
 
 template<unsigned int N>
-double Matrix<N>::cofactor(unsigned int row, unsigned int column) const {
+double MatrixRaw<N>::cofactor(unsigned int row, unsigned int column) const {
     auto minor = this->minor(row, column);
     minor *= ((row + column) % 2) > 0 ? -1 : 1;
     return minor;
 }
 
 template<unsigned int N>
-bool Matrix<N>::invertible() const {
+bool MatrixRaw<N>::invertible() const {
     return determinant() != 0.0;
 }
 
 template<unsigned int N>
-Matrix<N> Matrix<N>::inverse() const {
-    Matrix<N> inverse;
+MatrixRaw<N> MatrixRaw<N>::inverse() const {
+    MatrixRaw<N> inverse;
     const auto determinant = this->determinant();
     
     for (unsigned int row = 0; row < N; row++) {
@@ -122,7 +122,7 @@ Matrix<N> Matrix<N>::inverse() const {
 }
 
 template<unsigned int N>
-Matrix<N>& Matrix<N>::operator*=(const Matrix<N>& rhs) {
+MatrixRaw<N>& MatrixRaw<N>::operator*=(const MatrixRaw<N>& rhs) {
     auto lhs = *this;
     
     for (unsigned int row = 0; row < N; row++) {
@@ -141,7 +141,7 @@ Matrix<N>& Matrix<N>::operator*=(const Matrix<N>& rhs) {
 }
 
 template<unsigned int N>
-bool Matrix<N>::operator==(const Matrix<N>& rhs) const {
+bool MatrixRaw<N>::operator==(const MatrixRaw<N>& rhs) const {
     return std::equal(_matrix.begin(), _matrix.end(), rhs._matrix.begin(),
         [] (std::array<double, N> a, std::array<double, N> b) -> bool {
         return std::equal(a.begin(), a.end(), b.begin(), [] (double a, double b) {
@@ -151,7 +151,7 @@ bool Matrix<N>::operator==(const Matrix<N>& rhs) const {
 }
 
 template<unsigned int N>
-std::ostream& rtlib::operator<<(std::ostream& os, const Matrix<N>& matrix) {
+std::ostream& rtlib::operator<<(std::ostream& os, const MatrixRaw<N>& matrix) {
     os << "{{" << std::endl;
     for (unsigned int row = 0; row < N; row++) {
         os << "{";
@@ -170,8 +170,8 @@ template std::ostream& rtlib::operator<<(std::ostream& os, const Matrix<3>& matr
 template std::ostream& rtlib::operator<<(std::ostream& os, const Matrix<4>& matrix);
 
 template<unsigned int N>
-Matrix<N> Matrix<N>::identityMatrix() {
-    Matrix<N> m;
+MatrixRaw<N> MatrixRaw<N>::identityMatrix() {
+    MatrixRaw<N> m;
     
     for (unsigned int diagonalIndex = 0; diagonalIndex < N; diagonalIndex++) {
         m._matrix[diagonalIndex][diagonalIndex] = 1.0;
@@ -181,18 +181,18 @@ Matrix<N> Matrix<N>::identityMatrix() {
 }
 
 template<unsigned int N>
-Matrix<N> operator*(const Matrix<N>& lhs, const Matrix<N>& rhs) {
+MatrixRaw<N> operator*(const MatrixRaw<N>& lhs, const MatrixRaw<N>& rhs) {
     auto copy = lhs;
     copy *= rhs;
     return copy;
 }
 
-template class rtlib::Matrix<2>;
-template class rtlib::Matrix<3>;
-template class rtlib::Matrix<4>;
+template class rtlib::MatrixRaw<2>;
+template class rtlib::MatrixRaw<3>;
+template class rtlib::MatrixRaw<4>;
 
 template<unsigned int N>
-Matrix<N> rtlib::operator*(const Matrix<N>& lhs, const Matrix<N>& rhs) {
+MatrixRaw<N> rtlib::operator*(const MatrixRaw<N>& lhs, const MatrixRaw<N>& rhs) {
     auto copy = lhs;
     copy *= rhs;
     return copy;
@@ -203,7 +203,7 @@ template Matrix<3> rtlib::operator*(const Matrix<3>& lhs, const Matrix<3>& rhs);
 template Matrix<4> rtlib::operator*(const Matrix<4>& lhs, const Matrix<4>& rhs);
 
 template<unsigned int N>
-Tuple rtlib::operator*(const Matrix<N>& lhs, const Tuple& rhs) {
+Tuple rtlib::operator*(const MatrixRaw<N>& lhs, const Tuple& rhs) {
     auto result = Tuple();
     
     for (unsigned int row = 0; row < N; row++) {

@@ -16,6 +16,11 @@
 
 #include "matrix_raw.hpp"
 
+namespace rtlib {
+    template<unsigned int N>
+    using Matrix = MatrixRaw<N>;
+}
+
 #endif
 
 #endif /* matrix_h */

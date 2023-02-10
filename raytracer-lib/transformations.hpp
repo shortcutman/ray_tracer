@@ -8,10 +8,9 @@
 #ifndef transformations_hpp
 #define transformations_hpp
 
-namespace rtlib {
+#include "matrix.hpp"
 
-template<unsigned int N>
-class Matrix;
+namespace rtlib {
 
 Matrix<4> translation(double x, double y, double z);
 Matrix<4> scaling(double x, double y, double z);
