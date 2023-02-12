@@ -54,6 +54,7 @@ struct IntersectValues {
     Tuple point;
     Tuple vectorToEye;
     Tuple normal;
+    bool inside;
     
     IntersectValues(Object::Intersect intersect, Ray ray);
 };

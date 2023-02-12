@@ -140,7 +140,7 @@ TEST(ObjectTest, HitIntersectionIsLowestNonNegative) {
     EXPECT_EQ(*hit, rtlib::Object::Intersect(&s, 2.0));
 }
 
-TEST(ObjectTest, IntersectValues) {
+TEST(ObjectTest, IntersectValuesOutside) {
     rtlib::Ray r(rtlib::create_point(0.0, 0.0, -5.0),
                  rtlib::create_vector(0.0, 0.0, 1.0));
     rtlib::Sphere s;
@@ -152,8 +152,23 @@ TEST(ObjectTest, IntersectValues) {
     EXPECT_EQ(v.point, rtlib::create_point(0, 0, -1));
     EXPECT_EQ(v.vectorToEye, rtlib::create_vector(0, 0, -1));
     EXPECT_EQ(v.normal, rtlib::create_vector(0, 0, -1));
+    EXPECT_EQ(v.inside, false);
 }
 
+TEST(ObjectTest, IntersectValuesInside) {
+    rtlib::Ray r(rtlib::create_point(0.0, 0.0, 0.0),
+                 rtlib::create_vector(0.0, 0.0, 1.0));
+    rtlib::Sphere s;
+    rtlib::Object::Intersect i(&s, 1.0);
+    rtlib::IntersectValues v(i, r);
+    
+    EXPECT_EQ(v.intersect.object, &s);
+    EXPECT_EQ(v.intersect.t, 1.0);
+    EXPECT_EQ(v.point, rtlib::create_point(0, 0, 1));
+    EXPECT_EQ(v.vectorToEye, rtlib::create_vector(0, 0, -1));
+    EXPECT_EQ(v.normal, rtlib::create_vector(0, 0, -1));
+    EXPECT_EQ(v.inside, true);
+}
 
 TEST(ObjectTest, IntersectScaledSphere) {
     rtlib::Ray r(rtlib::create_point(0.0, 0.0, -5.0),

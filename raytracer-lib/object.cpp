@@ -63,6 +63,13 @@ rtlib::IntersectValues::IntersectValues(Object::Intersect intersect, Ray ray) :
     point = ray.positionAt(intersect.t);
     vectorToEye = -ray.direction();
     normal = intersect.object->normalAt(point);
+    
+    if (rtlib::Tuple::dot(vectorToEye, normal) < 0) {
+        inside = true;
+        normal = -intersect.object->normalAt(point);
+    } else {
+        inside = false;
+    }
 }
 
 rtlib::Sphere::IntersectHits rtlib::Sphere::intersects(const Ray& ray) const {
