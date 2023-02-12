@@ -31,8 +31,10 @@ public:
     std::vector<LightPtr> lights() const;
     std::vector<ObjectPtr> objects() const;
     
+    Colour colourAt(const Ray& ray) const;
+    
     Object::IntersectHits intersects(const Ray& ray) const;
-    Colour shadeHits(IntersectValues values);
+    Colour shadeHits(IntersectValues values) const;
     
     static World defaultWorld();
 };

@@ -9,6 +9,7 @@
 
 #include "lighting.hpp"
 #include "object.hpp"
+#include "ray.hpp"
 #include "transformations.hpp"
 
 #include <algorithm>
@@ -21,6 +22,18 @@ std::vector<LightPtr> World::lights() const {
 
 std::vector<ObjectPtr> World::objects() const {
     return _objects;
+}
+
+Colour World::colourAt(const Ray &ray) const {
+    auto intersects = this->intersects(ray);
+    auto rayHit = hit(intersects);
+    if (rayHit) {
+        auto values = IntersectValues(*rayHit, ray);
+        auto colour = shadeHits(values);
+        return colour;
+    } else {
+        return Colour();
+    }
 }
 
 Object::IntersectHits World::intersects(const Ray& ray) const {
@@ -39,7 +52,7 @@ Object::IntersectHits World::intersects(const Ray& ray) const {
     return allHits;
 }
 
-Colour World::shadeHits(IntersectValues values) {
+Colour World::shadeHits(IntersectValues values) const {
     auto colour = _lights.front()->lightPoint(values.intersect.object->material(), values.point, values.vectorToEye, values.normal);
     return colour;
 }

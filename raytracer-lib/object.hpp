@@ -40,6 +40,7 @@ public:
     Matrix4x4 transform() const;
     void setTransform(Matrix4x4 matrix);
     
+    Material& material();
     Material material() const;
     void setMaterial(Material material);
     

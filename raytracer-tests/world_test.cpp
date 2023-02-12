@@ -56,4 +56,33 @@ TEST(WorldTest, ShadeIntersectsFromInside) {
     EXPECT_EQ(colour, Colour(0.38066, 0.47583, 0.2855));
 }
 
+TEST(WorldTest, ColourAtRayMiss) {
+    World w = rtlib::World::defaultWorld();
+    Ray r(create_point(0.0, 0.0, -5.0), create_vector(0.0, 1.0, 0.0));
+    auto colour = w.colourAt(r);
+    
+    EXPECT_EQ(colour, Colour(0.0, 0.0, 0.0));
+}
+
+TEST(WorldTest, ColourAtRayHit) {
+    World w = rtlib::World::defaultWorld();
+    Ray r(create_point(0.0, 0.0, -5.0), create_vector(0.0, 0.0, 1.0));
+    auto colour = w.colourAt(r);
+    
+    EXPECT_EQ(colour, Colour(0.38066, 0.47583, 0.2855));
+}
+
+TEST(WorldTest, ColourAtRayInside) {
+    World w = rtlib::World::defaultWorld();
+    w.objects().front()->material()._ambient = 1.0;
+    w.objects().back()->material()._ambient = 1.0;
+    
+    Ray r(create_point(0.0, 0.0, 0.75), create_vector(0.0, 0.0, -1.0));
+    auto colour = w.colourAt(r);
+    
+    EXPECT_EQ(colour, w.objects().back()->material()._colour);
+}
+
+
+
 }

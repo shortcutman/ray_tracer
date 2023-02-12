@@ -33,6 +33,10 @@ void rtlib::Object::setTransform(rtlib::Matrix4x4 matrix) {
     _transform = matrix;
 }
 
+rtlib::Material& rtlib::Object::material() {
+    return _material;
+}
+
 rtlib::Material rtlib::Object::material() const {
     return _material;
 }
