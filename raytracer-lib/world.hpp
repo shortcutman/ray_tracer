@@ -14,7 +14,7 @@
 #include <memory>
 
 namespace rtlib {
-
+ 
 class Light;
 typedef std::shared_ptr<Light> LightPtr;
 class Object;
@@ -32,6 +32,7 @@ public:
     std::vector<ObjectPtr> objects() const;
     
     Object::IntersectHits intersects(const Ray& ray) const;
+    Colour shadeHits(IntersectValues values);
     
     static World defaultWorld();
 };

@@ -33,4 +33,27 @@ TEST(WorldTest, IntersectWorld) {
     EXPECT_EQ(hits[3].t, 6);
 }
 
+TEST(WorldTest, ShadeIntersectsFromOutside) {
+    World w = rtlib::World::defaultWorld();
+    Ray r(create_point(0.0, 0.0, -5.0), create_vector(0.0, 0.0, 1.0));
+    auto shape = w.objects().front();
+    auto hits = w.intersects(r);
+    auto values = IntersectValues(hits.front(), r);
+    auto colour = w.shadeHits(values);
+    
+    EXPECT_EQ(colour, Colour(0.38066, 0.47583, 0.2855));
+}
+
+TEST(WorldTest, ShadeIntersectsFromInside) {
+    World w = rtlib::World::defaultWorld();
+    w.lights().front() = std::make_shared<Light>(create_point(0.0, 0.25, 0.0), Colour(1.0, 1.0, 1.0));
+    Ray r(create_point(0.0, 0.0, 0.0), create_vector(0.0, 0.0, 1.0));
+    auto shape = w.objects().front();
+    auto hits = w.intersects(r);
+    auto values = IntersectValues(hits.front(), r);
+    auto colour = w.shadeHits(values);
+    
+    EXPECT_EQ(colour, Colour(0.38066, 0.47583, 0.2855));
+}
+
 }
