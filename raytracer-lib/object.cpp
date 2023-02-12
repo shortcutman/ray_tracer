@@ -57,6 +57,14 @@ std::optional<rtlib::Object::Intersect> rtlib::hit(Object::IntersectHits hits) {
     return result;
 }
 
+rtlib::IntersectValues::IntersectValues(Object::Intersect intersect, Ray ray) :
+    intersect(intersect)
+{
+    point = ray.positionAt(intersect.t);
+    vectorToEye = -ray.direction();
+    normal = intersect.object->normalAt(point);
+}
+
 rtlib::Sphere::IntersectHits rtlib::Sphere::intersects(const Ray& ray) const {
     const auto translatedRay = ray.transform(this->transform().inverse());
     const auto centre = rtlib::create_point(0.0, 0.0, 0.0);

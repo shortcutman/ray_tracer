@@ -49,6 +49,15 @@ public:
 
 std::optional<Object::Intersect> hit(Object::IntersectHits hits);
 
+struct IntersectValues {
+    Object::Intersect intersect;
+    Tuple point;
+    Tuple vectorToEye;
+    Tuple normal;
+    
+    IntersectValues(Object::Intersect intersect, Ray ray);
+};
+
 class Sphere : public Object {
 public:
     Sphere() : Object() {}
