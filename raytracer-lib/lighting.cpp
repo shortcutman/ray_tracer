@@ -23,8 +23,8 @@ rtlib::Colour rtlib::Light::intensity() const {
     return _intensity;
 }
 
-rtlib::Colour rtlib::Light::lightPoint(Material material, Tuple point, Tuple camera, Tuple normal) const {
-    if (!point.isPoint() || !camera.isVector() || !normal.isVector()) {
+rtlib::Colour rtlib::Light::lightPoint(Material material, Tuple point, Tuple vectorToCamera, Tuple normal) const {
+    if (!point.isPoint() || !vectorToCamera.isVector() || !normal.isVector()) {
         throw std::runtime_error("Incorrect parameters supplied");
     }
     
@@ -41,7 +41,7 @@ rtlib::Colour rtlib::Light::lightPoint(Material material, Tuple point, Tuple cam
     } else {
         diffuse = effectiveColour * material._diffuse * lightDotNormal;
         auto reflectV = rtlib::Tuple::reflect(-lightVector, normal);
-        auto reflectDotEye = Tuple::dot(reflectV, camera);
+        auto reflectDotEye = Tuple::dot(reflectV, vectorToCamera);
         
         if (reflectDotEye <= 0.0) {
             specular = rtlib::Colour(0, 0, 0);

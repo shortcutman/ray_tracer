@@ -28,7 +28,7 @@ public:
     
     Colour lightPoint(Material material,
                       Tuple point,
-                      Tuple camera,
+                      Tuple vectorToCamera,
                       Tuple normal) const;
 };
 
