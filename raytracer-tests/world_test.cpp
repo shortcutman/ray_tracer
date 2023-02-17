@@ -7,8 +7,12 @@
 
 #include <gtest/gtest.h>
 
+#include "camera.hpp"
 #include "ray.hpp"
+#include "transformations.hpp"
 #include "world.hpp"
+
+#include <numbers>
 
 using namespace rtlib;
 
@@ -83,6 +87,16 @@ TEST(WorldTest, ColourAtRayInside) {
     EXPECT_EQ(colour, w.objects().back()->material()._colour);
 }
 
-
+TEST(WorldTest, RenderWorldWithCamera) {
+    World w = rtlib::World::defaultWorld();
+    Camera c(11, 11, std::numbers::pi / 2.0);
+    auto viewTransform = rtlib::viewTransform(create_point(0.0, 0.0, -5.0), create_point(0.0, 0.0, 0.0), create_vector(0.0, 1.0, 0.0));
+    c.setTransform(viewTransform);
+    
+    auto ray = c.rayForPixel(5, 5);
+    auto colour = w.colourAt(ray);
+    
+    EXPECT_EQ(colour, Colour(0.38066, 0.47583, 0.2855));
+}
 
 }
