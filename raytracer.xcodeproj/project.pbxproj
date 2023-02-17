@@ -31,6 +31,9 @@
 		65B1E58D294E9BFB008BF2DE /* libraytracer-lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B1E57F294E9BCC008BF2DE /* libraytracer-lib.a */; };
 		65B1E590294E9CCE008BF2DE /* libraytracer-lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B1E57F294E9BCC008BF2DE /* libraytracer-lib.a */; };
 		65B1E592294E9D7A008BF2DE /* default_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B1E591294E9D7A008BF2DE /* default_test.cpp */; };
+		65B9774E299F48F300AB4A79 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B9774C299F48F300AB4A79 /* camera.cpp */; };
+		65B9774F299F48F300AB4A79 /* camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65B9774D299F48F300AB4A79 /* camera.hpp */; };
+		65B97751299F4E0100AB4A79 /* camera_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B97750299F4E0100AB4A79 /* camera_test.cpp */; };
 		65CA49B7298D1929008302BA /* lighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65CA49B5298D1929008302BA /* lighting.cpp */; };
 		65CA49B8298D1929008302BA /* lighting.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65CA49B6298D1929008302BA /* lighting.hpp */; };
 		65CA49BA298D1A50008302BA /* lighting_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65CA49B9298D1A50008302BA /* lighting_test.cpp */; };
@@ -111,6 +114,9 @@
 		65B1E581294E9BCC008BF2DE /* raytracer_lib.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = raytracer_lib.hpp; sourceTree = "<group>"; };
 		65B1E585294E9BCC008BF2DE /* raytracer_lib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = raytracer_lib.cpp; sourceTree = "<group>"; };
 		65B1E591294E9D7A008BF2DE /* default_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = default_test.cpp; sourceTree = "<group>"; };
+		65B9774C299F48F300AB4A79 /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
+		65B9774D299F48F300AB4A79 /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
+		65B97750299F4E0100AB4A79 /* camera_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera_test.cpp; sourceTree = "<group>"; };
 		65CA49B5298D1929008302BA /* lighting.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lighting.cpp; sourceTree = "<group>"; };
 		65CA49B6298D1929008302BA /* lighting.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lighting.hpp; sourceTree = "<group>"; };
 		65CA49B9298D1A50008302BA /* lighting_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lighting_test.cpp; sourceTree = "<group>"; };
@@ -199,6 +205,7 @@
 				65587F78298398E000485127 /* object_test.cpp */,
 				65CA49B9298D1A50008302BA /* lighting_test.cpp */,
 				650515592998AA8100EAB3E0 /* world_test.cpp */,
+				65B97750299F4E0100AB4A79 /* camera_test.cpp */,
 			);
 			path = "raytracer-tests";
 			sourceTree = "<group>";
@@ -232,6 +239,8 @@
 				65051547299605B200EAB3E0 /* matrix.hpp */,
 				650515552998AA5D00EAB3E0 /* world.cpp */,
 				650515562998AA5D00EAB3E0 /* world.hpp */,
+				65B9774C299F48F300AB4A79 /* camera.cpp */,
+				65B9774D299F48F300AB4A79 /* camera.hpp */,
 			);
 			path = "raytracer-lib";
 			sourceTree = "<group>";
@@ -251,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65051553299623BD00EAB3E0 /* matrix_simd.hpp in Headers */,
+				65B9774F299F48F300AB4A79 /* camera.hpp in Headers */,
 				65CA49B8298D1929008302BA /* lighting.hpp in Headers */,
 				65B1E582294E9BCC008BF2DE /* raytracer_lib.hpp in Headers */,
 				65E6B2FB2955925800F98D69 /* matrix_raw.hpp in Headers */,
@@ -378,6 +388,7 @@
 				65B1E592294E9D7A008BF2DE /* default_test.cpp in Sources */,
 				65587F6D2973C4D900485127 /* transformation_test.cpp in Sources */,
 				65E6B2FD295595FB00F98D69 /* matrix_test.cpp in Sources */,
+				65B97751299F4E0100AB4A79 /* camera_test.cpp in Sources */,
 				6505155A2998AA8100EAB3E0 /* world_test.cpp in Sources */,
 				65587F73298392EB00485127 /* ray_tests.cpp in Sources */,
 				65E6B2F7295548A300F98D69 /* canvas_test.cpp in Sources */,
@@ -392,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65B9774E299F48F300AB4A79 /* camera.cpp in Sources */,
 				65051554299623BD00EAB3E0 /* matrix_simd.cpp in Sources */,
 				65E6B2FA2955925800F98D69 /* matrix_raw.cpp in Sources */,
 				65E6B2E9294EA43900F98D69 /* tuple_raw.cpp in Sources */,
