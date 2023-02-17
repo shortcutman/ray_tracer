@@ -19,6 +19,8 @@ Matrix4x4 rotation_y(double angle);
 Matrix4x4 rotation_z(double angle);
 Matrix4x4 shearing(double xy, double xz, double yx, double yz, double zx, double zy);
 
+Matrix4x4 viewTransform(const Tuple& from, const Tuple& to, const Tuple& up);
+
 }
 
 #endif /* transformations_hpp */

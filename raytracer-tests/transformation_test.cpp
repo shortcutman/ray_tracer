@@ -175,4 +175,51 @@ TEST(TransformationTest, ChainedTransformationsAppliedInReverse) {
     EXPECT_EQ(combinedTransform * point, rtlib::create_point(15.0, 0.0, 7.0));
 }
 
+TEST(TransformationTest, ViewTransformDefaultOrientation) {
+    auto from = rtlib::create_point(0.0, 0.0, 0.0);
+    auto to = rtlib::create_point(0.0, 0.0, -1.0);
+    auto up = rtlib::create_vector(0.0, 1.0, 0.0);
+    
+    auto viewTransform = rtlib::viewTransform(from, to, up);
+    
+    EXPECT_EQ(viewTransform, rtlib::Matrix4x4::identityMatrix());
+}
+
+TEST(TransformationTest, ViewTransformPositiveZDirection) {
+    auto from = rtlib::create_point(0.0, 0.0, 0.0);
+    auto to = rtlib::create_point(0.0, 0.0, 1.0);
+    auto up = rtlib::create_vector(0.0, 1.0, 0.0);
+    
+    auto viewTransform = rtlib::viewTransform(from, to, up);
+    
+    EXPECT_EQ(viewTransform, rtlib::scaling(-1.0, 1.0, -1.0));
+}
+
+TEST(TransformationTest, ViewTransformMovesTheWorld) {
+    auto from = rtlib::create_point(0.0, 0.0, 8.0);
+    auto to = rtlib::create_point(0.0, 0.0, 0.0);
+    auto up = rtlib::create_vector(0.0, 1.0, 0.0);
+    
+    auto viewTransform = rtlib::viewTransform(from, to, up);
+    
+    EXPECT_EQ(viewTransform, rtlib::translation(0.0, 0.0, -8.0));
+}
+
+TEST(TransformationTest, ArbitraryViewTransformation) {
+    auto from = rtlib::create_point(1.0, 3.0, 2.0);
+    auto to = rtlib::create_point(4.0, -2.0, 8.0);
+    auto up = rtlib::create_vector(1.0, 1.0, 0.0);
+    
+    auto viewTransform = rtlib::viewTransform(from, to, up);
+    
+    rtlib::Matrix4x4 result({{
+        {-0.507093, 0.507093, 0.676123, -2.36643},
+        {0.767716, 0.606092, 0.121218, -2.82843},
+        {-0.358568, 0.5976143, -0.717137, 0.0},
+        {0.0,      0.0,      0.0,      1.0}
+    }});
+    
+    EXPECT_EQ(viewTransform, result);
+}
+
 }

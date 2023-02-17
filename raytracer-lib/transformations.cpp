@@ -76,3 +76,34 @@ Matrix4x4 rtlib::shearing(double xy, double xz, double yx, double yz, double zx,
     
     return matrix;
 }
+
+Matrix4x4 rtlib::viewTransform(const Tuple &from, const Tuple &to, const Tuple &up) {
+    auto forwardVector = (to - from).normalised();
+    auto leftVector =  rtlib::Tuple::cross(forwardVector, up.normalised());
+    auto trueUpVector = rtlib::Tuple::cross(leftVector, forwardVector);
+    
+    auto orientation = Matrix4x4();
+    orientation.set(0, 0, leftVector.x());
+    orientation.set(0, 1, leftVector.y());
+    orientation.set(0, 2, leftVector.z());
+    orientation.set(0, 3, 0.0);
+    
+    orientation.set(1, 0, trueUpVector.x());
+    orientation.set(1, 1, trueUpVector.y());
+    orientation.set(1, 2, trueUpVector.z());
+    orientation.set(1, 3, 0.0);
+    
+    orientation.set(2, 0, -forwardVector.x());
+    orientation.set(2, 1, -forwardVector.y());
+    orientation.set(2, 2, -forwardVector.z());
+    orientation.set(2, 3, 0.0);
+    
+    orientation.set(3, 0, 0.0);
+    orientation.set(3, 1, 0.0);
+    orientation.set(3, 2, 0.0);
+    orientation.set(3, 3, 1.0);
+    
+    orientation *= rtlib::translation(-from.x(), -from.y(), -from.z());
+    
+    return orientation;
+}
