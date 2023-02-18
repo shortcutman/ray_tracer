@@ -49,7 +49,6 @@ void Canvas::write_pixel(PixelIndex x, PixelIndex y, Colour colour) {
     _canvas[y * _width + x] = colour;
 }
 
-
 Canvas::PixelIndex Canvas::width() const {
     return _width;
 }
