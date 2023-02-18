@@ -38,6 +38,7 @@ public:
     
     Object::IntersectHits intersects(const Ray& ray) const;
     Colour shadeHits(IntersectValues values) const;
+    bool isShadowed(const Tuple& point) const;
     
     static World defaultWorld();
 };

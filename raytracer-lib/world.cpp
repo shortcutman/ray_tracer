@@ -65,6 +65,24 @@ Colour World::shadeHits(IntersectValues values) const {
     return colour;
 }
 
+bool World::isShadowed(const Tuple &point) const {
+    if (_lights.size() > 1) {
+        throw std::runtime_error("only 1 light supported");
+    } else if (_lights.size() == 0) {
+        return false;
+    }
+    
+    auto pointToLightVector = _lights.front()->origin() - point;
+    auto distancePointToLight = pointToLightVector.magnitude();
+    auto normalisedPointToLightVector = pointToLightVector.normalised();
+    auto ray = Ray(point, normalisedPointToLightVector);
+    
+    auto intersections = intersects(ray);
+    auto hit = rtlib::hit(intersections);
+    
+    return hit && hit->t < distancePointToLight;
+}
+
 World World::defaultWorld() {
     World w;
     

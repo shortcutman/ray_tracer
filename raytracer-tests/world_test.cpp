@@ -99,4 +99,24 @@ TEST(WorldTest, RenderWorldWithCamera) {
     EXPECT_EQ(colour, Colour(0.38066, 0.47583, 0.2855));
 }
 
+TEST(WorldTest, NoShadowWhenNothingIsCollinearBetweenPointAndLight) {
+    auto world = rtlib::World::defaultWorld();
+    EXPECT_FALSE(world.isShadowed(create_point(0.0, 10.0, 0.0)));
+}
+
+TEST(WorldTest, ShadowWhenObjectIsBetweenPointAndLight) {
+    auto world = rtlib::World::defaultWorld();
+    EXPECT_TRUE(world.isShadowed(create_point(10.0, -10.0, 10.0)));
+}
+
+TEST(WorldTest, NoShadowWhenPointIsBeheindLight) {
+    auto world = rtlib::World::defaultWorld();
+    EXPECT_FALSE(world.isShadowed(create_point(-20.0, 20.0, -20.0)));
+}
+
+TEST(WorldTest, NoShadowWhenObjectIsBeheindLight) {
+    auto world = rtlib::World::defaultWorld();
+    EXPECT_FALSE(world.isShadowed(create_point(-2.0, 2.0, -2.0)));
+}
+
 }
