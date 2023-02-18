@@ -34,15 +34,19 @@ Colour Canvas::pixel_at(PixelIndex x, PixelIndex y) const {
         throw std::runtime_error("Pixel index is out of bounds.");
     }
     
-    return _canvas[x * _width + y];
+    return _canvas[y * _width + x];
 }
 
 void Canvas::write_pixel(PixelIndex x, PixelIndex y, Colour colour) {
-    if (x * y > _width * _height) {
+    if (x > _width) {
+        throw std::runtime_error("X index is out of bounds.");
+    } else if (y > _height) {
+        throw std::runtime_error("Y index is out of bounds.");
+    } else if (y * _width + x > _canvas.size()) {
         throw std::runtime_error("Pixel index is out of bounds.");
     }
     
-    _canvas[x * _width + y] = colour;
+    _canvas[y * _width + x] = colour;
 }
 
 
