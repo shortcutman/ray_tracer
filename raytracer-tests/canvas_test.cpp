@@ -21,7 +21,7 @@ TEST(CanvasTest, CreateCanvas) {
     
     for (rtlib::Canvas::PixelIndex x = 0; x < 10; x++) {
         for (rtlib::Canvas::PixelIndex y = 0; y < 10; y++) {
-            EXPECT_EQ(c.pixel_at(x, y), baseColour)
+            EXPECT_EQ(c.pixelAt(x, y), baseColour)
             << "Location x: " << x << " y: " << y;
         }
     }
@@ -35,10 +35,10 @@ TEST(CanvasTest, WriteToCanvas) {
     
     rtlib::Colour colour(0.3, 0.4, 0.5);
     
-    c.write_pixel(2, 3, colour);
-    EXPECT_EQ(c.pixel_at(2, 3), colour);
-    EXPECT_EQ(c.pixel_at(2, 4), rtlib::Colour());
-    EXPECT_EQ(c.pixel_at(3, 2), rtlib::Colour());
+    c.writePixel(2, 3, colour);
+    EXPECT_EQ(c.pixelAt(2, 3), colour);
+    EXPECT_EQ(c.pixelAt(2, 4), rtlib::Colour());
+    EXPECT_EQ(c.pixelAt(3, 2), rtlib::Colour());
 }
 
 TEST(CanvasTest, WriteToCanvasAspect) {
@@ -49,10 +49,10 @@ TEST(CanvasTest, WriteToCanvasAspect) {
     
     rtlib::Colour colour(0.3, 0.4, 0.5);
     
-    c.write_pixel(10, 3, colour);
-    EXPECT_EQ(c.pixel_at(10, 3), colour);
-    EXPECT_EQ(c.pixel_at(10, 4), rtlib::Colour());
-    EXPECT_EQ(c.pixel_at(10, 2), rtlib::Colour());
+    c.writePixel(10, 3, colour);
+    EXPECT_EQ(c.pixelAt(10, 3), colour);
+    EXPECT_EQ(c.pixelAt(10, 4), rtlib::Colour());
+    EXPECT_EQ(c.pixelAt(10, 2), rtlib::Colour());
 }
 
 TEST(CanvasTest, ErrorOnReadPixelOutOfBounds) {
@@ -61,7 +61,7 @@ TEST(CanvasTest, ErrorOnReadPixelOutOfBounds) {
     EXPECT_EQ(c.width(), 10);
     EXPECT_EQ(c.height(), 20);
     
-    EXPECT_THROW(c.pixel_at(11, 20), std::runtime_error);
+    EXPECT_THROW(c.pixelAt(11, 20), std::runtime_error);
 }
 
 TEST(CanvasTest, ErrorOnWritePixelOutOfBounds) {
@@ -70,7 +70,7 @@ TEST(CanvasTest, ErrorOnWritePixelOutOfBounds) {
     EXPECT_EQ(c.width(), 10);
     EXPECT_EQ(c.height(), 20);
     
-    EXPECT_THROW(c.write_pixel(11, 20, rtlib::Colour(0.2, 0.0, 0.0)), std::runtime_error);
+    EXPECT_THROW(c.writePixel(11, 20, rtlib::Colour(0.2, 0.0, 0.0)), std::runtime_error);
 }
 
 TEST(CanvasTest, WriteOutPPMHeader) {
@@ -94,9 +94,9 @@ TEST(CanvasTest, WriteOutPPMHeader) {
 
 TEST(CanvasTest, WriteOutPPMPixels) {
     rtlib::Canvas c(5, 3);
-    c.write_pixel(0, 0, rtlib::Colour(1.5, 0.0, 0.0));
-    c.write_pixel(2, 1, rtlib::Colour(0.0, 0.5, 0.0));
-    c.write_pixel(4, 2, rtlib::Colour(-0.5, 0.0, 1.0));
+    c.writePixel(0, 0, rtlib::Colour(1.5, 0.0, 0.0));
+    c.writePixel(2, 1, rtlib::Colour(0.0, 0.5, 0.0));
+    c.writePixel(4, 2, rtlib::Colour(-0.5, 0.0, 1.0));
     
     std::stringstream ss;
     ss << c;

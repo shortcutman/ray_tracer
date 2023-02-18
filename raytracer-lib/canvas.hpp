@@ -26,8 +26,8 @@ public:
     Canvas(PixelIndex width, PixelIndex height);
     ~Canvas() {}
     
-    Colour pixel_at(PixelIndex x, PixelIndex y) const;
-    void write_pixel(PixelIndex x, PixelIndex y, Colour colour);
+    Colour pixelAt(PixelIndex x, PixelIndex y) const;
+    void writePixel(PixelIndex x, PixelIndex y, Colour colour);
     
     PixelIndex width() const;
     PixelIndex height() const;

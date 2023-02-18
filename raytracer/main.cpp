@@ -88,7 +88,7 @@ int main(int argc, const char * argv[]) {
         for (unsigned int y = 0; y < canvas.height(); y++) {
             auto ray = camera.rayForPixel(x, y);
             auto colour = world.colourAt(ray);
-            canvas.write_pixel(x, y, colour);
+            canvas.writePixel(x, y, colour);
         }
     }
     

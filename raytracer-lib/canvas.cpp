@@ -29,7 +29,7 @@ Canvas::Canvas(PixelIndex width, PixelIndex height) :
 {
 }
 
-Colour Canvas::pixel_at(PixelIndex x, PixelIndex y) const {
+Colour Canvas::pixelAt(PixelIndex x, PixelIndex y) const {
     if (x * y > _width * _height) {
         throw std::runtime_error("Pixel index is out of bounds.");
     }
@@ -37,7 +37,7 @@ Colour Canvas::pixel_at(PixelIndex x, PixelIndex y) const {
     return _canvas[y * _width + x];
 }
 
-void Canvas::write_pixel(PixelIndex x, PixelIndex y, Colour colour) {
+void Canvas::writePixel(PixelIndex x, PixelIndex y, Colour colour) {
     if (x > _width) {
         throw std::runtime_error("X index is out of bounds.");
     } else if (y > _height) {
@@ -64,9 +64,9 @@ Canvas::PixelIndex Canvas::height() const {
      
      for (Canvas::PixelIndex y = 0; y < canvas._height; y++) {
          for (Canvas::PixelIndex x = 0; x < canvas._width; x++) {
-             os << clampAndNormalize(canvas.pixel_at(x, y).red()) << " "
-                << clampAndNormalize(canvas.pixel_at(x, y).green()) << " "
-                << clampAndNormalize(canvas.pixel_at(x, y).blue()) << " ";
+             os << clampAndNormalize(canvas.pixelAt(x, y).red()) << " "
+                << clampAndNormalize(canvas.pixelAt(x, y).green()) << " "
+                << clampAndNormalize(canvas.pixelAt(x, y).blue()) << " ";
          }
          
          os << std::endl;
