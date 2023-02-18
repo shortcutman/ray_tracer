@@ -29,7 +29,10 @@ public:
     World() {}
     
     std::vector<LightPtr> lights() const;
+    void addLight(LightPtr light);
+    
     std::vector<ObjectPtr> objects() const;
+    void addObject(ObjectPtr object);
     
     Colour colourAt(const Ray& ray) const;
     

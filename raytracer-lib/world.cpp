@@ -20,8 +20,16 @@ std::vector<LightPtr> World::lights() const {
     return _lights;
 }
 
+void World::addLight(LightPtr light) {
+    _lights.push_back(light);
+}
+
 std::vector<ObjectPtr> World::objects() const {
     return _objects;
+}
+
+void World::addObject(ObjectPtr object) {
+    _objects.push_back(object);
 }
 
 Colour World::colourAt(const Ray &ray) const {
