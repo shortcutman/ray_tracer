@@ -74,6 +74,9 @@ rtlib::IntersectValues::IntersectValues(Object::Intersect intersect, Ray ray) :
     } else {
         inside = false;
     }
+    
+    auto epsilonPoint = normal * 0.0000001;
+    overPoint = point + epsilonPoint;
 }
 
 rtlib::Sphere::IntersectHits rtlib::Sphere::intersects(const Ray& ray) const {

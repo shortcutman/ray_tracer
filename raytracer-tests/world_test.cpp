@@ -60,6 +60,23 @@ TEST(WorldTest, ShadeIntersectsFromInside) {
     EXPECT_EQ(colour, Colour(0.38066, 0.47583, 0.2855));
 }
 
+TEST(WorldTest, ShadeIntersectsInShadow) {
+    auto w = World();
+    w.addLight(std::make_shared<Light>(create_point(0.0, 0.0, -10.0), Colour(1.0, 1.0, 1.0)));
+    auto s1 = std::make_shared<Sphere>();
+    w.addObject(s1);
+    auto s2 = std::make_shared<Sphere>();
+    s2->setTransform(translation(0.0, 0.0, 10.0));
+    w.addObject(s2);
+    
+    Ray r(create_point(0.0, 0.0, 5.0), create_vector(0.0, 0.0, 1.0));
+    auto intersect = Object::Intersect(s2.get(), 4.0);
+    auto intersectValues = IntersectValues(intersect, r);
+    auto colour = w.shadeHits(intersectValues);
+    
+    EXPECT_EQ(colour, Colour(0.1, 0.1, 0.1));
+}
+
 TEST(WorldTest, ColourAtRayMiss) {
     World w = rtlib::World::defaultWorld();
     Ray r(create_point(0.0, 0.0, -5.0), create_vector(0.0, 1.0, 0.0));

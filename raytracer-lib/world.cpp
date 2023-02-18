@@ -61,7 +61,7 @@ Object::IntersectHits World::intersects(const Ray& ray) const {
 }
 
 Colour World::shadeHits(IntersectValues values) const {
-    auto colour = _lights.front()->lightPoint(values.intersect.object->material(), values.point, values.vectorToEye, values.normal, false);
+    auto colour = _lights.front()->lightPoint(values.intersect.object->material(), values.point, values.vectorToEye, values.normal, isShadowed(values.overPoint));
     return colour;
 }
 

@@ -13,6 +13,7 @@
 
 #include <cmath>
 #include <numbers>
+#include <limits>
 
 namespace {
 
@@ -190,6 +191,19 @@ TEST(ObjectTest, IntersectTranslatedSphere) {
     
     auto result = s.intersects(r);
     EXPECT_EQ(result.size(), 0);
+}
+
+TEST(ObjectTest, IntersectHitShouldOffsetPoint) {
+    rtlib::Ray r(rtlib::create_point(0.0, 0.0, -5.0),
+                 rtlib::create_vector(0.0, 0.0, 1.0));
+    rtlib::Sphere s;
+    s.setTransform(rtlib::translation(0.0, 0.0, 1.0));
+    
+    auto intersection = rtlib::Object::Intersect(&s, 5.0);
+    auto intersectValues = rtlib::IntersectValues(intersection, r);
+    
+    EXPECT_TRUE(intersectValues.overPoint.z() < -(0.0000001 / 2.0));
+    EXPECT_TRUE(intersectValues.point.z() > intersectValues.overPoint.z());
 }
 
 TEST(ObjectTest, SphereNormalOnXAxis) {
