@@ -29,7 +29,8 @@ public:
     Colour lightPoint(Material material,
                       Tuple point,
                       Tuple vectorToCamera,
-                      Tuple normal) const;
+                      Tuple normal,
+                      bool inShadow) const;
 };
 
 class Material {
