@@ -7,6 +7,7 @@
 
 #include "camera.hpp"
 #include "canvas.hpp"
+#include "plane.hpp"
 #include "sphere.hpp"
 #include "transformations.hpp"
 #include "world.hpp"
@@ -23,26 +24,24 @@ namespace {
 World createWorld() {
     auto world = World();
     
-    auto floor = std::make_shared<Sphere>();
-    floor->setTransform(scaling(10, 0.01, 10));
+    auto floor = std::make_shared<Plane>();
     floor->material()._colour = Colour(1.0, 0.9, 0.9);
     floor->material()._specular = 0.0;
     world.addObject(floor);
     
-    auto leftWall = std::make_shared<Sphere>();
+    auto leftWall = std::make_shared<Plane>();
     leftWall->setTransform(translation(0.0, 0.0, 5.0) *
                           rotation_y(-std::numbers::pi / 4.0) *
-                          rotation_x(std::numbers::pi / 2.0) *
-                          scaling(10.0, 0.01, 10.0));
+                          rotation_x(std::numbers::pi / 2.0));
     leftWall->setMaterial(floor->material());
     world.addObject(leftWall);
     
-    auto rightWall = std::make_shared<Sphere>();
+    auto rightWall = std::make_shared<Plane>();
     rightWall->setTransform(translation(0.0, 0.0, 5.0) *
-                          rotation_y(std::numbers::pi / 4.0) *
-                          rotation_x(std::numbers::pi / 2.0) *
-                          scaling(10.0, 0.01, 10.0));
-    rightWall->setMaterial(floor->material());
+                            rotation_y(std::numbers::pi / 4.0) *
+                            rotation_x(std::numbers::pi / 2.0));
+    rightWall->material()._colour = Colour(0.0, 0.3, 0.9);
+    rightWall->material()._specular = 0.0;
     world.addObject(rightWall);
     
     auto middle = std::make_shared<Sphere>();
