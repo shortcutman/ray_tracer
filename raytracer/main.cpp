@@ -7,6 +7,7 @@
 
 #include "camera.hpp"
 #include "canvas.hpp"
+#include "sphere.hpp"
 #include "transformations.hpp"
 #include "world.hpp"
 

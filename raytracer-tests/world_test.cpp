@@ -9,6 +9,7 @@
 
 #include "camera.hpp"
 #include "ray.hpp"
+#include "sphere.hpp"
 #include "transformations.hpp"
 #include "world.hpp"
 

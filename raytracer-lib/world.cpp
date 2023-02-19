@@ -10,6 +10,7 @@
 #include "lighting.hpp"
 #include "object.hpp"
 #include "ray.hpp"
+#include "sphere.hpp"
 #include "transformations.hpp"
 
 #include <algorithm>

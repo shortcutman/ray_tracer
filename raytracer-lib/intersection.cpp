@@ -36,7 +36,7 @@ IntersectValues::IntersectValues(Intersect intersect, Ray ray) :
     overPoint = point + epsilonPoint;
 }
 
-std::optional<Intersect> rtlib::getFirstHit(Intersections hits) {
+std::optional<Intersect> rtlib::getFirstHit(rtlib::Intersections hits) {
     std::optional<Intersect> result;
     
     for (const Intersect& i : hits) {

@@ -11,6 +11,7 @@
 #include "ray.hpp"
 #include "tuple.hpp"
 
+#include <vector>
 #include <optional>
 
 namespace rtlib {

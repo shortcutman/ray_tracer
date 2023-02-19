@@ -8,9 +8,6 @@
 #ifndef object_hpp
 #define object_hpp
 
-#include <vector>
-#include <optional>
-
 #include "intersection.hpp"
 #include "lighting.hpp"
 #include "matrix.hpp"
@@ -37,15 +34,6 @@ public:
     
     virtual Intersections intersects(const Ray& ray) const = 0;
     virtual Tuple normalAt(const Tuple& point) const = 0;
-};
-
-class Sphere : public Object {
-public:
-    Sphere() : Object() {}
-    ~Sphere() {}
-    
-    virtual Intersections intersects(const Ray& ray) const;
-    virtual Tuple normalAt(const Tuple& point) const;
 };
 
 }
