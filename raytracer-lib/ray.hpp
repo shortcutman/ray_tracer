@@ -19,6 +19,7 @@ private:
     Tuple _direction;
     
 public:
+    Ray();
     Ray(Tuple origin, Tuple direction);
     
     bool valid() const;

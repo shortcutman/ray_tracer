@@ -11,6 +11,10 @@
 
 using namespace rtlib;
 
+Ray::Ray()
+{
+}
+
 Ray::Ray(Tuple origin, Tuple direction) :
     _origin(origin),
     _direction(direction) {
