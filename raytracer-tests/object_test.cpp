@@ -18,16 +18,21 @@ using namespace rtlib;
 
 namespace {
 
+Ray _lastRay;
+
 class ObjectMock : public Object {
 public:
-    virtual Intersections intersects(const Ray& ray) const {
-        return Intersections();
-    }
+    ObjectMock() {}
     
     virtual Tuple normalAt(const Tuple& point) const {
         return Tuple();
     };
-
+    
+protected:
+    virtual Intersections intersectsImpl(const Ray& ray) const {
+        _lastRay = ray;
+        return Intersections();
+    }
 };
 
 TEST(ObjectTest, DefaultTransformation) {
@@ -82,6 +87,26 @@ TEST(ObjectTest, AssignMaterialViaReference) {
     EXPECT_EQ(o.material()._diffuse, 0.3);
     EXPECT_EQ(o.material()._specular, 0.4);
     EXPECT_EQ(o.material()._shininess, 0.5);
+}
+
+TEST(ObjectTest, IntersectScaledShapeWithRay) {
+    ObjectMock o;
+    auto ray = Ray(create_point(0.0, 0.0, -5.0), create_vector(0.0, 0.0, 1.0));
+    o.setTransform(scaling(2.0, 2.0, 2.0));
+    o.intersects(ray);
+    
+    EXPECT_EQ(_lastRay.origin(), create_point(0.0, 0.0, -2.5));
+    EXPECT_EQ(_lastRay.direction(), create_vector(0.0, 0.0, 0.5));
+}
+
+TEST(ObjectTest, IntersectTranslatedShapeWithRay) {
+    ObjectMock o;
+    auto ray = Ray(create_point(0.0, 0.0, -5.0), create_vector(0.0, 0.0, 1.0));
+    o.setTransform(translation(5.0, 0.0, 0.0));
+    o.intersects(ray);
+    
+    EXPECT_EQ(_lastRay.origin(), create_point(-5.0, 0.0, -5.0));
+    EXPECT_EQ(_lastRay.direction(), create_vector(0.0, 0.0, 1.0));
 }
 
 }

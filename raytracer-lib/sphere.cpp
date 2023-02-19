@@ -9,14 +9,13 @@
 
 #include "intersection.hpp"
 
-rtlib::Intersections rtlib::Sphere::intersects(const Ray& ray) const {
-    const auto translatedRay = ray.transform(this->transform().inverse());
+rtlib::Intersections rtlib::Sphere::intersectsImpl(const Ray& ray) const {
     const auto centre = rtlib::create_point(0.0, 0.0, 0.0);
     const auto radius = 1.0;
-    const auto sphere_to_ray = translatedRay.origin() - centre;
+    const auto sphere_to_ray = ray.origin() - centre;
     
-    auto a = rtlib::Tuple::dot(translatedRay.direction(), translatedRay.direction());
-    auto b = 2 * rtlib::Tuple::dot(translatedRay.direction(), sphere_to_ray);
+    auto a = rtlib::Tuple::dot(ray.direction(), ray.direction());
+    auto b = 2 * rtlib::Tuple::dot(ray.direction(), sphere_to_ray);
     auto c = rtlib::Tuple::dot(sphere_to_ray, sphere_to_ray) - radius;
     
     auto discriminant = (b * b) - (4 * a * c);

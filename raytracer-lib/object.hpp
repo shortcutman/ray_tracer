@@ -32,8 +32,11 @@ public:
     Material material() const;
     void setMaterial(Material material);
     
-    virtual Intersections intersects(const Ray& ray) const = 0;
+    Intersections intersects(const Ray& ray) const;
     virtual Tuple normalAt(const Tuple& point) const = 0;
+    
+protected:
+    virtual Intersections intersectsImpl(const Ray& ray) const = 0;
 };
 
 }

@@ -37,3 +37,9 @@ rtlib::Material rtlib::Object::material() const {
 void rtlib::Object::setMaterial(Material material) {
     _material = material;
 }
+
+rtlib::Intersections rtlib::Object::intersects(const Ray &ray) const {
+    auto localRay = ray.transform(_transform.inverse());
+    return intersectsImpl(localRay);
+}
+

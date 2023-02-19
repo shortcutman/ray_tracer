@@ -18,8 +18,10 @@ public:
     Sphere() : Object() {}
     ~Sphere() {}
     
-    virtual Intersections intersects(const Ray& ray) const;
     virtual Tuple normalAt(const Tuple& point) const;
+    
+protected:
+    virtual Intersections intersectsImpl(const Ray& ray) const;
 };
 
 }
