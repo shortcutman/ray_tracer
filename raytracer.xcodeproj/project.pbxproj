@@ -39,6 +39,9 @@
 		65B9775829A1B63000AB4A79 /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B9775629A1B63000AB4A79 /* sphere.cpp */; };
 		65B9775929A1B63000AB4A79 /* sphere.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65B9775729A1B63000AB4A79 /* sphere.hpp */; };
 		65B9775D29A1C24D00AB4A79 /* object_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B9775C29A1C24D00AB4A79 /* object_test.cpp */; };
+		65B9776029A1E68F00AB4A79 /* plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B9775E29A1E68F00AB4A79 /* plane.cpp */; };
+		65B9776129A1E68F00AB4A79 /* plane.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65B9775F29A1E68F00AB4A79 /* plane.hpp */; };
+		65B9776329A1E72700AB4A79 /* plane_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B9776229A1E72700AB4A79 /* plane_test.cpp */; };
 		65CA49B7298D1929008302BA /* lighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65CA49B5298D1929008302BA /* lighting.cpp */; };
 		65CA49B8298D1929008302BA /* lighting.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65CA49B6298D1929008302BA /* lighting.hpp */; };
 		65CA49BA298D1A50008302BA /* lighting_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65CA49B9298D1A50008302BA /* lighting_test.cpp */; };
@@ -127,6 +130,9 @@
 		65B9775629A1B63000AB4A79 /* sphere.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sphere.cpp; sourceTree = "<group>"; };
 		65B9775729A1B63000AB4A79 /* sphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sphere.hpp; sourceTree = "<group>"; };
 		65B9775C29A1C24D00AB4A79 /* object_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = object_test.cpp; sourceTree = "<group>"; };
+		65B9775E29A1E68F00AB4A79 /* plane.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = plane.cpp; sourceTree = "<group>"; };
+		65B9775F29A1E68F00AB4A79 /* plane.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = plane.hpp; sourceTree = "<group>"; };
+		65B9776229A1E72700AB4A79 /* plane_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = plane_test.cpp; sourceTree = "<group>"; };
 		65CA49B5298D1929008302BA /* lighting.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lighting.cpp; sourceTree = "<group>"; };
 		65CA49B6298D1929008302BA /* lighting.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lighting.hpp; sourceTree = "<group>"; };
 		65CA49B9298D1A50008302BA /* lighting_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lighting_test.cpp; sourceTree = "<group>"; };
@@ -217,6 +223,7 @@
 				650515592998AA8100EAB3E0 /* world_test.cpp */,
 				65B97750299F4E0100AB4A79 /* camera_test.cpp */,
 				65B9775C29A1C24D00AB4A79 /* object_test.cpp */,
+				65B9776229A1E72700AB4A79 /* plane_test.cpp */,
 			);
 			path = "raytracer-tests";
 			sourceTree = "<group>";
@@ -256,6 +263,8 @@
 				65B9775329A1B17E00AB4A79 /* intersection.hpp */,
 				65B9775629A1B63000AB4A79 /* sphere.cpp */,
 				65B9775729A1B63000AB4A79 /* sphere.hpp */,
+				65B9775E29A1E68F00AB4A79 /* plane.cpp */,
+				65B9775F29A1E68F00AB4A79 /* plane.hpp */,
 			);
 			path = "raytracer-lib";
 			sourceTree = "<group>";
@@ -289,6 +298,7 @@
 				65587F6B2973C45100485127 /* transformations.hpp in Headers */,
 				65E6B2F5295547CD00F98D69 /* canvas.hpp in Headers */,
 				65051546299102C900EAB3E0 /* tuple_simd.hpp in Headers */,
+				65B9776129A1E68F00AB4A79 /* plane.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +413,7 @@
 			files = (
 				65B1E577294E9B48008BF2DE /* main.cpp in Sources */,
 				65B1E592294E9D7A008BF2DE /* default_test.cpp in Sources */,
+				65B9776329A1E72700AB4A79 /* plane_test.cpp in Sources */,
 				65587F6D2973C4D900485127 /* transformation_test.cpp in Sources */,
 				65E6B2FD295595FB00F98D69 /* matrix_test.cpp in Sources */,
 				65B97751299F4E0100AB4A79 /* camera_test.cpp in Sources */,
@@ -431,6 +442,7 @@
 				65587F702983925400485127 /* ray.cpp in Sources */,
 				65587F6A2973C45100485127 /* transformations.cpp in Sources */,
 				65B9775829A1B63000AB4A79 /* sphere.cpp in Sources */,
+				65B9776029A1E68F00AB4A79 /* plane.cpp in Sources */,
 				65E6B2F129553E4E00F98D69 /* colour.cpp in Sources */,
 				65B1E586294E9BCC008BF2DE /* raytracer_lib.cpp in Sources */,
 				65E6B2F4295547CD00F98D69 /* canvas.cpp in Sources */,
