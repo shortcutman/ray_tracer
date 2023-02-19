@@ -34,7 +34,7 @@ void World::addObject(ObjectPtr object) {
 
 Colour World::colourAt(const Ray &ray) const {
     auto intersects = this->intersects(ray);
-    auto rayHit = hit(intersects);
+    auto rayHit = getFirstHit(intersects);
     if (rayHit) {
         auto values = IntersectValues(*rayHit, ray);
         auto colour = shadeHits(values);
@@ -44,8 +44,8 @@ Colour World::colourAt(const Ray &ray) const {
     }
 }
 
-Object::IntersectHits World::intersects(const Ray& ray) const {
-    Object::IntersectHits allHits;
+Intersections World::intersects(const Ray& ray) const {
+    Intersections allHits;
     
     for (auto obj : _objects) {
         auto hits = obj->intersects(ray);
@@ -53,7 +53,7 @@ Object::IntersectHits World::intersects(const Ray& ray) const {
     }
     
     std::sort(allHits.begin(), allHits.end(),
-        [](const Object::Intersect& a, const Object::Intersect& b) -> bool {
+        [](const Intersect& a, const Intersect& b) -> bool {
             return a.t < b.t;
         });
     
@@ -78,7 +78,7 @@ bool World::isShadowed(const Tuple &point) const {
     auto ray = Ray(point, normalisedPointToLightVector);
     
     auto intersections = intersects(ray);
-    auto hit = rtlib::hit(intersections);
+    auto hit = rtlib::getFirstHit(intersections);
     
     return hit && hit->t < distancePointToLight;
 }

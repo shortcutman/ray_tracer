@@ -70,7 +70,7 @@ TEST(WorldTest, ShadeIntersectsInShadow) {
     w.addObject(s2);
     
     Ray r(create_point(0.0, 0.0, 5.0), create_vector(0.0, 0.0, 1.0));
-    auto intersect = Object::Intersect(s2.get(), 4.0);
+    auto intersect = Intersect(s2.get(), 4.0);
     auto intersectValues = IntersectValues(intersect, r);
     auto colour = w.shadeHits(intersectValues);
     

@@ -14,13 +14,6 @@
 #include <cmath>
 #include <numeric>
 
-rtlib::Object::Intersect::Intersect(const Object* obj, double t_) :
-object(obj), t(t_) {}
-
-bool rtlib::Object::Intersect::operator==(const Intersect& rhs) const {
-    return this->object == rhs.object && this->t == rhs.t;
-}
-
 rtlib::Object::Object() :
     _transform(Matrix4x4::identityMatrix())
 {}
@@ -45,41 +38,7 @@ void rtlib::Object::setMaterial(Material material) {
     _material = material;
 }
 
-std::optional<rtlib::Object::Intersect> rtlib::hit(Object::IntersectHits hits) {
-    std::optional<Object::Intersect> result;
-    
-    for (const Object::Intersect& i : hits) {
-        if (i.t < 0.0) {
-            continue;
-        } else if (!result) {
-            result = i;
-        } else if (result->t > i.t) {
-            result = i;
-        }
-    }
-    
-    return result;
-}
-
-rtlib::IntersectValues::IntersectValues(Object::Intersect intersect, Ray ray) :
-    intersect(intersect)
-{
-    point = ray.positionAt(intersect.t);
-    vectorToEye = -ray.direction();
-    normal = intersect.object->normalAt(point);
-    
-    if (rtlib::Tuple::dot(vectorToEye, normal) < 0) {
-        inside = true;
-        normal = -intersect.object->normalAt(point);
-    } else {
-        inside = false;
-    }
-    
-    auto epsilonPoint = normal * 0.0000001;
-    overPoint = point + epsilonPoint;
-}
-
-rtlib::Sphere::IntersectHits rtlib::Sphere::intersects(const Ray& ray) const {
+rtlib::Intersections rtlib::Sphere::intersects(const Ray& ray) const {
     const auto translatedRay = ray.transform(this->transform().inverse());
     const auto centre = rtlib::create_point(0.0, 0.0, 0.0);
     const auto radius = 1.0;
@@ -91,13 +50,13 @@ rtlib::Sphere::IntersectHits rtlib::Sphere::intersects(const Ray& ray) const {
     
     auto discriminant = (b * b) - (4 * a * c);
     if (discriminant < 0) {
-        return IntersectHits();
+        return Intersections();
     }
         
     Intersect hit1(this, (-b - std::sqrt(discriminant)) / (2 * a));
     Intersect hit2(this, (-b + std::sqrt(discriminant)) / (2 * a));
     
-    IntersectHits hits;
+    Intersections hits;
     hits.push_back(hit1);
     hits.push_back(hit2);
     return hits;

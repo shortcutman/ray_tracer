@@ -11,24 +11,15 @@
 #include <vector>
 #include <optional>
 
-#include "matrix.hpp"
+#include "intersection.hpp"
 #include "lighting.hpp"
+#include "matrix.hpp"
 
 namespace rtlib {
 
 class Ray;
 
 class Object {
-public:
-    struct Intersect {
-        const Object* object;
-        double t;
-        
-        Intersect(const Object* obj, double t_);
-        bool operator==(const Intersect& rhs) const;
-    };
-    typedef std::vector<Intersect> IntersectHits;
-    
 private:
     Matrix4x4 _transform;
     Material _material;
@@ -44,21 +35,8 @@ public:
     Material material() const;
     void setMaterial(Material material);
     
-    virtual IntersectHits intersects(const Ray& ray) const = 0;
+    virtual Intersections intersects(const Ray& ray) const = 0;
     virtual Tuple normalAt(const Tuple& point) const = 0;
-};
-
-std::optional<Object::Intersect> hit(Object::IntersectHits hits);
-
-struct IntersectValues {
-    Object::Intersect intersect;
-    Tuple point;
-    Tuple vectorToEye;
-    Tuple normal;
-    Tuple overPoint;
-    bool inside;
-    
-    IntersectValues(Object::Intersect intersect, Ray ray);
 };
 
 class Sphere : public Object {
@@ -66,7 +44,7 @@ public:
     Sphere() : Object() {}
     ~Sphere() {}
     
-    virtual IntersectHits intersects(const Ray& ray) const;
+    virtual Intersections intersects(const Ray& ray) const;
     virtual Tuple normalAt(const Tuple& point) const;
 };
 

@@ -36,7 +36,7 @@ public:
     
     Colour colourAt(const Ray& ray) const;
     
-    Object::IntersectHits intersects(const Ray& ray) const;
+    Intersections intersects(const Ray& ray) const;
     Colour shadeHits(IntersectValues values) const;
     bool isShadowed(const Tuple& point) const;
     
