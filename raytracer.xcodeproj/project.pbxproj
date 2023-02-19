@@ -38,6 +38,7 @@
 		65B9775529A1B17E00AB4A79 /* intersection.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65B9775329A1B17E00AB4A79 /* intersection.hpp */; };
 		65B9775829A1B63000AB4A79 /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B9775629A1B63000AB4A79 /* sphere.cpp */; };
 		65B9775929A1B63000AB4A79 /* sphere.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65B9775729A1B63000AB4A79 /* sphere.hpp */; };
+		65B9775D29A1C24D00AB4A79 /* object_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B9775C29A1C24D00AB4A79 /* object_test.cpp */; };
 		65CA49B7298D1929008302BA /* lighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65CA49B5298D1929008302BA /* lighting.cpp */; };
 		65CA49B8298D1929008302BA /* lighting.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65CA49B6298D1929008302BA /* lighting.hpp */; };
 		65CA49BA298D1A50008302BA /* lighting_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65CA49B9298D1A50008302BA /* lighting_test.cpp */; };
@@ -125,6 +126,7 @@
 		65B9775329A1B17E00AB4A79 /* intersection.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = intersection.hpp; sourceTree = "<group>"; };
 		65B9775629A1B63000AB4A79 /* sphere.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sphere.cpp; sourceTree = "<group>"; };
 		65B9775729A1B63000AB4A79 /* sphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sphere.hpp; sourceTree = "<group>"; };
+		65B9775C29A1C24D00AB4A79 /* object_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = object_test.cpp; sourceTree = "<group>"; };
 		65CA49B5298D1929008302BA /* lighting.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lighting.cpp; sourceTree = "<group>"; };
 		65CA49B6298D1929008302BA /* lighting.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lighting.hpp; sourceTree = "<group>"; };
 		65CA49B9298D1A50008302BA /* lighting_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lighting_test.cpp; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				65CA49B9298D1A50008302BA /* lighting_test.cpp */,
 				650515592998AA8100EAB3E0 /* world_test.cpp */,
 				65B97750299F4E0100AB4A79 /* camera_test.cpp */,
+				65B9775C29A1C24D00AB4A79 /* object_test.cpp */,
 			);
 			path = "raytracer-tests";
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				65E6B2EC294EA63000F98D69 /* tuple_test.cpp in Sources */,
 				65587F79298398E000485127 /* sphere_test.cpp in Sources */,
 				65E6B2EF29553DBC00F98D69 /* colour_test.cpp in Sources */,
+				65B9775D29A1C24D00AB4A79 /* object_test.cpp in Sources */,
 				65CA49BA298D1A50008302BA /* lighting_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
