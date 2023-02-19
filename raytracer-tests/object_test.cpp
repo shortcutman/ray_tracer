@@ -19,20 +19,24 @@ using namespace rtlib;
 namespace {
 
 Ray _lastRay;
+Tuple _lastNormalPoint;
 
 class ObjectMock : public Object {
 public:
     ObjectMock() {}
-    
-    virtual Tuple normalAt(const Tuple& point) const {
-        return Tuple();
-    };
     
 protected:
     virtual Intersections intersectsImpl(const Ray& ray) const {
         _lastRay = ray;
         return Intersections();
     }
+    
+    virtual Tuple normalAtImpl(const Tuple& point) const {
+        _lastNormalPoint = point;
+        auto testVec = point;
+        testVec.setW(0.0);
+        return testVec;
+    };
 };
 
 TEST(ObjectTest, DefaultTransformation) {
@@ -107,6 +111,20 @@ TEST(ObjectTest, IntersectTranslatedShapeWithRay) {
     
     EXPECT_EQ(_lastRay.origin(), create_point(-5.0, 0.0, -5.0));
     EXPECT_EQ(_lastRay.direction(), create_vector(0.0, 0.0, 1.0));
+}
+
+TEST(ObjectTest, NormalTranslatedShape) {
+    ObjectMock o;
+    o.setTransform(translation(0.0, 1.0, 0.0));
+    auto normal = o.normalAt(create_point(0.0, 1.70711, -0.70711));
+    EXPECT_EQ(normal, create_vector(0.0, 0.70711, -0.70711));
+}
+
+TEST(ObjectTest, NormalTransformedShape) {
+    ObjectMock o;
+    o.setTransform(scaling(1.0, 0.5, 1.0) * rotation_z(std::numbers::pi / 5.0));
+    auto normal = o.normalAt(create_point(0.0, std::sqrt(2.0) / 2.0, -std::sqrt(2.0) / 2.0));
+    EXPECT_EQ(normal, create_vector(0.0, 0.97014, -0.24254));
 }
 
 }

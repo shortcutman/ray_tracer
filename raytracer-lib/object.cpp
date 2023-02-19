@@ -43,3 +43,11 @@ rtlib::Intersections rtlib::Object::intersects(const Ray &ray) const {
     return intersectsImpl(localRay);
 }
 
+rtlib::Tuple rtlib::Object::normalAt(const Tuple &point) const {
+    auto localPoint = _transform.inverse() * point;
+    auto localNormal = normalAtImpl(localPoint);
+    auto worldNormal = this->transform().inverse().transpose() * localNormal;
+    worldNormal.setW(0.0);
+    return worldNormal.normalised();
+}
+

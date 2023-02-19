@@ -32,10 +32,7 @@ rtlib::Intersections rtlib::Sphere::intersectsImpl(const Ray& ray) const {
     return hits;
 }
 
-rtlib::Tuple rtlib::Sphere::normalAt(const Tuple &point) const {
-    auto objectPoint = this->transform().inverse() * point;
-    auto objectNormal = objectPoint - rtlib::create_point(0.0, 0.0, 0.0);
-    auto worldNormal = this->transform().inverse().transpose() * objectNormal;
-    worldNormal.setW(0.0);
-    return worldNormal.normalised();
+rtlib::Tuple rtlib::Sphere::normalAtImpl(const Tuple &point) const {
+    auto objectNormal = point - rtlib::create_point(0.0, 0.0, 0.0);
+    return objectNormal;
 }
