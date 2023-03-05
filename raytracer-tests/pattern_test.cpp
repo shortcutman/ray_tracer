@@ -24,7 +24,7 @@ TEST(PatternTest, StripePatternConstantInY) {
     auto white = Colour(1.0, 1.0, 1.0);
     auto black = Colour(0.0, 0.0, 0.0);
     
-    auto obj = Sphere();
+    auto obj = rtlib_tests::PointObject();
     auto stripePattern = StripePattern(white, black);
     EXPECT_EQ(stripePattern.colourAt(&obj, create_point(0.0, 0.0, 0.0)), white);
     EXPECT_EQ(stripePattern.colourAt(&obj, create_point(0.0, 1.0, 0.0)), white);
@@ -35,7 +35,7 @@ TEST(PatternTest, StripePatternConstantInZ) {
     auto white = Colour(1.0, 1.0, 1.0);
     auto black = Colour(0.0, 0.0, 0.0);
     
-    auto obj = Sphere();
+    auto obj = rtlib_tests::PointObject();
     auto stripePattern = StripePattern(white, black);
     EXPECT_EQ(stripePattern.colourAt(&obj, create_point(0.0, 0.0, 0.0)), white);
     EXPECT_EQ(stripePattern.colourAt(&obj, create_point(0.0, 0.0, 1.0)), white);
@@ -46,7 +46,7 @@ TEST(PatternTest, StripePatternAlternatesInX) {
     auto white = Colour(1.0, 1.0, 1.0);
     auto black = Colour(0.0, 0.0, 0.0);
     
-    auto obj = Sphere();
+    auto obj = rtlib_tests::PointObject();
     auto stripePattern = StripePattern(white, black);
     EXPECT_EQ(stripePattern.colourAt(&obj, create_point(0.0, 0.0, 0.0)), white);
     EXPECT_EQ(stripePattern.colourAt(&obj, create_point(0.9, 0.0, 0.0)), white);
@@ -76,5 +76,61 @@ TEST(PatternTest, StripePatternWithLightApplied) {
     EXPECT_EQ(light.lightPoint(&point, create_point(0.9, 0.0, 0.0), eyeV, normalV, false), Colour(1.0, 1.0, 1.0));
     EXPECT_EQ(light.lightPoint(&point, create_point(1.1, 0.0, 0.0), eyeV, normalV, false), Colour(0.0, 0.0, 0.0));
 }
+
+TEST(PatternTest, StripePatternWithObjectTransformation) {
+    auto white = Colour(1.0, 1.0, 1.0);
+    auto black = Colour(0.0, 0.0, 0.0);
+    
+    auto sphere = Sphere();
+    auto material = Material({
+        StripePattern(white, black),
+        Colour(1.0, 0.0, 0.0),
+        1.0,
+        0.0,
+        0.0,
+    });
+    sphere.setMaterial(material);
+    sphere.setTransform(scaling(2.0, 2.0, 2.0));
+    
+    EXPECT_EQ(sphere.material().colourAt(&sphere, create_point(1.5, 0.0, 0.0)), white);
+}
+
+TEST(PatternTest, StripePatternWithPatternTransformation) {
+    auto white = Colour(1.0, 1.0, 1.0);
+    auto black = Colour(0.0, 0.0, 0.0);
+    
+    auto sphere = Sphere();
+    auto material = Material({
+        StripePattern(white, black),
+        Colour(1.0, 0.0, 0.0),
+        1.0,
+        0.0,
+        0.0,
+    });
+    material._pattern->setTransform(scaling(2.0, 2.0, 2.0));
+    sphere.setMaterial(material);
+    
+    EXPECT_EQ(sphere.material().colourAt(&sphere, create_point(1.5, 0.0, 0.0)), white);
+}
+
+TEST(PatternTest, StripePatternWithObjectAndPatternTransformation) {
+    auto white = Colour(1.0, 1.0, 1.0);
+    auto black = Colour(0.0, 0.0, 0.0);
+    
+    auto sphere = Sphere();
+    sphere.setTransform(scaling(2.0, 2.0, 2.0));
+    auto material = Material({
+        StripePattern(white, black),
+        Colour(1.0, 0.0, 0.0),
+        1.0,
+        0.0,
+        0.0,
+    });
+    material._pattern->setTransform(translation(0.5, 0.0, 0.0));
+    sphere.setMaterial(material);
+    
+    EXPECT_EQ(sphere.material().colourAt(&sphere, create_point(2.5, 0.0, 0.0)), white);
+}
+
 
 }

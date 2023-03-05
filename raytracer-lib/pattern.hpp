@@ -9,6 +9,7 @@
 #define pattern_hpp
 
 #include "colour.hpp"
+#include "matrix.hpp"
 #include "tuple.hpp"
 
 namespace rtlib {
@@ -19,10 +20,12 @@ class StripePattern {
 private:
     Colour _colourA;
     Colour _colourB;
+    Matrix4x4 _transform;
     
 public:
     StripePattern(Colour colourA, Colour colourB);
     
+    void setTransform(Matrix4x4 transform);
     Colour colourAt(const Object* object, Tuple point) const;
 };
 
