@@ -45,6 +45,8 @@
 		65B9776629B444E600AB4A79 /* pattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B9776429B444E600AB4A79 /* pattern.cpp */; };
 		65B9776729B444E600AB4A79 /* pattern.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65B9776529B444E600AB4A79 /* pattern.hpp */; };
 		65B9776929B444F300AB4A79 /* pattern_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B9776829B444F300AB4A79 /* pattern_test.cpp */; };
+		65B9776C29B4498800AB4A79 /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B9776A29B4498800AB4A79 /* material.cpp */; };
+		65B9776D29B4498800AB4A79 /* material.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65B9776B29B4498800AB4A79 /* material.hpp */; };
 		65CA49B7298D1929008302BA /* lighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65CA49B5298D1929008302BA /* lighting.cpp */; };
 		65CA49B8298D1929008302BA /* lighting.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65CA49B6298D1929008302BA /* lighting.hpp */; };
 		65CA49BA298D1A50008302BA /* lighting_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65CA49B9298D1A50008302BA /* lighting_test.cpp */; };
@@ -139,6 +141,8 @@
 		65B9776429B444E600AB4A79 /* pattern.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pattern.cpp; sourceTree = "<group>"; };
 		65B9776529B444E600AB4A79 /* pattern.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pattern.hpp; sourceTree = "<group>"; };
 		65B9776829B444F300AB4A79 /* pattern_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pattern_test.cpp; sourceTree = "<group>"; };
+		65B9776A29B4498800AB4A79 /* material.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = material.cpp; sourceTree = "<group>"; };
+		65B9776B29B4498800AB4A79 /* material.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = material.hpp; sourceTree = "<group>"; };
 		65CA49B5298D1929008302BA /* lighting.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lighting.cpp; sourceTree = "<group>"; };
 		65CA49B6298D1929008302BA /* lighting.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lighting.hpp; sourceTree = "<group>"; };
 		65CA49B9298D1A50008302BA /* lighting_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lighting_test.cpp; sourceTree = "<group>"; };
@@ -274,6 +278,8 @@
 				65B9775F29A1E68F00AB4A79 /* plane.hpp */,
 				65B9776429B444E600AB4A79 /* pattern.cpp */,
 				65B9776529B444E600AB4A79 /* pattern.hpp */,
+				65B9776A29B4498800AB4A79 /* material.cpp */,
+				65B9776B29B4498800AB4A79 /* material.hpp */,
 			);
 			path = "raytracer-lib";
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65051553299623BD00EAB3E0 /* matrix_simd.hpp in Headers */,
+				65B9776D29B4498800AB4A79 /* material.hpp in Headers */,
 				65B9774F299F48F300AB4A79 /* camera.hpp in Headers */,
 				65CA49B8298D1929008302BA /* lighting.hpp in Headers */,
 				65B9775529A1B17E00AB4A79 /* intersection.hpp in Headers */,
@@ -455,6 +462,7 @@
 				65B9775829A1B63000AB4A79 /* sphere.cpp in Sources */,
 				65B9776029A1E68F00AB4A79 /* plane.cpp in Sources */,
 				65E6B2F129553E4E00F98D69 /* colour.cpp in Sources */,
+				65B9776C29B4498800AB4A79 /* material.cpp in Sources */,
 				65B9776629B444E600AB4A79 /* pattern.cpp in Sources */,
 				65B1E586294E9BCC008BF2DE /* raytracer_lib.cpp in Sources */,
 				65E6B2F4295547CD00F98D69 /* canvas.cpp in Sources */,

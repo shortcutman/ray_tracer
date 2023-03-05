@@ -9,11 +9,10 @@
 #define lighting_hpp
 
 #include "colour.hpp"
+#include "material.hpp"
 #include "tuple.hpp"
 
 namespace rtlib {
-
-class Material;
 
 class Light {
 private:
@@ -31,15 +30,6 @@ public:
                       Tuple vectorToCamera,
                       Tuple normal,
                       bool inShadow) const;
-};
-
-class Material {
-public:
-    Colour _colour = Colour(1.0, 1.0, 1.0);
-    double _ambient = 0.1;
-    double _diffuse = 0.9;
-    double _specular = 0.9;
-    double _shininess = 200.0;
 };
 
 }
