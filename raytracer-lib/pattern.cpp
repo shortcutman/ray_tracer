@@ -17,7 +17,7 @@ _colourB(colourB)
 {
 }
 
-Colour StripePattern::colourAt(Tuple point) const {
+Colour StripePattern::colourAt(const Object* object, Tuple point) const {
     if (static_cast<int>(std::floor(point.x())) % 2 == 0) {
         return _colourA;
     } else {

@@ -25,7 +25,7 @@ public:
     Tuple origin() const;
     Colour intensity() const;
     
-    Colour lightPoint(Material material,
+    Colour lightPoint(const Object* object,
                       Tuple point,
                       Tuple vectorToCamera,
                       Tuple normal,

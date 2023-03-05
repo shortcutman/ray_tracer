@@ -15,6 +15,7 @@
 		650515572998AA5D00EAB3E0 /* world.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650515552998AA5D00EAB3E0 /* world.cpp */; };
 		650515582998AA5D00EAB3E0 /* world.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 650515562998AA5D00EAB3E0 /* world.hpp */; };
 		6505155A2998AA8100EAB3E0 /* world_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650515592998AA8100EAB3E0 /* world_test.cpp */; };
+		6529EED129B45E16006AE298 /* PointObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6529EECF29B45E16006AE298 /* PointObject.cpp */; };
 		65587F6A2973C45100485127 /* transformations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65587F682973C45100485127 /* transformations.cpp */; };
 		65587F6B2973C45100485127 /* transformations.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65587F692973C45100485127 /* transformations.hpp */; };
 		65587F6D2973C4D900485127 /* transformation_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65587F6C2973C4D900485127 /* transformation_test.cpp */; };
@@ -110,6 +111,8 @@
 		650515552998AA5D00EAB3E0 /* world.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = world.cpp; sourceTree = "<group>"; };
 		650515562998AA5D00EAB3E0 /* world.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = world.hpp; sourceTree = "<group>"; };
 		650515592998AA8100EAB3E0 /* world_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = world_test.cpp; sourceTree = "<group>"; };
+		6529EECF29B45E16006AE298 /* PointObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PointObject.cpp; sourceTree = "<group>"; };
+		6529EED029B45E16006AE298 /* PointObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PointObject.hpp; sourceTree = "<group>"; };
 		65587F682973C45100485127 /* transformations.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transformations.cpp; sourceTree = "<group>"; };
 		65587F692973C45100485127 /* transformations.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = transformations.hpp; sourceTree = "<group>"; };
 		65587F6C2973C4D900485127 /* transformation_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transformation_test.cpp; sourceTree = "<group>"; };
@@ -235,6 +238,8 @@
 				65B9775C29A1C24D00AB4A79 /* object_test.cpp */,
 				65B9776229A1E72700AB4A79 /* plane_test.cpp */,
 				65B9776829B444F300AB4A79 /* pattern_test.cpp */,
+				6529EECF29B45E16006AE298 /* PointObject.cpp */,
+				6529EED029B45E16006AE298 /* PointObject.hpp */,
 			);
 			path = "raytracer-tests";
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65B1E577294E9B48008BF2DE /* main.cpp in Sources */,
+				6529EED129B45E16006AE298 /* PointObject.cpp in Sources */,
 				65B1E592294E9D7A008BF2DE /* default_test.cpp in Sources */,
 				65B9776329A1E72700AB4A79 /* plane_test.cpp in Sources */,
 				65587F6D2973C4D900485127 /* transformation_test.cpp in Sources */,

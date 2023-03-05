@@ -15,6 +15,8 @@
 
 namespace rtlib {
 
+class Object;
+
 class Material {
 public:
     std::optional<StripePattern> _pattern;
@@ -25,7 +27,7 @@ public:
     double _shininess = 200.0;
     
 public:
-    Colour colourAt(Tuple point) const;
+    Colour colourAt(const Object* object, Tuple point) const;
 };
 
 }

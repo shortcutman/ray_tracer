@@ -13,6 +13,8 @@
 
 namespace rtlib {
 
+class Object;
+
 class StripePattern {
 private:
     Colour _colourA;
@@ -21,7 +23,7 @@ private:
 public:
     StripePattern(Colour colourA, Colour colourB);
     
-    Colour colourAt(Tuple point) const;
+    Colour colourAt(const Object* object, Tuple point) const;
 };
 
 }

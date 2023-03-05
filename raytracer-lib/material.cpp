@@ -9,9 +9,9 @@
 
 using namespace rtlib;
 
-Colour Material::colourAt(Tuple point) const {
+Colour Material::colourAt(const Object* object, Tuple point) const {
     if (_pattern) {
-        return _pattern->colourAt(point);
+        return _pattern->colourAt(object, point);
     } else {
         return _colour;
     }

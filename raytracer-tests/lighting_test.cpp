@@ -9,6 +9,8 @@
 
 #include "lighting.hpp"
 
+#include "PointObject.hpp"
+
 #include <cmath>
 
 namespace {
@@ -27,7 +29,9 @@ TEST(LightingTest, MaterialConstruction) {
 }
 
 TEST(LightingTest, LightPointWithEyeBetweenLightAndSurface) {
-    rtlib::Material material;
+    auto ptObj = rtlib_tests::PointObject();
+    ptObj.setMaterial(rtlib::Material());
+    
     auto position = rtlib::create_point(0.0, 0.0, 0.0);
     auto eye = rtlib::create_vector(0.0, 0.0, -1.0);
     auto normal = rtlib::create_vector(0.0, 0.0, -1.0);
@@ -36,7 +40,7 @@ TEST(LightingTest, LightPointWithEyeBetweenLightAndSurface) {
     auto intensity = rtlib::Colour(1.0, 1.0, 1.0);
     rtlib::Light light(lightOrigin, intensity);
     
-    auto result = light.lightPoint(material, position, eye, normal, false);
+    auto result = light.lightPoint(&ptObj, position, eye, normal, false);
     EXPECT_EQ(result.red(), 1.9);
     EXPECT_EQ(result.green(), 1.9);
     EXPECT_EQ(result.blue(), 1.9);
@@ -45,7 +49,8 @@ TEST(LightingTest, LightPointWithEyeBetweenLightAndSurface) {
 TEST(LightingTest, LightPointWithEyeAt45Degrees) {
     double value = std::sqrt(2.0) / 2.0;
     
-    rtlib::Material material;
+    auto ptObj = rtlib_tests::PointObject();
+    ptObj.setMaterial(rtlib::Material());
     auto position = rtlib::create_point(0.0, 0.0, 0.0);
     auto eye = rtlib::create_vector(0.0, value, -value);
     auto normal = rtlib::create_vector(0.0, 0.0, -1.0);
@@ -54,14 +59,15 @@ TEST(LightingTest, LightPointWithEyeAt45Degrees) {
     auto intensity = rtlib::Colour(1.0, 1.0, 1.0);
     rtlib::Light light(lightOrigin, intensity);
     
-    auto result = light.lightPoint(material, position, eye, normal, false);
+    auto result = light.lightPoint(&ptObj, position, eye, normal, false);
     EXPECT_EQ(result.red(), 1.0);
     EXPECT_EQ(result.green(), 1.0);
     EXPECT_EQ(result.blue(), 1.0);
 }
 
 TEST(LightingTest, LightPointWithLightAt45Degrees) {
-    rtlib::Material material;
+    auto ptObj = rtlib_tests::PointObject();
+    ptObj.setMaterial(rtlib::Material());
     auto position = rtlib::create_point(0.0, 0.0, 0.0);
     
     auto eye = rtlib::create_vector(0.0, 0.0, -1.0);
@@ -71,7 +77,7 @@ TEST(LightingTest, LightPointWithLightAt45Degrees) {
     auto intensity = rtlib::Colour(1.0, 1.0, 1.0);
     rtlib::Light light(lightOrigin, intensity);
     
-    auto result = light.lightPoint(material, position, eye, normal, false);
+    auto result = light.lightPoint(&ptObj, position, eye, normal, false);
     EXPECT_TRUE(rtlib::Tuple::doubleEquals(result.red(), 0.736396));
     EXPECT_TRUE(rtlib::Tuple::doubleEquals(result.green(), 0.736396));
     EXPECT_TRUE(rtlib::Tuple::doubleEquals(result.blue(), 0.736396));
@@ -80,7 +86,8 @@ TEST(LightingTest, LightPointWithLightAt45Degrees) {
 TEST(LightingTest, LightPointWithEyeAtLightReflection) {
     double value = std::sqrt(2.0) / 2.0;
     
-    rtlib::Material material;
+    auto ptObj = rtlib_tests::PointObject();
+    ptObj.setMaterial(rtlib::Material());
     auto position = rtlib::create_point(0.0, 0.0, 0.0);
     
     auto eye = rtlib::create_vector(0.0, -value, -value);
@@ -90,14 +97,15 @@ TEST(LightingTest, LightPointWithEyeAtLightReflection) {
     auto intensity = rtlib::Colour(1.0, 1.0, 1.0);
     rtlib::Light light(lightOrigin, intensity);
     
-    auto result = light.lightPoint(material, position, eye, normal, false);
+    auto result = light.lightPoint(&ptObj, position, eye, normal, false);
     EXPECT_TRUE(rtlib::Tuple::doubleEquals(result.red(), 1.6364));
     EXPECT_TRUE(rtlib::Tuple::doubleEquals(result.green(), 1.6364));
     EXPECT_TRUE(rtlib::Tuple::doubleEquals(result.blue(), 1.6364));
 }
 
 TEST(LightingTest, LightPointWithLightBehindSurface) {
-    rtlib::Material material;
+    auto ptObj = rtlib_tests::PointObject();
+    ptObj.setMaterial(rtlib::Material());
     auto position = rtlib::create_point(0.0, 0.0, 0.0);
     
     auto eye = rtlib::create_vector(0.0, 0.0, -1.0);
@@ -107,14 +115,15 @@ TEST(LightingTest, LightPointWithLightBehindSurface) {
     auto intensity = rtlib::Colour(1.0, 1.0, 1.0);
     rtlib::Light light(lightOrigin, intensity);
     
-    auto result = light.lightPoint(material, position, eye, normal, false);
-    EXPECT_EQ(result.red(), material._ambient);
-    EXPECT_EQ(result.green(), material._ambient);
-    EXPECT_EQ(result.blue(), material._ambient);
+    auto result = light.lightPoint(&ptObj, position, eye, normal, false);
+    EXPECT_EQ(result.red(), ptObj.material()._ambient);
+    EXPECT_EQ(result.green(), ptObj.material()._ambient);
+    EXPECT_EQ(result.blue(), ptObj.material()._ambient);
 }
 
 TEST(LightingTest, LightPointWithShadow) {
-    rtlib::Material material;
+    auto ptObj = rtlib_tests::PointObject();
+    ptObj.setMaterial(rtlib::Material());
     auto position = rtlib::create_point(0.0, 0.0, 0.0);
     
     auto eye = rtlib::create_vector(0.0, 0.0, -1.0);
@@ -124,10 +133,10 @@ TEST(LightingTest, LightPointWithShadow) {
     auto intensity = rtlib::Colour(1.0, 1.0, 1.0);
     rtlib::Light light(lightOrigin, intensity);
     
-    auto result = light.lightPoint(material, position, eye, normal, true);
-    EXPECT_EQ(result.red(), material._ambient);
-    EXPECT_EQ(result.green(), material._ambient);
-    EXPECT_EQ(result.blue(), material._ambient);
+    auto result = light.lightPoint(&ptObj, position, eye, normal, true);
+    EXPECT_EQ(result.red(), ptObj.material()._ambient);
+    EXPECT_EQ(result.green(), ptObj.material()._ambient);
+    EXPECT_EQ(result.blue(), ptObj.material()._ambient);
 }
 
 }
