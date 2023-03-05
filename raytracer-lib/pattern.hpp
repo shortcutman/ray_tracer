@@ -1,0 +1,30 @@
+//
+//  pattern.hpp
+//  raytracer-lib
+//
+//  Created by Daniel Burke on 5/3/2023.
+//
+
+#ifndef pattern_hpp
+#define pattern_hpp
+
+#include "colour.hpp"
+#include "tuple.hpp"
+
+namespace rtlib {
+
+class StripePattern {
+private:
+    Colour _colourA;
+    Colour _colourB;
+    
+public:
+    StripePattern(Colour colourA, Colour colourB);
+    
+    Colour colourAt(Tuple point) const;
+};
+
+}
+
+
+#endif /* pattern_hpp */
