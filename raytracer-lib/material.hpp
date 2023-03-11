@@ -26,6 +26,7 @@ public:
     double _diffuse = 0.9;
     double _specular = 0.9;
     double _shininess = 200.0;
+    double _reflective = 0.0;
     
 public:
     Colour colourAt(const Object* object, Tuple point) const;
