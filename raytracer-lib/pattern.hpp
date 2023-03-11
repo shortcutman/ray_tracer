@@ -16,17 +16,31 @@ namespace rtlib {
 
 class Object;
 
-class StripePattern {
+class Pattern {
+private:
+    Matrix4x4 _transform;
+
+public:
+    Pattern();
+    ~Pattern();
+    
+    void setTransform(Matrix4x4 transform);
+    Colour colourAt(const Object* object, Tuple point) const;
+    
+protected:
+    virtual Colour colourAtLocalPoint(Tuple point) const = 0;
+};
+
+class StripePattern : public Pattern {
 private:
     Colour _colourA;
     Colour _colourB;
-    Matrix4x4 _transform;
     
 public:
     StripePattern(Colour colourA, Colour colourB);
     
-    void setTransform(Matrix4x4 transform);
-    Colour colourAt(const Object* object, Tuple point) const;
+protected:
+    virtual Colour colourAtLocalPoint(Tuple point) const;
 };
 
 }

@@ -62,7 +62,7 @@ TEST(PatternTest, StripePatternWithLightApplied) {
     
     auto point = rtlib_tests::PointObject();
     auto material = Material({
-        StripePattern(white, black),
+        std::make_shared<StripePattern>(white, black),
         Colour(1.0, 0.0, 0.0),
         1.0,
         0.0,
@@ -83,7 +83,7 @@ TEST(PatternTest, StripePatternWithObjectTransformation) {
     
     auto sphere = Sphere();
     auto material = Material({
-        StripePattern(white, black),
+        std::make_shared<StripePattern>(white, black),
         Colour(1.0, 0.0, 0.0),
         1.0,
         0.0,
@@ -101,7 +101,7 @@ TEST(PatternTest, StripePatternWithPatternTransformation) {
     
     auto sphere = Sphere();
     auto material = Material({
-        StripePattern(white, black),
+        std::make_shared<StripePattern>(white, black),
         Colour(1.0, 0.0, 0.0),
         1.0,
         0.0,
@@ -120,7 +120,7 @@ TEST(PatternTest, StripePatternWithObjectAndPatternTransformation) {
     auto sphere = Sphere();
     sphere.setTransform(scaling(2.0, 2.0, 2.0));
     auto material = Material({
-        StripePattern(white, black),
+        std::make_shared<StripePattern>(white, black),
         Colour(1.0, 0.0, 0.0),
         1.0,
         0.0,

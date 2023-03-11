@@ -93,7 +93,7 @@ World World::defaultWorld() {
     
     auto sphere1 = std::make_shared<Sphere>();
     sphere1->setMaterial({
-        std::nullopt,
+        nullptr,
         Colour(0.8, 1.0, 0.6),
         0.1,
         0.7,

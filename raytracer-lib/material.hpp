@@ -11,6 +11,7 @@
 #include "colour.hpp"
 #include "pattern.hpp"
 
+#include <memory>
 #include <optional>
 
 namespace rtlib {
@@ -19,7 +20,7 @@ class Object;
 
 class Material {
 public:
-    std::optional<StripePattern> _pattern;
+    std::shared_ptr<Pattern> _pattern;
     Colour _colour = Colour(1.0, 1.0, 1.0);
     double _ambient = 0.1;
     double _diffuse = 0.9;
