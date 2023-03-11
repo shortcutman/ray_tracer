@@ -44,8 +44,13 @@ World createWorld() {
     rightWall->material()._specular = 0.0;
     world.addObject(rightWall);
     
+    auto white = Colour(1.0, 1.0, 1.0);
+    auto black = Colour(0.0, 0.0, 0.0);
+    
     auto middle = std::make_shared<Sphere>();
     middle->setTransform(translation(-0.5, 1.0, 0.5));
+    middle->material()._pattern = std::make_shared<StripePattern>(white, black);
+    middle->material()._pattern->setTransform(scaling(0.1, 0.1, 0.1));
     middle->material()._colour = Colour(0.1, 1.0, 0.5);
     middle->material()._diffuse = 0.7;
     middle->material()._specular = 0.3;
@@ -54,6 +59,8 @@ World createWorld() {
     auto right = std::make_shared<Sphere>();
     right->setTransform(translation(1.5, 0.5, -0.5) *
                        scaling(0.5, 0.5, 0.5));
+    right->material()._pattern = std::make_shared<GradientPattern>(white, black);
+    right->material()._pattern->setTransform(translation(1.0, 0.0, 0.0) * scaling(-2.0, 2.0, 2.0));
     right->material()._colour = Colour(0.5, 1.0, 0.1);
     right->material()._diffuse = 0.7;
     right->material()._specular = 0.3;
