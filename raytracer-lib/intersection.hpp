@@ -33,6 +33,7 @@ struct IntersectValues {
     Tuple vectorToEye;
     Tuple normal;
     Tuple overPoint;
+    Tuple reflectionVector;
     bool inside;
     
     IntersectValues(Intersect intersect, Ray ray);

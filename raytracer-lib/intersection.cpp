@@ -34,6 +34,8 @@ IntersectValues::IntersectValues(Intersect intersect, Ray ray) :
     
     auto epsilonPoint = normal * 0.0000001;
     overPoint = point + epsilonPoint;
+    
+    reflectionVector = Tuple::reflect(ray.direction(), normal);
 }
 
 std::optional<Intersect> rtlib::getFirstHit(rtlib::Intersections hits) {
