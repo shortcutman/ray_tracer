@@ -74,8 +74,10 @@ Intersections World::intersects(const Ray& ray) const {
 }
 
 Colour World::shadeHits(IntersectValues values) const {
-    auto colour = _lights.front()->lightPoint(values.intersect.object, values.point, values.vectorToEye, values.normal, isShadowed(values.overPoint));
-    return colour;
+    auto surfaceColour = _lights.front()->lightPoint(values.intersect.object, values.point, values.vectorToEye, values.normal, isShadowed(values.overPoint));
+    auto reflectedColour = reflectedColourAt(values);
+    auto resultColour = surfaceColour + reflectedColour;
+    return resultColour;
 }
 
 bool World::isShadowed(const Tuple &point) const {

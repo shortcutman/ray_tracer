@@ -169,4 +169,20 @@ TEST(WorldTest, ReflectedColourForReflectiveMaterial) {
     EXPECT_EQ(colour, Colour(0.190331, 0.237913, 0.142748));
 }
 
+TEST(WorldTest, ShadeHitForReflectiveMaterial) {
+    auto world = rtlib::World::defaultWorld();
+    
+    auto plane = std::make_shared<rtlib::Plane>();
+    plane->material()._reflective = 0.5;
+    plane->setTransform(translation(0.0, -1.0, 0.0));
+    world.addObject(plane);
+    
+    auto ray = Ray(create_point(0.0, 0.0, -3.0), create_vector(0.0, -std::sqrt(2.0)/2.0, std::sqrt(2.0)/2.0));
+    auto intersection = Intersect(plane.get(), std::sqrt(2.0));
+    auto intersectValues = IntersectValues(intersection, ray);
+    auto colour = world.shadeHits(intersectValues);
+    
+    EXPECT_EQ(colour, Colour(0.876756, 0.924339, 0.829173));
+}
+
 }
