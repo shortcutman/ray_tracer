@@ -35,6 +35,7 @@ public:
     void addObject(ObjectPtr object);
     
     Colour colourAt(const Ray& ray) const;
+    Colour reflectedColourAt(const IntersectValues& values) const;
     
     Intersections intersects(const Ray& ray) const;
     Colour shadeHits(IntersectValues values) const;

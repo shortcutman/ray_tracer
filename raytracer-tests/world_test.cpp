@@ -8,6 +8,7 @@
 #include <gtest/gtest.h>
 
 #include "camera.hpp"
+#include "plane.hpp"
 #include "ray.hpp"
 #include "sphere.hpp"
 #include "transformations.hpp"
@@ -135,6 +136,37 @@ TEST(WorldTest, NoShadowWhenPointIsBeheindLight) {
 TEST(WorldTest, NoShadowWhenObjectIsBeheindLight) {
     auto world = rtlib::World::defaultWorld();
     EXPECT_FALSE(world.isShadowed(create_point(-2.0, 2.0, -2.0)));
+}
+
+TEST(WorldTest, ReflectedColourForNonreflectiveMaterial) {
+    auto world = rtlib::World::defaultWorld();
+    auto ray = Ray(create_point(0.0, 0.0, 0.0), create_vector(0.0, 0.0, 1.0));
+    auto shape = world.objects().at(1);
+    shape->material()._ambient = 1.0;
+    
+    EXPECT_EQ(shape->material()._reflective, 0.0);
+    
+    auto intersection = Intersect(shape.get(), 1.0);
+    auto intersectValues = IntersectValues(intersection, ray);
+    auto colour = world.reflectedColourAt(intersectValues);
+    
+    EXPECT_EQ(colour, Colour(0.0, 0.0, 0.0));
+}
+
+TEST(WorldTest, ReflectedColourForReflectiveMaterial) {
+    auto world = rtlib::World::defaultWorld();
+    
+    auto plane = std::make_shared<rtlib::Plane>();
+    plane->material()._reflective = 0.5;
+    plane->setTransform(translation(0.0, -1.0, 0.0));
+    world.addObject(plane);
+    
+    auto ray = Ray(create_point(0.0, 0.0, -3.0), create_vector(0.0, -std::sqrt(2.0)/2.0, std::sqrt(2.0)/2.0));
+    auto intersection = Intersect(plane.get(), std::sqrt(2.0));
+    auto intersectValues = IntersectValues(intersection, ray);
+    auto colour = world.reflectedColourAt(intersectValues);
+    
+    EXPECT_EQ(colour, Colour(0.190331, 0.237913, 0.142748));
 }
 
 }

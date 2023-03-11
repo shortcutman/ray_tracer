@@ -45,6 +45,18 @@ Colour World::colourAt(const Ray &ray) const {
     }
 }
 
+Colour World::reflectedColourAt(const IntersectValues &values) const {
+    if (values.intersect.object->material()._reflective == 0.0) {
+        return Colour(0.0, 0.0, 0.0);
+    }
+    
+    auto reflectRay = Ray(values.overPoint, values.reflectionVector);
+    auto colour = colourAt(reflectRay);
+    auto reflectColour = colour * values.intersect.object->material()._reflective;
+    
+    return reflectColour;
+}
+
 Intersections World::intersects(const Ray& ray) const {
     Intersections allHits;
     
