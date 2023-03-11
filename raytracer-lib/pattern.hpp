@@ -55,6 +55,18 @@ protected:
     virtual Colour colourAtLocalPoint(Tuple point) const;
 };
 
+class RingPattern : public Pattern {
+private:
+    Colour _colourA;
+    Colour _colourB;
+    
+public:
+    RingPattern(Colour colourA, Colour colourB);
+    
+protected:
+    virtual Colour colourAtLocalPoint(Tuple point) const;
+};
+
 }
 
 

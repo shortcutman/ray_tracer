@@ -144,4 +144,16 @@ TEST(PatternTest, GradientPatternLinearColourInterpolation) {
     EXPECT_EQ(gradient.colourAt(&point, create_point(0.75, 0.0, 0.0)), Colour(0.25, 0.25, 0.25));
 }
 
+TEST(PatternTest, RingPatternExtendsInXAndY) {
+    auto point = rtlib_tests::PointObject();
+    
+    auto white = Colour(1.0, 1.0, 1.0);
+    auto black = Colour(0.0, 0.0, 0.0);
+    auto gradient = RingPattern(white, black);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(0.0, 0.0, 0.0)), white);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(1.0, 0.0, 0.0)), black);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(0.0, 0.0, 1.0)), black);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(0.708, 0.0, 0.708)), black);
+}
+
 }

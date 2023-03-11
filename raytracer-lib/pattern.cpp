@@ -58,3 +58,17 @@ Colour GradientPattern::colourAtLocalPoint(Tuple point) const {
     auto result = _colourA + distance * fraction;
     return result;
 }
+
+RingPattern::RingPattern(Colour colourA, Colour colourB) :
+_colourA(colourA),
+_colourB(colourB)
+{
+}
+
+Colour RingPattern::colourAtLocalPoint(Tuple point) const {
+    if (static_cast<int>(std::floor(std::sqrt(std::pow(point.x(), 2) + std::pow(point.z(), 2)))) % 2 == 0) {
+        return _colourA;
+    } else {
+        return _colourB;
+    }
+}
