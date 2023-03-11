@@ -67,6 +67,18 @@ protected:
     virtual Colour colourAtLocalPoint(Tuple point) const;
 };
 
+class CheckersPattern : public Pattern {
+private:
+    Colour _colourA;
+    Colour _colourB;
+    
+public:
+    CheckersPattern(Colour colourA, Colour colourB);
+    
+protected:
+    virtual Colour colourAtLocalPoint(Tuple point) const;
+};
+
 }
 
 

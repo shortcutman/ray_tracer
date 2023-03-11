@@ -72,3 +72,17 @@ Colour RingPattern::colourAtLocalPoint(Tuple point) const {
         return _colourB;
     }
 }
+
+CheckersPattern::CheckersPattern(Colour colourA, Colour colourB) :
+_colourA(colourA),
+_colourB(colourB)
+{
+}
+
+Colour CheckersPattern::colourAtLocalPoint(Tuple point) const {
+    if (static_cast<int>(std::abs(point.x()) + std::abs(point.y()) + std::abs(point.z())) % 2 == 0) {
+        return _colourA;
+    } else {
+        return _colourB;
+    }
+}

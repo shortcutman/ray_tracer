@@ -156,4 +156,37 @@ TEST(PatternTest, RingPatternExtendsInXAndY) {
     EXPECT_EQ(gradient.colourAt(&point, create_point(0.708, 0.0, 0.708)), black);
 }
 
+TEST(PatternTest, CheckersPatternRepeatsInX) {
+    auto point = rtlib_tests::PointObject();
+    
+    auto white = Colour(1.0, 1.0, 1.0);
+    auto black = Colour(0.0, 0.0, 0.0);
+    auto gradient = CheckersPattern(white, black);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(0.0, 0.0, 0.0)), white);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(0.99, 0.0, 0.0)), white);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(1.01, 0.0, 0.0)), black);
+}
+
+TEST(PatternTest, CheckersPatternRepeatsInY) {
+    auto point = rtlib_tests::PointObject();
+    
+    auto white = Colour(1.0, 1.0, 1.0);
+    auto black = Colour(0.0, 0.0, 0.0);
+    auto gradient = CheckersPattern(white, black);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(0.0, 0.0, 0.0)), white);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(0.0, 0.99, 0.0)), white);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(0.0, 1.01, 0.0)), black);
+}
+
+TEST(PatternTest, CheckersPatternRepeatsInZ) {
+    auto point = rtlib_tests::PointObject();
+    
+    auto white = Colour(1.0, 1.0, 1.0);
+    auto black = Colour(0.0, 0.0, 0.0);
+    auto gradient = CheckersPattern(white, black);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(0.0, 0.0, 0.0)), white);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(0.0, 0.0, 0.99)), white);
+    EXPECT_EQ(gradient.colourAt(&point, create_point(0.0, 0.0, 1.01)), black);
+}
+
 }
