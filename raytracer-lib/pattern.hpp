@@ -43,6 +43,18 @@ protected:
     virtual Colour colourAtLocalPoint(Tuple point) const;
 };
 
+class GradientPattern : public Pattern {
+private:
+    Colour _colourA;
+    Colour _colourB;
+    
+public:
+    GradientPattern(Colour colourA, Colour colourB);
+    
+protected:
+    virtual Colour colourAtLocalPoint(Tuple point) const;
+};
+
 }
 
 

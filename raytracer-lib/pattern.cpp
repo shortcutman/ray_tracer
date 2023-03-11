@@ -45,3 +45,16 @@ Colour StripePattern::colourAtLocalPoint(Tuple point) const {
         return _colourB;
     }
 }
+
+GradientPattern::GradientPattern(Colour colourA, Colour colourB) :
+_colourA(colourA),
+_colourB(colourB)
+{
+}
+
+Colour GradientPattern::colourAtLocalPoint(Tuple point) const {
+    auto distance = _colourB - _colourA;
+    auto fraction = point.x() - std::floor(point.x());
+    auto result = _colourA + distance * fraction;
+    return result;
+}
