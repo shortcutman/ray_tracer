@@ -63,6 +63,10 @@ Colour World::reflectedColourAt(const IntersectValues &values, unsigned int rema
     return reflectColour;
 }
 
+Colour World::refractedColourAt(const IntersectValues &values, unsigned int remaining) {
+    return Colour(0.0, 0.0, 0.0);
+}
+
 Intersections World::intersects(const Ray& ray) const {
     Intersections allHits;
     

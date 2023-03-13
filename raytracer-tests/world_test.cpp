@@ -220,4 +220,17 @@ TEST(WorldTest, ReflectedColourAtMaximumRecursiveDepth) {
     EXPECT_EQ(colour, Colour(0.0, 0.0, 0.0));
 }
 
+TEST(WorldTest, RefractedColourWithAnOpaqueSurface) {
+    auto world = rtlib::World::defaultWorld();
+    auto shape = world.objects().front();
+    auto ray = Ray(create_point(0.0, 0.0, -5.0), create_vector(0.0, 0.0, 1.0));
+    auto intersections = Intersections();
+    intersections.push_back(Intersect(shape.get(), 4.0));
+    intersections.push_back(Intersect(shape.get(), 6.0));
+    auto intersectValues = IntersectValues(intersections[0], ray, intersections);
+    auto colour = world.refractedColourAt(intersectValues, 0);
+    
+    EXPECT_EQ(colour, Colour(0.0, 0.0, 0.0));
+}
+
 }
