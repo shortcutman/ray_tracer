@@ -9,6 +9,8 @@
 
 #include "object.hpp"
 
+#include <limits>
+
 using namespace rtlib;
 
 Intersect::Intersect(const Object* obj, double t_) :
@@ -19,7 +21,9 @@ bool Intersect::operator==(const Intersect& rhs) const {
 }
 
 IntersectValues::IntersectValues(Intersect intersect, Ray ray) :
-    intersect(intersect)
+    intersect(intersect),
+    refractiveIndexN1(std::numeric_limits<double>::quiet_NaN()),
+    refractiveIndexN2(std::numeric_limits<double>::quiet_NaN())
 {
     point = ray.positionAt(intersect.t);
     vectorToEye = -ray.direction();
@@ -75,7 +79,6 @@ IntersectValues(intersect, ray)
         }
     }
 }
-
 
 std::optional<Intersect> rtlib::getFirstHit(rtlib::Intersections hits) {
     std::optional<Intersect> result;
