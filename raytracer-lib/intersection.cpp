@@ -38,6 +38,7 @@ IntersectValues::IntersectValues(Intersect intersect, Ray ray) :
     
     auto epsilonPoint = normal * 0.0000001;
     overPoint = point + epsilonPoint;
+    underPoint = point - epsilonPoint;
     
     reflectionVector = Tuple::reflect(ray.direction(), normal);
 }

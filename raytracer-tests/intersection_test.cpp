@@ -80,4 +80,17 @@ TEST(IntersectionTest, ComputeRefractiveN1andN2AtVariousIntersections) {
     EXPECT_EQ(values.refractiveIndexN2, 1.0);
 }
 
+TEST(IntersectionTest, UnderPointIsOffsetBelowTheSurface) {
+    auto ray = Ray(create_point(0.0, 0.0, -5.0), create_vector(0.0, 0.0, 1.0));
+    auto sphere = glassSphere();
+    sphere->setTransform(translation(0.0, 0.0, 1.0));
+    auto intersect = Intersect(sphere.get(), 5.0);
+    auto intersections = Intersections();
+    intersections.push_back(intersect);
+    auto intersectValues = IntersectValues(intersect, ray, intersections);
+    
+    EXPECT_TRUE(intersectValues.underPoint.z() > 0.0000001/2.0);
+    EXPECT_TRUE(intersectValues.overPoint.z() < intersectValues.underPoint.z());
+}
+
 }

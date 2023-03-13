@@ -33,10 +33,12 @@ struct IntersectValues {
     Tuple vectorToEye;
     Tuple normal;
     Tuple overPoint;
+    Tuple underPoint;
     Tuple reflectionVector;
     bool inside;
     double refractiveIndexN1; //material being exited
     double refractiveIndexN2; //material being entered
+    
     
     IntersectValues(Intersect intersect, Ray ray);
     IntersectValues(Intersect intersect, Ray ray, const Intersections& intersections);
