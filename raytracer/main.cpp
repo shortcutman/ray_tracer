@@ -27,6 +27,7 @@ World createWorld() {
     auto floor = std::make_shared<Plane>();
     floor->material()._colour = Colour(1.0, 0.9, 0.9);
     floor->material()._specular = 0.0;
+    floor->material()._reflective = 0.5;
     world.addObject(floor);
     
     auto leftWall = std::make_shared<Plane>();
@@ -59,8 +60,6 @@ World createWorld() {
     auto right = std::make_shared<Sphere>();
     right->setTransform(translation(1.5, 0.5, -0.5) *
                        scaling(0.5, 0.5, 0.5));
-    right->material()._pattern = std::make_shared<GradientPattern>(white, black);
-    right->material()._pattern->setTransform(translation(1.0, 0.0, 0.0) * scaling(-2.0, 2.0, 2.0));
     right->material()._colour = Colour(0.5, 1.0, 0.1);
     right->material()._diffuse = 0.7;
     right->material()._specular = 0.3;

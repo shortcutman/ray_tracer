@@ -34,11 +34,11 @@ public:
     std::vector<ObjectPtr> objects() const;
     void addObject(ObjectPtr object);
     
-    Colour colourAt(const Ray& ray) const;
-    Colour reflectedColourAt(const IntersectValues& values) const;
+    Colour colourAt(const Ray& ray, unsigned int remaining = 5) const;
+    Colour reflectedColourAt(const IntersectValues& values, unsigned int remaining) const;
     
     Intersections intersects(const Ray& ray) const;
-    Colour shadeHits(IntersectValues values) const;
+    Colour shadeHits(IntersectValues values, unsigned int remaining) const;
     bool isShadowed(const Tuple& point) const;
     
     static World defaultWorld();

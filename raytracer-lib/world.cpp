@@ -33,25 +33,31 @@ void World::addObject(ObjectPtr object) {
     _objects.push_back(object);
 }
 
-Colour World::colourAt(const Ray &ray) const {
+Colour World::colourAt(const Ray &ray, unsigned int remaining) const {
     auto intersects = this->intersects(ray);
     auto rayHit = getFirstHit(intersects);
     if (rayHit) {
         auto values = IntersectValues(*rayHit, ray);
-        auto colour = shadeHits(values);
+        auto colour = shadeHits(values, remaining);
         return colour;
     } else {
         return Colour();
     }
 }
 
-Colour World::reflectedColourAt(const IntersectValues &values) const {
+Colour World::reflectedColourAt(const IntersectValues &values, unsigned int remaining) const {
+    if (remaining == 0) {
+        return Colour(0.0, 0.0, 0.0);
+    }
+    
+    remaining--;
+    
     if (values.intersect.object->material()._reflective == 0.0) {
         return Colour(0.0, 0.0, 0.0);
     }
     
     auto reflectRay = Ray(values.overPoint, values.reflectionVector);
-    auto colour = colourAt(reflectRay);
+    auto colour = colourAt(reflectRay, remaining);
     auto reflectColour = colour * values.intersect.object->material()._reflective;
     
     return reflectColour;
@@ -73,9 +79,9 @@ Intersections World::intersects(const Ray& ray) const {
     return allHits;
 }
 
-Colour World::shadeHits(IntersectValues values) const {
+Colour World::shadeHits(IntersectValues values, unsigned int remaining) const {
     auto surfaceColour = _lights.front()->lightPoint(values.intersect.object, values.point, values.vectorToEye, values.normal, isShadowed(values.overPoint));
-    auto reflectedColour = reflectedColourAt(values);
+    auto reflectedColour = reflectedColourAt(values, remaining);
     auto resultColour = surfaceColour + reflectedColour;
     return resultColour;
 }
