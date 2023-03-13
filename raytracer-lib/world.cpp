@@ -64,7 +64,12 @@ Colour World::reflectedColourAt(const IntersectValues &values, unsigned int rema
 }
 
 Colour World::refractedColourAt(const IntersectValues &values, unsigned int remaining) {
-    return Colour(0.0, 0.0, 0.0);
+    if (values.intersect.object->material()._transparency == 0.0 ||
+        remaining == 0) {
+        return Colour(0.0, 0.0, 0.0);
+    }
+    
+    return Colour(1.0, 1.0, 1.0);
 }
 
 Intersections World::intersects(const Ray& ray) const {
