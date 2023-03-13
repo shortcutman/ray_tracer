@@ -61,6 +61,8 @@ TEST(ObjectTest, DefaultMaterial) {
     EXPECT_EQ(o.material()._specular, m._specular);
     EXPECT_EQ(o.material()._shininess, m._shininess);
     EXPECT_EQ(o.material()._reflective, m._reflective);
+    EXPECT_EQ(o.material()._transparency, m._transparency);
+    EXPECT_EQ(o.material()._refractiveIndex, m._refractiveIndex);
 }
 
 TEST(ObjectTest, AssignMaterialViaSetter) {
@@ -72,7 +74,9 @@ TEST(ObjectTest, AssignMaterialViaSetter) {
         0.3,
         0.4,
         0.5,
-        0.6
+        0.6,
+        0.7,
+        0.8
     };
     o.setMaterial(m);
     EXPECT_EQ(o.material()._colour, m._colour);
@@ -81,6 +85,8 @@ TEST(ObjectTest, AssignMaterialViaSetter) {
     EXPECT_EQ(o.material()._specular, m._specular);
     EXPECT_EQ(o.material()._shininess, m._shininess);
     EXPECT_EQ(o.material()._reflective, m._reflective);
+    EXPECT_EQ(o.material()._transparency, m._transparency);
+    EXPECT_EQ(o.material()._refractiveIndex, m._refractiveIndex);
 }
 
 TEST(ObjectTest, AssignMaterialViaReference) {
@@ -91,12 +97,16 @@ TEST(ObjectTest, AssignMaterialViaReference) {
     o.material()._specular = 0.4;
     o.material()._shininess = 0.5;
     o.material()._reflective = 0.6;
+    o.material()._transparency = 0.7;
+    o.material()._refractiveIndex = 0.8;
     EXPECT_EQ(o.material()._colour, Colour(0.1, 0.2, 0.3));
     EXPECT_EQ(o.material()._ambient, 0.2);
     EXPECT_EQ(o.material()._diffuse, 0.3);
     EXPECT_EQ(o.material()._specular, 0.4);
     EXPECT_EQ(o.material()._shininess, 0.5);
     EXPECT_EQ(o.material()._reflective, 0.6);
+    EXPECT_EQ(o.material()._transparency, 0.7);
+    EXPECT_EQ(o.material()._refractiveIndex, 0.8);
 }
 
 TEST(ObjectTest, IntersectScaledShapeWithRay) {
