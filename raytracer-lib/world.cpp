@@ -63,13 +63,26 @@ Colour World::reflectedColourAt(const IntersectValues &values, unsigned int rema
     return reflectColour;
 }
 
-Colour World::refractedColourAt(const IntersectValues &values, unsigned int remaining) {
+Colour World::refractedColourAt(const IntersectValues &values, unsigned int remaining) const {
     if (values.intersect.object->material()._transparency == 0.0 ||
         remaining == 0) {
         return Colour(0.0, 0.0, 0.0);
     }
     
-    return Colour(1.0, 1.0, 1.0);
+    //snells law to determine total internal refraction
+    auto nRatio = values.refractiveIndexN1 / values.refractiveIndexN2;
+    auto cosI = Tuple::dot(values.vectorToEye, values.normal);
+    auto sin2t = nRatio * nRatio * (1 - cosI * cosI);
+    if (sin2t > 1.0) {
+        return Colour(0.0, 0.0, 0.0);
+    }
+    
+    auto cosT = std::sqrt(1.0 - sin2t);
+    auto direction = values.normal * (nRatio * cosI - cosT) - values.vectorToEye * nRatio;
+    auto refractRay = Ray(values.underPoint, direction);
+    auto colour = colourAt(refractRay, remaining) * values.intersect.object->material()._transparency;
+    
+    return colour;
 }
 
 Intersections World::intersects(const Ray& ray) const {
@@ -91,7 +104,8 @@ Intersections World::intersects(const Ray& ray) const {
 Colour World::shadeHits(IntersectValues values, unsigned int remaining) const {
     auto surfaceColour = _lights.front()->lightPoint(values.intersect.object, values.point, values.vectorToEye, values.normal, isShadowed(values.overPoint));
     auto reflectedColour = reflectedColourAt(values, remaining);
-    auto resultColour = surfaceColour + reflectedColour;
+    auto refractedColour = refractedColourAt(values, remaining);
+    auto resultColour = surfaceColour + reflectedColour + refractedColour;
     return resultColour;
 }
 

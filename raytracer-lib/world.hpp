@@ -36,7 +36,7 @@ public:
     
     Colour colourAt(const Ray& ray, unsigned int remaining = 5) const;
     Colour reflectedColourAt(const IntersectValues& values, unsigned int remaining) const;
-    Colour refractedColourAt(const IntersectValues& values, unsigned int remaining);
+    Colour refractedColourAt(const IntersectValues& values, unsigned int remaining) const;
     
     Intersections intersects(const Ray& ray) const;
     Colour shadeHits(IntersectValues values, unsigned int remaining) const;

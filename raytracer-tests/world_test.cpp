@@ -7,6 +7,8 @@
 
 #include <gtest/gtest.h>
 
+#include "TestPattern.hpp"
+
 #include "camera.hpp"
 #include "plane.hpp"
 #include "ray.hpp"
@@ -245,6 +247,64 @@ TEST(WorldTest, RefractedColourWithMaxResursiveDepth) {
     auto intersectValues = IntersectValues(intersections[0], ray, intersections);
     auto colour = world.refractedColourAt(intersectValues, 0);
     EXPECT_EQ(colour, Colour(0.0, 0.0, 0.0));
+}
+
+
+TEST(WorldTest, RefractedColourUnderTotalInternalReflection) {
+    auto world = rtlib::World::defaultWorld();
+    auto shape = world.objects().front();
+    shape->material()._transparency = 1.0;
+    shape->material()._refractiveIndex = 1.5;
+    auto ray = Ray(create_point(0.0, 0.0, std::sqrt(2.0)/2.0), create_vector(0.0, 1.0, 0.0));
+    auto intersections = Intersections();
+    intersections.push_back(Intersect(shape.get(), -std::sqrt(2.0)/2.0));
+    intersections.push_back(Intersect(shape.get(), std::sqrt(2.0)/2.0));
+    auto intersectValues = IntersectValues(intersections[1], ray, intersections);
+    auto colour = world.refractedColourAt(intersectValues, 5);
+    EXPECT_EQ(colour, Colour(0.0, 0.0, 0.0));
+}
+
+TEST(WorldTest, RefractedColourWithRefractedRaw) {
+    auto world = rtlib::World::defaultWorld();
+    auto shape1 = world.objects().front();
+    shape1->material()._ambient = 1.0;
+    shape1->material()._pattern = std::make_shared<rtlib_tests::TestPattern>();
+    auto shape2 = world.objects().at(1);
+    shape2->material()._transparency = 1.0;
+    shape2->material()._refractiveIndex = 1.5;
+    
+    auto ray = Ray(create_point(0.0, 0.0, 0.1), create_vector(0.0, 1.0, 0.0));
+    auto intersections = Intersections();
+    intersections.push_back(Intersect(shape1.get(), -0.9899));
+    intersections.push_back(Intersect(shape2.get(), -0.4899));
+    intersections.push_back(Intersect(shape2.get(), 0.4899));
+    intersections.push_back(Intersect(shape1.get(), 0.9899));
+    auto intersectValues = IntersectValues(intersections[2], ray, intersections);
+    auto colour = world.refractedColourAt(intersectValues, 5);
+    EXPECT_EQ(colour, Colour(0.0, 0.998885, 0.0472165));
+}
+
+TEST(WorldTest, ShadeHitWithATransparentMaterial) {
+    auto world = World::defaultWorld();
+    
+    auto floor = std::make_shared<Plane>();
+    floor->setTransform(translation(0.0, -1.0, 0.0));
+    floor->material()._transparency = 0.5;
+    floor->material()._refractiveIndex = 1.5;
+    world.addObject(floor);
+    
+    auto ball = std::make_shared<Sphere>();
+    ball->setTransform(translation(0.0, -3.5, -0.5));
+    ball->material()._ambient = 0.5;
+    ball->material()._colour = Colour(1.0, 0.0, 0.0);
+    world.addObject(ball);
+    
+    auto ray = Ray(create_point(0.0, 0.0, -3.0), create_vector(0.0, -std::sqrt(2.0)/2.0, std::sqrt(2.0)/2.0));
+    auto intersections = Intersections();
+    intersections.push_back(Intersect(floor.get(), std::sqrt(2.0)));
+    auto intersectValues = IntersectValues(intersections[0], ray, intersections);
+    auto colour = world.shadeHits(intersectValues, 5);
+    EXPECT_EQ(colour, Colour(0.93642, 0.68642, 0.68642));
 }
 
 }
