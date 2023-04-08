@@ -45,6 +45,8 @@ struct IntersectValues {
 };
 
 std::optional<Intersect> getFirstHit(Intersections hits);
+
+double schlickReflectance(const IntersectValues& values);
     
 }
 #endif /* intersection_hpp */

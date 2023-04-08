@@ -96,3 +96,22 @@ std::optional<Intersect> rtlib::getFirstHit(rtlib::Intersections hits) {
     
     return result;
 }
+
+double rtlib::schlickReflectance(const IntersectValues &values) {
+    auto cosine = Tuple::dot(values.vectorToEye, values.normal);
+    
+    if (values.refractiveIndexN1 > values.refractiveIndexN2) {
+        auto n = values.refractiveIndexN1 / values.refractiveIndexN2;
+        auto sin2_t = std::pow(n, 2.0) * (1.0 - std::pow(cosine, 2.0));
+        if (sin2_t > 1.0) {
+            return 1.0;
+        }
+        
+        auto cos_t = std::sqrt(1.0 - sin2_t);
+        cosine = cos_t;
+    }
+    
+    auto r0 = std::pow((values.refractiveIndexN1 - values.refractiveIndexN2) / (values.refractiveIndexN1 + values.refractiveIndexN2), 2.0);
+    
+    return r0 + ((1.0 - r0) * std::pow(1 - cosine, 5.0));
+}

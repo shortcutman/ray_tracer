@@ -93,4 +93,45 @@ TEST(IntersectionTest, UnderPointIsOffsetBelowTheSurface) {
     EXPECT_TRUE(intersectValues.overPoint.z() < intersectValues.underPoint.z());
 }
 
+TEST(IntersectionTest, SchlickReflectanceUnderTotalInternalReflection) {
+    const auto srt2over2 = std::sqrt(2.0) / 2.0;
+    
+    auto sphere = glassSphere();
+    auto ray = Ray(create_point(0.0, 0.0, srt2over2), create_vector(0.0, 1.0, 0.0));
+    
+    auto intersections = Intersections();
+    intersections.push_back(Intersect(sphere.get(), -srt2over2));
+    intersections.push_back(Intersect(sphere.get(), srt2over2));
+    IntersectValues values(intersections[1], ray, intersections);
+    
+    auto reflectance = schlickReflectance(values);
+    EXPECT_EQ(reflectance, 1.0);
+}
+
+TEST(IntersectionTest, SchlickReflectanceWithPerpendicularRay) {
+    auto sphere = glassSphere();
+    auto ray = Ray(create_point(0.0, 0.0, 0.0), create_vector(0.0, 1.0, 0.0));
+    
+    auto intersections = Intersections();
+    intersections.push_back(Intersect(sphere.get(), -1.0));
+    intersections.push_back(Intersect(sphere.get(), 1.0));
+    IntersectValues values(intersections[1], ray, intersections);
+    
+    auto reflectance = schlickReflectance(values);
+    EXPECT_DOUBLE_EQ(reflectance, 0.04);
+}
+
+TEST(IntersectionTest, SchlickReflectanceWithN2GreaterThanN1) {
+    auto sphere = glassSphere();
+    auto ray = Ray(create_point(0.0, 0.99, -2.0), create_vector(0.0, 0.0, 1.0));
+    
+    auto intersections = Intersections();
+    intersections.push_back(Intersect(sphere.get(), 1.8589));
+    IntersectValues values(intersections[0], ray, intersections);
+    
+    auto reflectance = schlickReflectance(values);
+    EXPECT_DOUBLE_EQ(reflectance, 0.48873);
+}
+
+
 }
