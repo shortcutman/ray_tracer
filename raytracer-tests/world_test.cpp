@@ -307,4 +307,28 @@ TEST(WorldTest, ShadeHitWithATransparentMaterial) {
     EXPECT_EQ(colour, Colour(0.93642, 0.68642, 0.68642));
 }
 
+TEST(WorldTest, ShadeHitWithReflectiveTransparentMaterial) {
+    auto world = World::defaultWorld();
+    
+    auto floor = std::make_shared<Plane>();
+    floor->setTransform(translation(0.0, -1.0, 0.0));
+    floor->material()._reflective = 0.5;
+    floor->material()._transparency = 0.5;
+    floor->material()._refractiveIndex = 1.5;
+    world.addObject(floor);
+    
+    auto ball = std::make_shared<Sphere>();
+    ball->setTransform(translation(0.0, -3.5, -0.5));
+    ball->material()._ambient = 0.5;
+    ball->material()._colour = Colour(1.0, 0.0, 0.0);
+    world.addObject(ball);
+    
+    auto ray = Ray(create_point(0.0, 0.0, -3.0), create_vector(0.0, -std::sqrt(2.0)/2.0, std::sqrt(2.0)/2.0));
+    auto intersections = Intersections();
+    intersections.push_back(Intersect(floor.get(), std::sqrt(2.0)));
+    auto intersectValues = IntersectValues(intersections[0], ray, intersections);
+    auto colour = world.shadeHits(intersectValues, 5);
+    EXPECT_EQ(colour, Colour(0.93391, 0.69643, 0.69243));
+}
+
 }

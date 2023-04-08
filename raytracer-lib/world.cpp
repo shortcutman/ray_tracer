@@ -105,8 +105,14 @@ Colour World::shadeHits(IntersectValues values, unsigned int remaining) const {
     auto surfaceColour = _lights.front()->lightPoint(values.intersect.object, values.point, values.vectorToEye, values.normal, isShadowed(values.overPoint));
     auto reflectedColour = reflectedColourAt(values, remaining);
     auto refractedColour = refractedColourAt(values, remaining);
-    auto resultColour = surfaceColour + reflectedColour + refractedColour;
-    return resultColour;
+    
+    auto material = values.intersect.object->material();
+    if (material._reflective > 0.0 && material._transparency > 0.0) {
+        auto reflectance = schlickReflectance(values);
+        return surfaceColour + reflectedColour * reflectance + refractedColour * (1 - reflectance);
+    } else {
+        return surfaceColour + reflectedColour + refractedColour;
+    }
 }
 
 bool World::isShadowed(const Tuple &point) const {
