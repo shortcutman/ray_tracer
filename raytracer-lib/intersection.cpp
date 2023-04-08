@@ -21,9 +21,12 @@ bool Intersect::operator==(const Intersect& rhs) const {
 }
 
 IntersectValues::IntersectValues(Intersect intersect, Ray ray) :
-    intersect(intersect),
-    refractiveIndexN1(std::numeric_limits<double>::quiet_NaN()),
-    refractiveIndexN2(std::numeric_limits<double>::quiet_NaN())
+IntersectValues(intersect, ray, Intersections({intersect}))
+{
+}
+
+IntersectValues::IntersectValues(Intersect intersect, Ray ray, const Intersections& intersections) :
+    intersect(intersect)
 {
     point = ray.positionAt(intersect.t);
     vectorToEye = -ray.direction();
@@ -41,11 +44,7 @@ IntersectValues::IntersectValues(Intersect intersect, Ray ray) :
     underPoint = point - epsilonPoint;
     
     reflectionVector = Tuple::reflect(ray.direction(), normal);
-}
-
-IntersectValues::IntersectValues(Intersect intersect, Ray ray, const Intersections& intersections) :
-IntersectValues(intersect, ray)
-{
+    
     auto firstHit = getFirstHit(intersections);
     if (!firstHit) {
         return;
