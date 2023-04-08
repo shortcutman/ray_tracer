@@ -37,7 +37,7 @@ Colour World::colourAt(const Ray &ray, unsigned int remaining) const {
     auto intersects = this->intersects(ray);
     auto rayHit = getFirstHit(intersects);
     if (rayHit) {
-        auto values = IntersectValues(*rayHit, ray);
+        auto values = IntersectValues(*rayHit, ray, intersects);
         auto colour = shadeHits(values, remaining);
         return colour;
     } else {
