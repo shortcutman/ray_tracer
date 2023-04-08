@@ -130,7 +130,7 @@ TEST(IntersectionTest, SchlickReflectanceWithN2GreaterThanN1) {
     IntersectValues values(intersections[0], ray, intersections);
     
     auto reflectance = schlickReflectance(values);
-    EXPECT_DOUBLE_EQ(reflectance, 0.48873);
+    EXPECT_NEAR(reflectance, 0.48873, 0.00001);
 }
 
 
