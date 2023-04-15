@@ -101,8 +101,10 @@ void renderSingleThreaded(Canvas& canvas, const Camera& camera, const World& wor
 }
 
 struct ScanLine {
-    unsigned int y;
+    unsigned int yStart;
+    unsigned int yEnd;
     unsigned int width;
+    std::chrono::milliseconds clock;
 };
 
 void renderMultiThreaded(Canvas& canvas, const Camera& camera, const World& world) {
@@ -112,21 +114,31 @@ void renderMultiThreaded(Canvas& canvas, const Camera& camera, const World& worl
         oneapi::tbb::make_filter<void, ScanLine>(oneapi::tbb::filter_mode::serial_in_order, [&y, &canvas, &camera, &world] (oneapi::tbb::flow_control& fc) -> ScanLine {
             if (y < canvas.height()) {
                 ScanLine s;
-                s.y = y;
+                s.yStart = y;
+                y += 50;
+                s.yEnd = y;
                 s.width = canvas.width();
-                ++y;
                 return s;
             }
                 
             fc.stop();
             return ScanLine();
         }) &
-        oneapi::tbb::make_filter<ScanLine, void>(oneapi::tbb::filter_mode::parallel, [&canvas, &camera, &world] (ScanLine s) {
-            for (unsigned int x = 0; x < s.width; x++) {
-                auto ray = camera.rayForPixel(x, s.y);
-                auto colour = world.colourAt(ray);
-                canvas.writePixel(x, s.y, colour);
+        oneapi::tbb::make_filter<ScanLine, ScanLine>(oneapi::tbb::filter_mode::parallel, [&canvas, &camera, &world] (ScanLine s) -> ScanLine {
+            auto start = std::chrono::high_resolution_clock::now();
+            for (unsigned int y = s.yStart; y < s.yEnd; y++) {
+                for (unsigned int x = 0; x < s.width; x++) {
+                    auto ray = camera.rayForPixel(x, y);
+                    auto colour = world.colourAt(ray);
+                    canvas.writePixel(x, y, colour);
+                }
             }
+            auto end = std::chrono::high_resolution_clock::now();
+            s.clock = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+            return s;
+        }) &
+        oneapi::tbb::make_filter<ScanLine, void>(oneapi::tbb::filter_mode::serial_in_order, [] (ScanLine s) {
+            std::cout << "Scan line yStart: " << s.yStart << " time: " << s.clock.count() << std::endl;
         }));
 }
 
