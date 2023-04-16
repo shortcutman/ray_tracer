@@ -22,10 +22,6 @@ template<typename MatrixType>
 class MatrixSimd {
 public:
     typedef MatrixType BaseMatrix;
-    typedef std::array<std::array<double, 2>, 2> Raw2x2;
-    typedef std::array<std::array<double, 3>, 3> Raw3x3;
-    typedef std::array<std::array<double, 4>, 4> Raw4x4;
-
 
 private:
     BaseMatrix _matrix;

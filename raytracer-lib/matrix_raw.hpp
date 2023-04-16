@@ -54,11 +54,6 @@ MatrixRaw<N> operator*(const MatrixRaw<N>& lhs, const MatrixRaw<N>& rhs);
 template<unsigned int N>
 Tuple operator*(const MatrixRaw<N>& lhs, const Tuple& rhs);
 
-
-typedef MatrixRaw<2> MatrixRaw2x2;
-typedef MatrixRaw<3> MatrixRaw3x3;
-typedef MatrixRaw<4> MatrixRaw4x4;
-
 }
 
 #endif /* matrix_raw_hpp */
