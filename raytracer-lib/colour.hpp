@@ -8,15 +8,15 @@
 #ifndef colour_h
 #define colour_h
 
-#include "tuple_raw.hpp"
+#include "tuple_simd.hpp"
 
 namespace rtlib {
 
-class Colour : public TupleRaw {
+class Colour : public TupleSimd {
 public:
     Colour();
     Colour(double red, double green, double blue);
-    Colour(const TupleRaw& t);
+    Colour(const TupleSimd& t);
     ~Colour() {}
     
     double red() const;

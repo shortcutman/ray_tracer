@@ -10,17 +10,17 @@
 using namespace rtlib;
 
 Colour::Colour() :
-    TupleRaw()
+    TupleSimd()
 {
 }
 
 Colour::Colour(double red, double green, double blue) :
-    TupleRaw(red, green, blue)
+    TupleSimd(red, green, blue)
 {
 }
 
-Colour::Colour(const TupleRaw& t) :
-    TupleRaw(t)
+Colour::Colour(const TupleSimd& t) :
+    TupleSimd(t)
 {
 }
 
@@ -37,9 +37,9 @@ double Colour::blue() const {
 }
 
 Colour& Colour::operator*=(const Colour& rhs) {
-    this->_x *= rhs.x();
-    this->_y *= rhs.y();
-    this->_z *= rhs.z();
+    this->_vector.x *= rhs.x();
+    this->_vector.y *= rhs.y();
+    this->_vector.z *= rhs.z();
     return *this;
 }
 
