@@ -645,6 +645,7 @@
 		65B1E579294E9B48008BF2DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = /opt/homebrew/include;
 				LIBRARY_SEARCH_PATHS = /opt/homebrew/lib;
@@ -659,6 +660,7 @@
 		65B1E57A294E9B48008BF2DE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = /opt/homebrew/include;
 				LIBRARY_SEARCH_PATHS = /opt/homebrew/lib;
@@ -673,6 +675,7 @@
 		65B1E588294E9BCC008BF2DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
@@ -685,6 +688,7 @@
 		65B1E589294E9BCC008BF2DE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
