@@ -69,6 +69,10 @@ typedef MatrixSimd<simd_double2x2, double> MatrixSimd2x2Double;
 typedef MatrixSimd<simd_double3x3, double> MatrixSimd3x3Double;
 typedef MatrixSimd<simd_double4x4, double> MatrixSimd4x4Double;
 
+typedef MatrixSimd<simd_float2x2, float> MatrixSimd2x2Float;
+typedef MatrixSimd<simd_float3x3, float> MatrixSimd3x3Float;
+typedef MatrixSimd<simd_float4x4, float> MatrixSimd4x4Float;
+
 }
 
 #endif /* matrix_simd_hpp */
