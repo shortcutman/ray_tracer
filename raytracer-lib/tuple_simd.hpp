@@ -14,7 +14,7 @@
 
 namespace rtlib {
 
-template<typename MatrixType>
+template<typename MatrixType, typename FloatType>
 class MatrixSimd;
 
 class TupleSimd {
@@ -53,8 +53,8 @@ public:
     
     bool operator==(const TupleSimd& lhs) const;
     
-    template<typename MatrixType>
-    friend TupleSimd operator*(const MatrixSimd<MatrixType>& lhs, const TupleSimd& rhs);
+    template<typename MatrixType, typename FloatType>
+    friend TupleSimd operator*(const MatrixSimd<MatrixType, FloatType>& lhs, const TupleSimd& rhs);
     
     static double dot(const TupleSimd& lhs, const TupleSimd& rhs);
     static TupleSimd cross(const TupleSimd& lhs, const TupleSimd& rhs);

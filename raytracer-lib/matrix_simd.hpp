@@ -18,7 +18,7 @@ namespace rtlib {
 
 class TupleSimd;
 
-template<typename MatrixType>
+template<typename MatrixType, typename FloatType = double>
 class MatrixSimd {
 public:
     typedef MatrixType BaseMatrix;
@@ -28,46 +28,46 @@ private:
     
 public:
     MatrixSimd();
-    MatrixSimd(std::array<std::array<double, 4>, 4> matrix);
+    MatrixSimd(std::array<std::array<FloatType, 4>, 4> matrix);
     
     ~MatrixSimd() {}
     
-    double at(unsigned int row, unsigned int column) const;
-    void set(unsigned int row, unsigned int column, double value);
+    FloatType at(unsigned int row, unsigned int column) const;
+    void set(unsigned int row, unsigned int column, FloatType value);
     
-    double determinant() const;
-    MatrixSimd<MatrixType> transpose() const;
-    double minor(unsigned int row, unsigned int column) const;
-    double cofactor(unsigned int row, unsigned int column) const;
+    FloatType determinant() const;
+    MatrixSimd<MatrixType, FloatType> transpose() const;
+    FloatType minor(unsigned int row, unsigned int column) const;
+    FloatType cofactor(unsigned int row, unsigned int column) const;
     bool invertible() const;
-    MatrixSimd<MatrixType> inverse() const;
+    MatrixSimd<MatrixType, FloatType> inverse() const;
     
-    MatrixSimd<MatrixType>& operator*=(const MatrixSimd<MatrixType>& rhs);
+    MatrixSimd<MatrixType, FloatType>& operator*=(const MatrixSimd<MatrixType, FloatType>& rhs);
     
-    bool operator==(const MatrixSimd<MatrixType>& rhs) const;
+    bool operator==(const MatrixSimd<MatrixType, FloatType>& rhs) const;
     
-    template<typename ReturnType>
-    MatrixSimd<ReturnType> submatrix(unsigned int row, unsigned int column) const;
+    template<typename ReturnSimdType, typename ReturnFloatType>
+    MatrixSimd<ReturnSimdType, ReturnFloatType> submatrix(unsigned int row, unsigned int column) const;
     
-    template<typename MultiplyMatrix>
-    friend TupleSimd operator*(const MatrixSimd<MultiplyMatrix>& lhs, const TupleSimd& rhs);
+    template<typename MultiplyMatrix, typename MultiplyFloat>
+    friend TupleSimd operator*(const MatrixSimd<MultiplyMatrix, MultiplyFloat>& lhs, const TupleSimd& rhs);
     
-    static MatrixSimd<MatrixType> identityMatrix();
+    static MatrixSimd<MatrixType, FloatType> identityMatrix();
     
 };
 
-template<typename MatrixType>
-std::ostream& operator<< (std::ostream& os, const MatrixSimd<MatrixType>& matrix);
+template<typename MatrixType, typename MatrixFloatType>
+std::ostream& operator<< (std::ostream& os, const MatrixSimd<MatrixType, MatrixFloatType>& matrix);
 
-template<typename MatrixType>
-MatrixSimd<MatrixType> operator*(const MatrixSimd<MatrixType>& lhs, const MatrixSimd<MatrixType>& rhs);
+template<typename MatrixType, typename FloatType>
+MatrixSimd<MatrixType, FloatType> operator*(const MatrixSimd<MatrixType, FloatType>& lhs, const MatrixSimd<MatrixType, FloatType>& rhs);
 
-template<typename MatrixType>
-TupleSimd operator*(const MatrixSimd<MatrixType>& lhs, const TupleSimd& rhs);
+template<typename MatrixType, typename FloatType>
+TupleSimd operator*(const MatrixSimd<MatrixType, FloatType>& lhs, const TupleSimd& rhs);
 
-typedef MatrixSimd<simd_double2x2> MatrixSimd2x2;
-typedef MatrixSimd<simd_double3x3> MatrixSimd3x3;
-typedef MatrixSimd<simd_double4x4> MatrixSimd4x4;
+typedef MatrixSimd<simd_double2x2, double> MatrixSimd2x2Double;
+typedef MatrixSimd<simd_double3x3, double> MatrixSimd3x3Double;
+typedef MatrixSimd<simd_double4x4, double> MatrixSimd4x4Double;
 
 }
 

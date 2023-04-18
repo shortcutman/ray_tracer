@@ -12,8 +12,8 @@
 
 using namespace rtlib;
 
-template<typename MatrixType>
-MatrixSimd<MatrixType>::MatrixSimd() :
+template<typename MatrixType, typename FloatType>
+MatrixSimd<MatrixType, FloatType>::MatrixSimd() :
     _matrix(MatrixType())
 {
 }
@@ -45,31 +45,31 @@ MatrixSimd<simd_double4x4>::MatrixSimd(std::array<std::array<double, 4>, 4> arra
         simd_make_double4(array[3][0], array[3][1], array[3][2], array[3][3]));
 }
 
-template<typename MatrixType>
-double MatrixSimd<MatrixType>::at(unsigned int row, unsigned int column) const {
+template<typename MatrixType, typename FloatType>
+FloatType MatrixSimd<MatrixType, FloatType>::at(unsigned int row, unsigned int column) const {
     return _matrix.columns[column][row];
 }
 
-template<typename MatrixType>
-void MatrixSimd<MatrixType>::set(unsigned int row, unsigned int column, double value) {
+template<typename MatrixType, typename FloatType>
+void MatrixSimd<MatrixType, FloatType>::set(unsigned int row, unsigned int column, FloatType value) {
     _matrix.columns[column][row] = value;
 }
 
-template<typename MatrixType>
-double MatrixSimd<MatrixType>::determinant() const {
+template<typename MatrixType, typename FloatType>
+FloatType MatrixSimd<MatrixType, FloatType>::determinant() const {
     return simd_determinant(_matrix);
 }
 
-template<typename MatrixType>
-MatrixSimd<MatrixType> MatrixSimd<MatrixType>::transpose() const {
+template<typename MatrixType, typename FloatType>
+MatrixSimd<MatrixType, FloatType> MatrixSimd<MatrixType, FloatType>::transpose() const {
     auto matrix = *this;
     matrix._matrix = simd_transpose(matrix._matrix);
     return matrix;
 }
 
-template<typename MatrixType>
-template<typename ReturnType>
-MatrixSimd<ReturnType> MatrixSimd<MatrixType>::submatrix(unsigned int removeRow, unsigned int removeColumn) const {
+template<typename MatrixType, typename FloatType>
+template<typename ReturnSimdType, typename ReturnFloatType>
+MatrixSimd<ReturnSimdType, ReturnFloatType> MatrixSimd<MatrixType, FloatType>::submatrix(unsigned int removeRow, unsigned int removeColumn) const {
     MatrixSimd<MatrixType> submatrix;
     throw std::logic_error("unimplemented submatrix function");
     return submatrix;
@@ -77,16 +77,16 @@ MatrixSimd<ReturnType> MatrixSimd<MatrixType>::submatrix(unsigned int removeRow,
 
 template<>
 template<>
-MatrixSimd<simd_double2x2> MatrixSimd<simd_double2x2>::submatrix(unsigned int removeRow, unsigned int removeColumn) const {
-    MatrixSimd<simd_double2x2> submatrix;
+MatrixSimd<simd_double2x2, double> MatrixSimd<simd_double2x2, double>::submatrix(unsigned int removeRow, unsigned int removeColumn) const {
+    MatrixSimd<simd_double2x2, double> submatrix;
     throw std::logic_error("shouldn't call submatrix on 2x2 matrix");
     return submatrix;
 }
 
 template<>
 template<>
-MatrixSimd<simd_double2x2> MatrixSimd<simd_double3x3>::submatrix(unsigned int removeRow, unsigned int removeColumn) const {
-    MatrixSimd<simd_double2x2> submatrix;
+MatrixSimd<simd_double2x2, double> MatrixSimd<simd_double3x3, double>::submatrix(unsigned int removeRow, unsigned int removeColumn) const {
+    MatrixSimd<simd_double2x2, double> submatrix;
 
     for (unsigned int row = 0; row < 2; row++) {
         unsigned int adjustRow = row >= removeRow ? row + 1 : row;
@@ -103,8 +103,8 @@ MatrixSimd<simd_double2x2> MatrixSimd<simd_double3x3>::submatrix(unsigned int re
 
 template<>
 template<>
-MatrixSimd<simd_double3x3> MatrixSimd<simd_double4x4>::submatrix(unsigned int removeRow, unsigned int removeColumn) const {
-    MatrixSimd<simd_double3x3> submatrix;
+MatrixSimd<simd_double3x3, double> MatrixSimd<simd_double4x4, double>::submatrix(unsigned int removeRow, unsigned int removeColumn) const {
+    MatrixSimd<simd_double3x3, double> submatrix;
 
     for (unsigned int row = 0; row < 3; row++) {
         unsigned int adjustRow = row >= removeRow ? row + 1 : row;
@@ -119,62 +119,62 @@ MatrixSimd<simd_double3x3> MatrixSimd<simd_double4x4>::submatrix(unsigned int re
     return submatrix;
 }
 
-template<typename MatrixType>
-double MatrixSimd<MatrixType>::minor(unsigned int row, unsigned int column) const {
+template<typename MatrixType, typename FloatType>
+FloatType MatrixSimd<MatrixType, FloatType>::minor(unsigned int row, unsigned int column) const {
     throw std::logic_error("unimplemented");
     return 0.0;
 }
 
 template<>
-double MatrixSimd<simd_double3x3>::minor(unsigned int row, unsigned int column) const {
-    auto submatrix = this->submatrix<simd_double2x2>(row, column);
+double MatrixSimd<simd_double3x3, double>::minor(unsigned int row, unsigned int column) const {
+    auto submatrix = this->submatrix<simd_double2x2, double>(row, column);
     return submatrix.determinant();
 }
 
 template<>
-double MatrixSimd<simd_double4x4>::minor(unsigned int row, unsigned int column) const {
-    auto submatrix = this->submatrix<simd_double3x3>(row, column);
+double MatrixSimd<simd_double4x4, double>::minor(unsigned int row, unsigned int column) const {
+    auto submatrix = this->submatrix<simd_double3x3, double>(row, column);
     return submatrix.determinant();
 }
 
-template<typename MatrixType>
-double MatrixSimd<MatrixType>::cofactor(unsigned int row, unsigned int column) const {
+template<typename MatrixType, typename FloatType>
+FloatType MatrixSimd<MatrixType, FloatType>::cofactor(unsigned int row, unsigned int column) const {
     auto minor = this->minor(row, column);
     minor *= ((row + column) % 2) > 0 ? -1 : 1;
     return minor;
 }
 
-template<typename MatrixType>
-bool MatrixSimd<MatrixType>::invertible() const {
+template<typename MatrixType, typename FloatType>
+bool MatrixSimd<MatrixType, FloatType>::invertible() const {
     return determinant() != 0.0;
 }
 
-template<typename MatrixType>
-MatrixSimd<MatrixType> MatrixSimd<MatrixType>::inverse() const {
+template<typename MatrixType, typename FloatType>
+MatrixSimd<MatrixType, FloatType> MatrixSimd<MatrixType, FloatType>::inverse() const {
     auto matrix = *this;
     matrix._matrix = simd_inverse(matrix._matrix);
     return matrix;
 }
 
-template<typename MatrixType>
-MatrixSimd<MatrixType>& MatrixSimd<MatrixType>::operator*=(const MatrixSimd<MatrixType>& rhs) {
+template<typename MatrixType, typename FloatType>
+MatrixSimd<MatrixType, FloatType>& MatrixSimd<MatrixType, FloatType>::operator*=(const MatrixSimd<MatrixType, FloatType>& rhs) {
     this->_matrix = matrix_multiply(this->_matrix, rhs._matrix);
     return *this;
 }
 
-template<typename MatrixType>
-bool MatrixSimd<MatrixType>::operator==(const MatrixSimd<MatrixType>& rhs) const {
+template<typename MatrixType, typename FloatType>
+bool MatrixSimd<MatrixType, FloatType>::operator==(const MatrixSimd<MatrixType, FloatType>& rhs) const {
     return simd_almost_equal_elements(this->_matrix, rhs._matrix, 0.00001);
 }
 
-template<typename MatrixType>
-std::ostream& rtlib::operator<<(std::ostream& os, const MatrixSimd<MatrixType>& matrix) {
+template<typename MatrixType, typename MatrixFloatType>
+std::ostream& rtlib::operator<<(std::ostream& os, const MatrixSimd<MatrixType, MatrixFloatType>& matrix) {
     throw std::logic_error("unimplemented");
     return os;
 }
 
 template<>
-std::ostream& rtlib::operator<<(std::ostream& os, const MatrixSimd<simd_double2x2>& matrix) {
+std::ostream& rtlib::operator<<(std::ostream& os, const MatrixSimd<simd_double2x2, double>& matrix) {
     os << "{{" << std::endl;
     for (unsigned int row = 0; row < 2; row++) {
         os << "{";
@@ -189,7 +189,7 @@ std::ostream& rtlib::operator<<(std::ostream& os, const MatrixSimd<simd_double2x
 }
 
 template<>
-std::ostream& rtlib::operator<<(std::ostream& os, const MatrixSimd<simd_double3x3>& matrix) {
+std::ostream& rtlib::operator<<(std::ostream& os, const MatrixSimd<simd_double3x3, double>& matrix) {
     os << "{{" << std::endl;
     for (unsigned int row = 0; row < 3; row++) {
         os << "{";
@@ -204,7 +204,7 @@ std::ostream& rtlib::operator<<(std::ostream& os, const MatrixSimd<simd_double3x
 }
 
 template<>
-std::ostream& rtlib::operator<<(std::ostream& os, const MatrixSimd<simd_double4x4>& matrix) {
+std::ostream& rtlib::operator<<(std::ostream& os, const MatrixSimd<simd_double4x4, double>& matrix) {
     os << "{{" << std::endl;
     for (unsigned int row = 0; row < 4; row++) {
         os << "{";
@@ -218,65 +218,65 @@ std::ostream& rtlib::operator<<(std::ostream& os, const MatrixSimd<simd_double4x
     return os;
 }
 
-template<typename MatrixType>
-MatrixSimd<MatrixType> MatrixSimd<MatrixType>::identityMatrix() {
-    MatrixSimd<MatrixType> m;
+template<typename MatrixType, typename FloatType>
+MatrixSimd<MatrixType, FloatType> MatrixSimd<MatrixType, FloatType>::identityMatrix() {
+    MatrixSimd<MatrixType, FloatType> m;
     throw std::logic_error("no identity matrix for specified matrix type");
     return m;
 }
 
 template<>
-MatrixSimd<simd_double2x2> MatrixSimd<simd_double2x2>::identityMatrix() {
-    MatrixSimd<simd_double2x2> m;
+MatrixSimd<simd_double2x2, double> MatrixSimd<simd_double2x2, double>::identityMatrix() {
+    MatrixSimd<simd_double2x2, double> m;
     m._matrix = matrix_identity_double2x2;
     return m;
 }
 
 template<>
-MatrixSimd<simd_double3x3> MatrixSimd<simd_double3x3>::identityMatrix() {
-    MatrixSimd<simd_double3x3> m;
+MatrixSimd<simd_double3x3, double> MatrixSimd<simd_double3x3, double>::identityMatrix() {
+    MatrixSimd<simd_double3x3, double> m;
     m._matrix = matrix_identity_double3x3;
     return m;
 }
 
 template<>
-MatrixSimd<simd_double4x4> MatrixSimd<simd_double4x4>::identityMatrix() {
-    MatrixSimd<simd_double4x4> m;
+MatrixSimd<simd_double4x4, double> MatrixSimd<simd_double4x4, double>::identityMatrix() {
+    MatrixSimd<simd_double4x4, double> m;
     m._matrix = matrix_identity_double4x4;
     return m;
 }
 
-template<typename MatrixType>
-MatrixSimd<MatrixType> operator*(const MatrixSimd<MatrixType>& lhs, const MatrixSimd<MatrixType>& rhs) {
+template<typename MatrixType, typename FloatType>
+MatrixSimd<MatrixType, FloatType> operator*(const MatrixSimd<MatrixType, FloatType>& lhs, const MatrixSimd<MatrixType, FloatType>& rhs) {
     auto copy = lhs;
     copy *= rhs;
     return copy;
 }
 
-template class rtlib::MatrixSimd<simd_double2x2>;
-template class rtlib::MatrixSimd<simd_double3x3>;
-template class rtlib::MatrixSimd<simd_double4x4>;
+template class rtlib::MatrixSimd<simd_double2x2, double>;
+template class rtlib::MatrixSimd<simd_double3x3, double>;
+template class rtlib::MatrixSimd<simd_double4x4, double>;
 
-template<typename MatrixType>
-MatrixSimd<MatrixType> rtlib::operator*(const MatrixSimd<MatrixType>& lhs, const MatrixSimd<MatrixType>& rhs) {
+template<typename MatrixType, typename FloatType>
+MatrixSimd<MatrixType, FloatType> rtlib::operator*(const MatrixSimd<MatrixType, FloatType>& lhs, const MatrixSimd<MatrixType, FloatType>& rhs) {
     auto copy = lhs;
     copy *= rhs;
     return copy;
 }
 
-template MatrixSimd<simd_double2x2> rtlib::operator*(const MatrixSimd<simd_double2x2>& lhs, const MatrixSimd<simd_double2x2>& rhs);
-template MatrixSimd<simd_double3x3> rtlib::operator*(const MatrixSimd<simd_double3x3>& lhs, const MatrixSimd<simd_double3x3>& rhs);
-template MatrixSimd<simd_double4x4> rtlib::operator*(const MatrixSimd<simd_double4x4>& lhs, const MatrixSimd<simd_double4x4>& rhs);
+template MatrixSimd<simd_double2x2, double> rtlib::operator*(const MatrixSimd<simd_double2x2, double>& lhs, const MatrixSimd<simd_double2x2, double>& rhs);
+template MatrixSimd<simd_double3x3, double> rtlib::operator*(const MatrixSimd<simd_double3x3, double>& lhs, const MatrixSimd<simd_double3x3, double>& rhs);
+template MatrixSimd<simd_double4x4, double> rtlib::operator*(const MatrixSimd<simd_double4x4, double>& lhs, const MatrixSimd<simd_double4x4, double>& rhs);
 
-template<typename MatrixType>
-TupleSimd rtlib::operator*(const MatrixSimd<MatrixType>& lhs, const TupleSimd& rhs) {
+template<typename MatrixType, typename FloatType>
+TupleSimd rtlib::operator*(const MatrixSimd<MatrixType, FloatType>& lhs, const TupleSimd& rhs) {
     auto result = TupleSimd();
     throw std::logic_error("unimplemented");
     return result;
 }
 
 template<>
-TupleSimd rtlib::operator*(const MatrixSimd<simd_double4x4>& lhs, const TupleSimd& rhs) {
+TupleSimd rtlib::operator*(const MatrixSimd<simd_double4x4, double>& lhs, const TupleSimd& rhs) {
     auto result = TupleSimd();
     result._vector = simd_mul(lhs._matrix, rhs._vector);
     return result;

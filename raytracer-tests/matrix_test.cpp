@@ -303,7 +303,7 @@ TEST(MatrixTest, SubmatrixOfMatrixSimd3x3) {
         {0.0, 6.0}
     }});
     
-    EXPECT_EQ(m.submatrix<simd_double2x2>(0, 2), r);
+    EXPECT_EQ(rtlib::MatrixSimd2x2Double(m.submatrix<simd_double2x2, double>(0, 2)), r);
 }
 
 TEST(MatrixTest, SubmatrixOfMatrixSimd4x4) {
@@ -320,7 +320,7 @@ TEST(MatrixTest, SubmatrixOfMatrixSimd4x4) {
         {-7.0, -1.0, 1.0}
     }});
     
-    EXPECT_EQ(m.submatrix<simd_double3x3>(2, 1), r);
+    EXPECT_EQ(rtlib::MatrixSimd3x3Double(m.submatrix<simd_double3x3, double>(2, 1)), r);
 }
 
 TEST(MatrixTest, MinorOfMatrixSimd3x3) {
@@ -330,7 +330,7 @@ TEST(MatrixTest, MinorOfMatrixSimd3x3) {
         {6.0, -1.0, 5.0}
     }});
     
-    auto submatrix = m.submatrix<simd_double2x2>(1, 0);
+    auto submatrix = m.submatrix<simd_double2x2, double>(1, 0);
     
     EXPECT_EQ(submatrix.determinant(), 25);
     EXPECT_EQ(m.minor(1, 0), 25);
