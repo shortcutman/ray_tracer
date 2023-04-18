@@ -292,13 +292,13 @@ TEST(MatrixTest, MinorOfMatrixRaw3x3) {
 #elifdef MATRIX_SIMD
 
 TEST(MatrixTest, SubmatrixOfMatrixSimd3x3) {
-    rtlib::Matrix3x3 m({{
+    rtlib::MatrixSimd3x3Double m({{
         {1.0, 5.0, 0.0},
         {-3.0, 2.0, 7.0},
         {0.0, 6.0, -3.0}
     }});
     
-    rtlib::Matrix2x2 r({{
+    rtlib::MatrixSimd2x2Double r({{
         {-3.0, 2.0},
         {0.0, 6.0}
     }});
@@ -307,14 +307,14 @@ TEST(MatrixTest, SubmatrixOfMatrixSimd3x3) {
 }
 
 TEST(MatrixTest, SubmatrixOfMatrixSimd4x4) {
-    rtlib::Matrix4x4 m({{
+    rtlib::MatrixSimd4x4Double m({{
         {-6.0, 1.0, 1.0, 6.0},
         {-8.0, 5.0, 8.0, 6.0},
         {-1.0, 0.0, 8.0, 2.0},
         {-7.0, 1.0, -1.0, 1.0}
     }});
     
-    rtlib::Matrix3x3 r({{
+    rtlib::MatrixSimd3x3Double r({{
         {-6.0, 1.0, 6.0},
         {-8.0, 8.0, 6.0},
         {-7.0, -1.0, 1.0}
@@ -324,7 +324,7 @@ TEST(MatrixTest, SubmatrixOfMatrixSimd4x4) {
 }
 
 TEST(MatrixTest, MinorOfMatrixSimd3x3) {
-    rtlib::Matrix3x3 m({{
+    rtlib::MatrixSimd3x3Double m({{
         {3.0, 5.0, 0.0},
         {2.0, -1.0, -7.0},
         {6.0, -1.0, 5.0}
