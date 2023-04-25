@@ -16,7 +16,7 @@ namespace rtlib {
 class Sphere : public Object {
 public:
     Sphere() : Object() {}
-    ~Sphere() {}
+    virtual ~Sphere() {}
     
 protected:
     virtual Intersections intersectsImpl(const Ray& ray) const;

@@ -12,10 +12,10 @@
 
 namespace rtlib {
 
-class Plane : public Object {\
+class Plane : public Object {
 public:
     Plane() : Object() {}
-    ~Plane() {}
+    virtual ~Plane() {}
     
 protected:
     virtual Intersections intersectsImpl(const Ray& ray) const;

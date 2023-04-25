@@ -23,7 +23,7 @@ private:
     
 public:
     Object();
-    ~Object() {}
+    virtual ~Object() {}
     
     Matrix4x4 transform() const;
     void setTransform(Matrix4x4 matrix);
