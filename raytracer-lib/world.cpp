@@ -138,7 +138,7 @@ World World::defaultWorld() {
     
     auto light = std::make_shared<Light>(create_point(-10, 10, -10),
                                          Colour(1.0, 1.0, 1.0));
-    w._lights.push_back(light);
+    w.addLight(light);
     
     auto sphere1 = std::make_shared<Sphere>();
     sphere1->setMaterial({
@@ -149,11 +149,11 @@ World World::defaultWorld() {
         0.2,
         200.0
     });
-    w._objects.push_back(sphere1);
+    w.addObject(sphere1);
     
     auto sphere2 = std::make_shared<Sphere>();
     sphere2->setTransform(scaling(0.5, 0.5, 0.5));
-    w._objects.push_back(sphere2);
+    w.addObject(sphere2);
     
     return w;
 }
