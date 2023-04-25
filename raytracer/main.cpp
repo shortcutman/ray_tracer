@@ -23,60 +23,62 @@
 using namespace rtlib;
 
 namespace {
-World createWorld() {
-    auto world = World();
+std::unique_ptr<World> createWorld() {
+    auto world = std::make_unique<World>();
     
-    auto floor = std::make_shared<Plane>();
+    auto floor = std::make_unique<Plane>();
     floor->material()._colour = Colour(1.0, 0.9, 0.9);
     floor->material()._specular = 0.0;
     floor->material()._reflective = 0.5;
-    world.addObject(floor);
-    
-    auto leftWall = std::make_shared<Plane>();
+    world->addObject(std::move(floor));
+
+    auto leftWall = std::make_unique<Plane>();
     leftWall->setTransform(translation(0.0, 0.0, 5.0) *
                           rotation_y(-std::numbers::pi / 4.0) *
                           rotation_x(std::numbers::pi / 2.0));
-    leftWall->setMaterial(floor->material());
-    world.addObject(leftWall);
-    
-    auto rightWall = std::make_shared<Plane>();
+    leftWall->material()._colour = Colour(1.0, 0.9, 0.9);
+    leftWall->material()._specular = 0.0;
+    leftWall->material()._reflective = 0.5;
+    world->addObject(std::move(leftWall));
+
+    auto rightWall = std::make_unique<Plane>();
     rightWall->setTransform(translation(0.0, 0.0, 5.0) *
                             rotation_y(std::numbers::pi / 4.0) *
                             rotation_x(std::numbers::pi / 2.0));
     rightWall->material()._colour = Colour(0.0, 0.3, 0.9);
     rightWall->material()._specular = 0.0;
-    world.addObject(rightWall);
-    
+    world->addObject(std::move(rightWall));
+
     auto white = Colour(1.0, 1.0, 1.0);
     auto black = Colour(0.0, 0.0, 0.0);
-    
-    auto middle = std::make_shared<Sphere>();
+
+    auto middle = std::make_unique<Sphere>();
     middle->setTransform(translation(-0.5, 1.0, 0.5));
     middle->material()._pattern = std::make_shared<StripePattern>(white, black);
     middle->material()._pattern->setTransform(scaling(0.1, 0.1, 0.1));
     middle->material()._colour = Colour(0.1, 1.0, 0.5);
     middle->material()._diffuse = 0.7;
     middle->material()._specular = 0.3;
-    world.addObject(middle);
+    world->addObject(std::move(middle));
     
-    auto right = std::make_shared<Sphere>();
+    auto right = std::make_unique<Sphere>();
     right->setTransform(translation(1.5, 0.5, -0.5) *
                        scaling(0.5, 0.5, 0.5));
     right->material()._colour = Colour(0.5, 1.0, 0.1);
     right->material()._diffuse = 0.7;
     right->material()._specular = 0.3;
-    world.addObject(right);
+    world->addObject(std::move(right));
     
-    auto left = std::make_shared<Sphere>();
+    auto left = std::make_unique<Sphere>();
     left->setTransform(translation(-1.5, 0.33, -0.75) *
                         scaling(0.33, 0.33, 0.33));
     left->material()._colour = Colour(1.0, 0.8, 0.1);
     left->material()._diffuse = 0.7;
     left->material()._specular = 0.3;
-    world.addObject(left);
+    world->addObject(std::move(left));
     
-    auto light = std::make_shared<Light>(create_point(-10, 10, -10), Colour(1.0, 1.0, 1.0));
-    world.addLight(light);
+    auto light = std::make_unique<Light>(create_point(-10, 10, -10), Colour(1.0, 1.0, 1.0));
+    world->addLight(std::move(light));
     
     return world;
 }
@@ -153,12 +155,12 @@ int main(int argc, const char * argv[]) {
     
     std::cout << "Single thread" << std::endl;
     runFuncTimed([&] () {
-        renderSingleThreaded(canvas, camera, world);
+        renderSingleThreaded(canvas, camera, *world);
     });
     
     std::cout << "Multi thread" << std::endl;
     runFuncTimed([&] () {
-        renderMultiThreaded(canvas, camera, world);
+        renderMultiThreaded(canvas, camera, *world);
     });
     
     std::ofstream file;

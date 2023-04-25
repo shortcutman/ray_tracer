@@ -17,20 +17,20 @@
 
 using namespace rtlib;
 
-std::vector<LightPtr> World::lights() const {
+std::vector<LightPtr>& World::lights() {
     return _lights;
 }
 
 void World::addLight(LightPtr light) {
-    _lights.push_back(light);
+    _lights.push_back(std::move(light));
 }
 
-std::vector<ObjectPtr> World::objects() const {
+std::vector<ObjectPtr>& World::objects() {
     return _objects;
 }
 
 void World::addObject(ObjectPtr object) {
-    _objects.push_back(object);
+    _objects.push_back(std::move(object));
 }
 
 Colour World::colourAt(const Ray &ray, unsigned int remaining) const {
@@ -88,7 +88,7 @@ Colour World::refractedColourAt(const IntersectValues &values, unsigned int rema
 Intersections World::intersects(const Ray& ray) const {
     Intersections allHits;
     
-    for (auto obj : _objects) {
+    for (auto& obj : _objects) {
         auto hits = obj->intersects(ray);
         allHits.insert(std::end(allHits), std::begin(hits), std::end(hits));
     }
@@ -133,14 +133,14 @@ bool World::isShadowed(const Tuple &point) const {
     return hit && hit->t < distancePointToLight;
 }
 
-World World::defaultWorld() {
-    World w;
+std::unique_ptr<World> World::defaultWorld() {
+    auto w = std::make_unique<World>();
     
-    auto light = std::make_shared<Light>(create_point(-10, 10, -10),
+    auto light = std::make_unique<Light>(create_point(-10, 10, -10),
                                          Colour(1.0, 1.0, 1.0));
-    w.addLight(light);
+    w->addLight(std::move(light));
     
-    auto sphere1 = std::make_shared<Sphere>();
+    auto sphere1 = std::make_unique<Sphere>();
     sphere1->setMaterial({
         nullptr,
         Colour(0.8, 1.0, 0.6),
@@ -149,11 +149,11 @@ World World::defaultWorld() {
         0.2,
         200.0
     });
-    w.addObject(sphere1);
+    w->addObject(std::move(sphere1));
     
-    auto sphere2 = std::make_shared<Sphere>();
+    auto sphere2 = std::make_unique<Sphere>();
     sphere2->setTransform(scaling(0.5, 0.5, 0.5));
-    w.addObject(sphere2);
+    w->addObject(std::move(sphere2));
     
     return w;
 }

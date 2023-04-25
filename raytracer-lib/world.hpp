@@ -16,9 +16,9 @@
 namespace rtlib {
  
 class Light;
-typedef std::shared_ptr<Light> LightPtr;
+typedef std::unique_ptr<Light> LightPtr;
 class Object;
-typedef std::shared_ptr<Object> ObjectPtr;
+typedef std::unique_ptr<Object> ObjectPtr;
 
 class World {
 private:
@@ -27,11 +27,12 @@ private:
     
 public:
     World() {}
+    ~World() {}
     
-    std::vector<LightPtr> lights() const;
+    std::vector<LightPtr>& lights();
     void addLight(LightPtr light);
     
-    std::vector<ObjectPtr> objects() const;
+    std::vector<ObjectPtr>& objects();
     void addObject(ObjectPtr object);
     
     Colour colourAt(const Ray& ray, unsigned int remaining = 5) const;
@@ -42,7 +43,7 @@ public:
     Colour shadeHits(IntersectValues values, unsigned int remaining) const;
     bool isShadowed(const Tuple& point) const;
     
-    static World defaultWorld();
+    static std::unique_ptr<World> defaultWorld();
 };
 
 }
