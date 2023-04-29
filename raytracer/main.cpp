@@ -117,7 +117,7 @@ void renderMultiThreaded(Canvas& canvas, const Camera& camera, const World& worl
             if (y < canvas.height()) {
                 ScanLine s;
                 s.yStart = y;
-                y += 50;
+                y += canvas.height() / 10;
                 s.yEnd = y;
                 s.width = canvas.width();
                 return s;
@@ -157,7 +157,7 @@ int main(int argc, const char * argv[]) {
     runFuncTimed([&] () {
         renderSingleThreaded(canvas, camera, *world);
     });
-    
+
     std::cout << "Multi thread" << std::endl;
     runFuncTimed([&] () {
         renderMultiThreaded(canvas, camera, *world);
